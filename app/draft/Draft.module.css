@@ -1,0 +1,12 @@
+.header {
+  text-align: center;
+}
+
+.draftContainer {
+  display: flex;
+}
+
+.column {
+  flex-grow: 1;
+  text-align: center;
+}
