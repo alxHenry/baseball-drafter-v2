@@ -5,8 +5,8 @@ export const PLAYERS_MOCK: PlayersById = {
     id: "1",
     name: "Jose Abreu",
     stats: {
-      AVG: { id: "AVG", name: "AVG", value: 0.32, isHigherBetter: true },
-      HR: { id: "HR", name: "HR", value: 35, isHigherBetter: true },
+      avg: { id: "avg", name: "avg", value: 0.32, isHigherBetter: true },
+      hr: { id: "hr", name: "hr", value: 35, isHigherBetter: true },
     },
     team: "CHW",
   },
@@ -14,8 +14,8 @@ export const PLAYERS_MOCK: PlayersById = {
     id: "2",
     name: "Aaron Judge",
     stats: {
-      AVG: { id: "AVG", name: "AVG", value: 0.29, isHigherBetter: true },
-      HR: { id: "HR", name: "HR", value: 60, isHigherBetter: true },
+      avg: { id: "avg", name: "avg", value: 0.29, isHigherBetter: true },
+      hr: { id: "hr", name: "hr", value: 60, isHigherBetter: true },
     },
     team: "NYY",
   },
