@@ -1,4 +1,4 @@
-export type Players = Record<Player["id"], Player>;
+export type PlayersById = Record<Player["id"], Player>;
 
 export interface Player {
   id: string;
