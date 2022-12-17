@@ -11,3 +11,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## What's Next
+
+1. Being in Chakra UI and use their table components
+1. Start local data model. Zustand?
