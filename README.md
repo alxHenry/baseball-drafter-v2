@@ -14,3 +14,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 1. Continue creating functionality!
 1. ~~Bring in Chakra UI and use their table components~~. The app directory currently doesn't support ChakraUI or any component libraries. In bringing in Chakra provider at the root of your app, you immediately have to turn the whole thing into a client component, defeating the purpose.
+
+## Relevant Docs
+
+- Zustand: https://github.com/pmndrs/zustand/blob/main/readme.md
+- Next.js 13 Docs: https://beta.nextjs.org/docs/getting-started
+  - Upgrade guide: https://beta.nextjs.org/docs/upgrade-guide
