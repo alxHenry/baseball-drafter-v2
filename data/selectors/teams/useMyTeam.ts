@@ -1,4 +1,4 @@
-import { useTeamsStore } from "../../teamsStore";
+import { useTeamsStore } from "../../stores/teamsStore";
 
 export const useMyTeam = () => {
   const myTeamId = useTeamsStore((state) => state.userTeamId);

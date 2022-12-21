@@ -1,5 +1,5 @@
 import create from "zustand";
-import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../../data/mock";
+import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../mock";
 
 export interface TeamsStore {
   // Properties
