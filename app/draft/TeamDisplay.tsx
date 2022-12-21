@@ -1,9 +1,10 @@
 "use client";
 
-import { useMyTeam } from "../../data/selectors/teams";
+import { getMyTeamPlayers } from "../../data/selectors/teamsSelectors";
+import { useTeamsStore } from "../../data/stores/teamsStore";
 
 export default function TeamDisplay() {
-  const myTeam = useMyTeam();
+  const myTeamsPlayers = useTeamsStore(getMyTeamPlayers);
 
-  return <div>My team: {myTeam.playerIds.join(", ")}</div>;
+  return <div>My team: {myTeamsPlayers.join(", ")}</div>;
 }
