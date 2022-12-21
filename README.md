@@ -12,5 +12,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## What's Next
 
-1. Being in Chakra UI and use their table components
 1. Start local data model. Zustand?
+1. ~~Bring in Chakra UI and use their table components~~. The app directory currently doesn't support ChakraUI or any component libraries. In bringing in Chakra provider at the root of your app, you immediately have to turn the whole thing into a client component, defeating the purpose.
