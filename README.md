@@ -20,3 +20,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Zustand: https://github.com/pmndrs/zustand/blob/main/readme.md
 - Next.js 13 Docs: https://beta.nextjs.org/docs/getting-started
   - Upgrade guide: https://beta.nextjs.org/docs/upgrade-guide
+- React-table docs: https://tanstack.com/table/v8/docs/guide/introduction
