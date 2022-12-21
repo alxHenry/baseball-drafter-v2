@@ -1,6 +1,6 @@
 "use client";
 
-import { useMyTeam } from "../../data/selectors/teams/useMyTeam";
+import { useMyTeam } from "../../data/selectors/teams";
 
 export default function TeamDisplay() {
   const myTeam = useMyTeam();
