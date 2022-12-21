@@ -2,12 +2,17 @@
 
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { BatterPlayerRow } from "../../../data/transforms/player";
+import DraftButton from "./DraftButton";
 
 const columnHelper = createColumnHelper<BatterPlayerRow>();
 const columns = [
   columnHelper.accessor("name", { header: "Name" }),
   columnHelper.accessor("avg", { header: "avg" }),
   columnHelper.accessor("hr", { header: "hr" }),
+  columnHelper.display({
+    id: "draft-button",
+    cell: (props) => <DraftButton row={props.row} />,
+  }),
 ];
 
 interface Props {

@@ -2,6 +2,7 @@ import { getMockPlayerData } from "../../data/mock";
 import { transformPlayerToRow } from "../../data/transforms/player";
 import DraftPlayerList from "./components/DraftPlayerList";
 import styles from "./Draft.module.css";
+import TeamDisplay from "./TeamDisplay";
 
 export default async function Page() {
   const players = await getMockPlayerData();
@@ -16,6 +17,7 @@ export default async function Page() {
         <div className={`${styles.column} ${styles.actions}`}>Actions</div>
       </div>
       <DraftPlayerList playerRows={playerRows} />
+      <TeamDisplay />
     </>
   );
 }
