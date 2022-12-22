@@ -1,4 +1,4 @@
-import type { StoreGet, StoreSet } from "./teamsStore";
+import type { StoreGet, StoreSet } from "./store";
 
 export interface DraftSlice {
   // Methods

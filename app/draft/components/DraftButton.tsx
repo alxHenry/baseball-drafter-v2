@@ -1,6 +1,6 @@
 import { Row } from "@tanstack/react-table";
 import { BatterPlayerRow } from "../../../data/transforms/player";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/store";
 
 interface Props {
   row: Row<BatterPlayerRow>;

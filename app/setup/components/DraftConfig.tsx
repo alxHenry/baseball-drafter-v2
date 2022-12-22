@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEventHandler, FC, useState } from "react";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/store";
 import DraftConfigSubmit from "./DraftConfigSubmit";
 import TeamSetup from "./TeamSetup";
 

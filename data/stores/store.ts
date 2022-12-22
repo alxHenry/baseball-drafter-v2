@@ -5,19 +5,19 @@ import create from "zustand";
 import { getDraftSliceDefinitions } from "./draftSlice";
 import { getTeamsSliceDefinitions } from "./teamsSlice";
 
-export interface TeamsStore {
+export interface Store {
   // Slices
   readonly draftSlice: DraftSlice;
   readonly teamsSlice: TeamsSlice;
 }
 
 export type StoreSet = (
-  partial: TeamsStore | Partial<TeamsStore> | ((state: TeamsStore) => TeamsStore | Partial<TeamsStore>),
+  partial: Store | Partial<Store> | ((state: Store) => Store | Partial<Store>),
   replace?: boolean | undefined
 ) => void;
-export type StoreGet = () => TeamsStore;
+export type StoreGet = () => Store;
 
-export const useTeamsStore = create<TeamsStore>((set: StoreSet, get: StoreGet) => ({
+export const useTeamsStore = create<Store>((set: StoreSet, get: StoreGet) => ({
   draftSlice: getDraftSliceDefinitions(set, get),
   teamsSlice: getTeamsSliceDefinitions(set, get),
 }));

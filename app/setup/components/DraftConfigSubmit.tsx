@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/store";
 
 const DraftConfigSubmit: FC = () => {
   const router = useRouter();

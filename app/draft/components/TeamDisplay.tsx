@@ -2,7 +2,7 @@
 import styles from "./TeamDisplay.module.css";
 
 import { getCurrentPickingTeamName, getCurrentPickingTeamsPlayers } from "../../../data/selectors/draftSelectors";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/store";
 
 export default function TeamDisplay() {
   const currentDraftingTeamsPlayers = useTeamsStore(getCurrentPickingTeamsPlayers);

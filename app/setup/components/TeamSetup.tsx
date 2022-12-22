@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FC, useEffect, useMemo, useState } from "react";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/store";
 
 interface Props {}
 

@@ -1,5 +1,5 @@
 import { getCurrentPickingTeamId } from "../selectors/draftSelectors";
-import type { StoreGet, StoreSet } from "./teamsStore";
+import type { StoreGet, StoreSet } from "./store";
 import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
 
 export interface Team {
