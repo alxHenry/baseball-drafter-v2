@@ -8,11 +8,13 @@ interface Props {
 
 const DraftButton = ({ row }: Props) => {
   const draftPlayer = useTeamsStore((state) => state.draftPlayer);
+  const advanceDraft = useTeamsStore((state) => state.draftSlice.advanceDraft);
 
   return (
     <button
       onClick={() => {
         draftPlayer(row.original.id);
+        advanceDraft();
       }}
     >
       Draft!

@@ -12,9 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## What's Next
 
-1. Continue creating functionality!
-1. Bring in Tailwind and give it a spin.
-1. ~~Bring in Chakra UI and use their table components~~. The app directory currently doesn't support ChakraUI or any component libraries. In bringing in Chakra provider at the root of your app, you immediately have to turn the whole thing into a client component, defeating the purpose.
+- https://github.com/users/alxHenry/projects/1/views/1
 
 ## Relevant Docs
 

@@ -1,6 +1,6 @@
 import create from "zustand";
 import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../mock";
-import { getCurrentPickingTeam } from "../selectors/teamsSelectors";
+import { getCurrentPickingTeamId } from "../selectors/teamsSelectors";
 
 export const DEFAULT_TEAMS_COUNT = 10;
 const generateTeams = (numberOfTeams: number, startingIndex: number = 0) => {
@@ -22,6 +22,11 @@ export const transformTeamNamesToFullTeams = (setupTeamNames: string[]) => {
 
 type TeamsById = Record<string, Team>;
 
+export interface DraftSlice {
+  // Methods
+  readonly advanceDraft: () => void;
+}
+
 export interface TeamsStore {
   // Properties
   readonly currentPickTeamId: string | null;
@@ -33,6 +38,9 @@ export interface TeamsStore {
   readonly modifySetupTeam: (index: number, newName: string) => void;
   readonly changeSetupTeamCount: (desiredTeamCount: number) => void;
   readonly finalizeSetupTeams: () => void;
+
+  // Slices
+  readonly draftSlice: DraftSlice;
 }
 
 export interface Team {
@@ -48,7 +56,7 @@ export const useTeamsStore = create<TeamsStore>((set) => ({
 
   draftPlayer: (playerId) =>
     set((state) => {
-      const draftingTeamId = getCurrentPickingTeam(state);
+      const draftingTeamId = getCurrentPickingTeamId(state);
       return {
         teamsById: {
           ...state.teamsById,
@@ -90,5 +98,19 @@ export const useTeamsStore = create<TeamsStore>((set) => ({
         currentPickTeamId: Object.keys(fullTeamObjects)[0],
       };
     });
+  },
+
+  draftSlice: {
+    advanceDraft: () => {
+      set(({ teamsById, currentPickTeamId }) => {
+        const draftOrderKeys = Object.keys(teamsById);
+        const currentPickIndex = draftOrderKeys.findIndex((key) => key === currentPickTeamId);
+        const nextTeam = draftOrderKeys[(currentPickIndex + 1) % draftOrderKeys.length];
+
+        return {
+          currentPickTeamId: nextTeam,
+        };
+      });
+    },
   },
 }));

@@ -1,10 +1,17 @@
 "use client";
+import styles from "./TeamDisplay.module.css";
 
-import { getCurrentPickingTeamsPlayers } from "../../../data/selectors/teamsSelectors";
+import { getCurrentPickingTeamName, getCurrentPickingTeamsPlayers } from "../../../data/selectors/teamsSelectors";
 import { useTeamsStore } from "../../../data/stores/teamsStore";
 
 export default function TeamDisplay() {
   const currentDraftingTeamsPlayers = useTeamsStore(getCurrentPickingTeamsPlayers);
+  const currentDraftingTeamName = useTeamsStore(getCurrentPickingTeamName);
 
-  return <div>On the clock team: {currentDraftingTeamsPlayers.join(", ")}</div>;
+  return (
+    <div className={styles.container}>
+      <div>On the clock team: {currentDraftingTeamName}</div>
+      <div>Players: {currentDraftingTeamsPlayers.join(", ")}</div>
+    </div>
+  );
 }
