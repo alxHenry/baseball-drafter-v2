@@ -10,9 +10,6 @@ export const getDraftPlayerToTeamAction = (set: StoreSet): DraftPlayerAction => 
       const { battersById } = state.playersSlice;
       const draftingTeamId = getCurrentPickingTeamId(state);
 
-      const battersByIdWithPlayerRemove = { ...battersById };
-      delete battersByIdWithPlayerRemove[playerId];
-
       return {
         teamsSlice: {
           ...state.teamsSlice,
@@ -26,7 +23,13 @@ export const getDraftPlayerToTeamAction = (set: StoreSet): DraftPlayerAction => 
         },
         playersSlice: {
           ...state.playersSlice,
-          battersById: battersByIdWithPlayerRemove,
+          battersById: {
+            ...battersById,
+            [playerId]: {
+              ...battersById[playerId],
+              draftedByTeamId: draftingTeamId,
+            },
+          },
         },
       };
     });

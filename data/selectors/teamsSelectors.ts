@@ -10,9 +10,11 @@ export const getCurrentPickingTeamName = ({ draftSlice: { currentPickTeamId }, t
 export const getCurrentPickingTeamsPlayers = ({
   draftSlice: { currentPickTeamId },
   teamsSlice: { teamsById },
+  playersSlice: { battersById },
 }: Store) => {
   if (currentPickTeamId == null) {
     throw new Error("Reading the current picking teams players before the draft has been setup.");
   }
-  return teamsById[currentPickTeamId].playerIds;
+  const playerIds = teamsById[currentPickTeamId].playerIds;
+  return playerIds.map((playerId) => battersById[playerId]);
 };

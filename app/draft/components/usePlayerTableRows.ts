@@ -13,7 +13,7 @@ export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs
     if (shouldHideDrafted === false) {
       return rows;
     }
-    return rows.filter((player) => player.isDrafted === false);
+    return rows.filter((player) => player.draftedByTeamId === null);
   }, [battersById, shouldHideDrafted]);
 
   return playerRows;

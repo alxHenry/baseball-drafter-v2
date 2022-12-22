@@ -4,7 +4,7 @@ export const transformServerPlayerToLocalPlayer = (serverPlayerById: ServerPlaye
   return Object.values(serverPlayerById).reduce<BattersById>((agg, serverPlayer) => {
     agg[serverPlayer.id] = {
       ...serverPlayer,
-      isDrafted: false,
+      draftedByTeamId: null,
     };
     return agg;
   }, {});

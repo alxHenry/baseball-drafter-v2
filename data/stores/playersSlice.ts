@@ -10,7 +10,7 @@ export interface ServerPlayer {
 
 export type BattersById = Record<string, BatterPlayerRow>;
 export interface BatterPlayerRow extends ServerPlayer {
-  isDrafted: boolean;
+  draftedByTeamId: string | null;
 }
 
 export interface PlayersSlice {
