@@ -1,15 +1,15 @@
 "use client";
 
 import { ChangeEventHandler, FC, useState } from "react";
-import { useTeamsStore } from "../../../data/stores/store";
+import { useStore } from "../../../data/stores/store";
 import DraftConfigSubmit from "./DraftConfigSubmit";
 import TeamSetup from "./TeamSetup";
 
 interface Props {}
 
 const DraftConfig: FC<Props> = () => {
-  const changeSetupTeamCount = useTeamsStore((state) => state.teamsSlice.changeSetupTeamCount);
-  const teamCount = useTeamsStore((state) => state.teamsSlice.setupTeamNames.length);
+  const changeSetupTeamCount = useStore((state) => state.teamsSlice.changeSetupTeamCount);
+  const teamCount = useStore((state) => state.teamsSlice.setupTeamNames.length);
 
   const onNumberOfTeamsChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
     const newNumberOfTeams = parseInt(ev.currentTarget.value, 10);

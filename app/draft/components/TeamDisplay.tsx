@@ -2,11 +2,11 @@
 import styles from "./TeamDisplay.module.css";
 
 import { getCurrentPickingTeamName, getCurrentPickingTeamsPlayers } from "../../../data/selectors/teamsSelectors";
-import { useTeamsStore } from "../../../data/stores/store";
+import { useStore } from "../../../data/stores/store";
 
 export default function TeamDisplay() {
-  const currentDraftingTeamsPlayers = useTeamsStore(getCurrentPickingTeamsPlayers);
-  const currentDraftingTeamName = useTeamsStore(getCurrentPickingTeamName);
+  const currentDraftingTeamsPlayers = useStore(getCurrentPickingTeamsPlayers);
+  const currentDraftingTeamName = useStore(getCurrentPickingTeamName);
 
   return (
     <div className={styles.container}>

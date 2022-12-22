@@ -1,11 +1,11 @@
 import { ChangeEventHandler, FC, useEffect, useMemo, useState } from "react";
-import { useTeamsStore } from "../../../data/stores/store";
+import { useStore } from "../../../data/stores/store";
 
 interface Props {}
 
 const TeamSetup: FC<Props> = () => {
-  const setupTeamNames = useTeamsStore((state) => state.teamsSlice.setupTeamNames);
-  const modifySetupTeam = useTeamsStore((state) => state.teamsSlice.modifySetupTeam);
+  const setupTeamNames = useStore((state) => state.teamsSlice.setupTeamNames);
+  const modifySetupTeam = useStore((state) => state.teamsSlice.modifySetupTeam);
 
   const teamNameInputs = useMemo(
     () =>
