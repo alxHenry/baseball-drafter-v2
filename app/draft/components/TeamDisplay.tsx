@@ -1,7 +1,7 @@
 "use client";
 import styles from "./TeamDisplay.module.css";
 
-import { getCurrentPickingTeamName, getCurrentPickingTeamsPlayers } from "../../../data/selectors/teamsSelectors";
+import { getCurrentPickingTeamName, getCurrentPickingTeamsPlayers } from "../../../data/selectors/draftSelectors";
 import { useTeamsStore } from "../../../data/stores/teamsStore";
 
 export default function TeamDisplay() {

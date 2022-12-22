@@ -1,35 +1,15 @@
+import type { DraftSlice } from "./draftSlice";
+
 import create from "zustand";
 import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../mock";
-import { getCurrentPickingTeamId } from "../selectors/teamsSelectors";
+import { getCurrentPickingTeamId } from "../selectors/draftSelectors";
+import { getDraftSliceDefinitions } from "./draftSlice";
+import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
 
-export const DEFAULT_TEAMS_COUNT = 10;
-const generateTeams = (numberOfTeams: number, startingIndex: number = 0) => {
-  return new Array(numberOfTeams).fill("").map((_, index) => `Team-${startingIndex + index}`);
-};
-
-export const transformTeamNamesToFullTeams = (setupTeamNames: string[]) => {
-  return setupTeamNames.reduce<TeamsById>((agg, teamName, index) => {
-    const teamId = `team-${index}`;
-    agg[teamId] = {
-      id: teamId,
-      name: teamName,
-      playerIds: [],
-    };
-
-    return agg;
-  }, {});
-};
-
-type TeamsById = Record<string, Team>;
-
-export interface DraftSlice {
-  // Methods
-  readonly advanceDraft: () => void;
-}
+export type TeamsById = Record<string, Team>;
 
 export interface TeamsStore {
   // Properties
-  readonly currentPickTeamId: string | null;
   readonly teamsById: TeamsById;
   readonly setupTeamNames: string[];
 
@@ -49,8 +29,12 @@ export interface Team {
   readonly playerIds: string[];
 }
 
-export const useTeamsStore = create<TeamsStore>((set) => ({
-  currentPickTeamId: null,
+export type StoreSet = (
+  partial: TeamsStore | Partial<TeamsStore> | ((state: TeamsStore) => TeamsStore | Partial<TeamsStore>),
+  replace?: boolean | undefined
+) => void;
+
+export const useTeamsStore = create<TeamsStore>((set: StoreSet) => ({
   teamsById: { [MY_MOCK_TEAM_ID]: MY_INITIAL_TEAM },
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
 
@@ -95,22 +79,13 @@ export const useTeamsStore = create<TeamsStore>((set) => ({
 
       return {
         teamsById: fullTeamObjects,
-        currentPickTeamId: Object.keys(fullTeamObjects)[0],
+        draftSlice: {
+          ...state.draftSlice,
+          currentPickTeamId: Object.keys(fullTeamObjects)[0],
+        },
       };
     });
   },
 
-  draftSlice: {
-    advanceDraft: () => {
-      set(({ teamsById, currentPickTeamId }) => {
-        const draftOrderKeys = Object.keys(teamsById);
-        const currentPickIndex = draftOrderKeys.findIndex((key) => key === currentPickTeamId);
-        const nextTeam = draftOrderKeys[(currentPickIndex + 1) % draftOrderKeys.length];
-
-        return {
-          currentPickTeamId: nextTeam,
-        };
-      });
-    },
-  },
+  draftSlice: getDraftSliceDefinitions(set),
 }));
