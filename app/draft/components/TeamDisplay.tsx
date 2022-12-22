@@ -1,10 +1,10 @@
 "use client";
 
-import { getMyTeamPlayers } from "../../../data/selectors/teamsSelectors";
+import { getCurrentPickingTeamsPlayers } from "../../../data/selectors/teamsSelectors";
 import { useTeamsStore } from "../../../data/stores/teamsStore";
 
 export default function TeamDisplay() {
-  const myTeamsPlayers = useTeamsStore(getMyTeamPlayers);
+  const currentDraftingTeamsPlayers = useTeamsStore(getCurrentPickingTeamsPlayers);
 
-  return <div>My team: {myTeamsPlayers.join(", ")}</div>;
+  return <div>On the clock team: {currentDraftingTeamsPlayers.join(", ")}</div>;
 }

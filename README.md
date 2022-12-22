@@ -19,6 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Relevant Docs
 
 - Zustand: https://github.com/pmndrs/zustand/blob/main/readme.md
+  - Recipes: https://docs.pmnd.rs/zustand/recipes/recipes
 - Next.js 13 Docs: https://beta.nextjs.org/docs/getting-started
   - Upgrade guide: https://beta.nextjs.org/docs/upgrade-guide
 - React-table docs: https://tanstack.com/table/v8/docs/guide/introduction

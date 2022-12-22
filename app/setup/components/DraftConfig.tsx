@@ -1,7 +1,8 @@
 "use client";
 
 import { ChangeEventHandler, FC, useState } from "react";
-import { DEFAULT_TEAMS_COUNT, useTeamsStore } from "../../../data/stores/teamsStore";
+import { useTeamsStore } from "../../../data/stores/teamsStore";
+import DraftConfigSubmit from "./DraftConfigSubmit";
 import TeamSetup from "./TeamSetup";
 
 interface Props {}
@@ -22,6 +23,7 @@ const DraftConfig: FC<Props> = () => {
         <input
           id="number-teams"
           name="number-teams"
+          aria-label="Select number of teams to draft"
           type="number"
           min={2}
           max={20}
@@ -30,6 +32,9 @@ const DraftConfig: FC<Props> = () => {
         />
       </div>
       <TeamSetup />
+      <div>
+        <DraftConfigSubmit />
+      </div>
     </div>
   );
 };

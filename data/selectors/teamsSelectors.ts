@@ -1,17 +1,15 @@
-import { TeamsStore } from "../stores/teamsStore";
+import type { TeamsStore } from "../stores/teamsStore";
 
-export const getMyTeam = (state: TeamsStore) => {
-  const { teamsById, userTeamId } = state;
-
-  const myTeam = teamsById[userTeamId];
-  if (myTeam == null) {
-    throw new Error(`Selecting a non-existant teamId from store. TeamId: ${userTeamId}`);
+export const getCurrentPickingTeam = ({ currentPickTeamId }: TeamsStore) => {
+  if (currentPickTeamId == null) {
+    throw new Error("Reading the current picking team before the draft has been setup.");
   }
-
-  return teamsById[userTeamId];
+  return currentPickTeamId;
 };
 
-export const getMyTeamPlayers = (state: TeamsStore) => {
-  const myTeam = getMyTeam(state);
-  return myTeam.playerIds;
+export const getCurrentPickingTeamsPlayers = ({ currentPickTeamId, teamsById }: TeamsStore) => {
+  if (currentPickTeamId == null) {
+    throw new Error("Reading the current picking teams players before the draft has been setup.");
+  }
+  return teamsById[currentPickTeamId].playerIds;
 };

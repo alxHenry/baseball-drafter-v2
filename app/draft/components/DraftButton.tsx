@@ -7,13 +7,12 @@ interface Props {
 }
 
 const DraftButton = ({ row }: Props) => {
-  const myTeamId = useTeamsStore((state) => state.userTeamId);
   const draftPlayer = useTeamsStore((state) => state.draftPlayer);
 
   return (
     <button
       onClick={() => {
-        draftPlayer(myTeamId, row.original.id);
+        draftPlayer(row.original.id);
       }}
     >
       Draft!

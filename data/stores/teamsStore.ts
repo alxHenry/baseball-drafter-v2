@@ -1,23 +1,38 @@
 import create from "zustand";
 import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../mock";
+import { getCurrentPickingTeam } from "../selectors/teamsSelectors";
 
 export const DEFAULT_TEAMS_COUNT = 10;
 const generateTeams = (numberOfTeams: number, startingIndex: number = 0) => {
   return new Array(numberOfTeams).fill("").map((_, index) => `Team-${startingIndex + index}`);
 };
 
+export const transformTeamNamesToFullTeams = (setupTeamNames: string[]) => {
+  return setupTeamNames.reduce<TeamsById>((agg, teamName, index) => {
+    const teamId = `team-${index}`;
+    agg[teamId] = {
+      id: teamId,
+      name: teamName,
+      playerIds: [],
+    };
+
+    return agg;
+  }, {});
+};
+
 type TeamsById = Record<string, Team>;
 
 export interface TeamsStore {
   // Properties
-  readonly userTeamId: string;
+  readonly currentPickTeamId: string | null;
   readonly teamsById: TeamsById;
   readonly setupTeamNames: string[];
 
   // Methods
-  readonly draftPlayer: (teamId: string, playerId: string) => void;
+  readonly draftPlayer: (playerId: string) => void;
   readonly modifySetupTeam: (index: number, newName: string) => void;
   readonly changeSetupTeamCount: (desiredTeamCount: number) => void;
+  readonly finalizeSetupTeams: () => void;
 }
 
 export interface Team {
@@ -27,20 +42,23 @@ export interface Team {
 }
 
 export const useTeamsStore = create<TeamsStore>((set) => ({
-  userTeamId: MY_MOCK_TEAM_ID,
+  currentPickTeamId: null,
   teamsById: { [MY_MOCK_TEAM_ID]: MY_INITIAL_TEAM },
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
 
-  draftPlayer: (teamId, playerId) =>
-    set((state) => ({
-      teamsById: {
-        ...state.teamsById,
-        [teamId]: {
-          ...state.teamsById[teamId],
-          playerIds: [...state.teamsById[teamId].playerIds, playerId],
+  draftPlayer: (playerId) =>
+    set((state) => {
+      const draftingTeamId = getCurrentPickingTeam(state);
+      return {
+        teamsById: {
+          ...state.teamsById,
+          [draftingTeamId]: {
+            ...state.teamsById[draftingTeamId],
+            playerIds: [...state.teamsById[draftingTeamId].playerIds, playerId],
+          },
         },
-      },
-    })),
+      };
+    }),
   modifySetupTeam: (index, newName) => {
     set((state) => ({
       setupTeamNames: [...state.setupTeamNames.slice(0, index), newName, ...state.setupTeamNames.slice(index + 1)],
@@ -61,6 +79,16 @@ export const useTeamsStore = create<TeamsStore>((set) => ({
           setupTeamNames: state.setupTeamNames.slice(0, desiredTeamCount),
         };
       }
+    });
+  },
+  finalizeSetupTeams: () => {
+    set((state) => {
+      const fullTeamObjects = transformTeamNamesToFullTeams(state.setupTeamNames);
+
+      return {
+        teamsById: fullTeamObjects,
+        currentPickTeamId: Object.keys(fullTeamObjects)[0],
+      };
     });
   },
 }));
