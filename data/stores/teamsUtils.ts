@@ -1,4 +1,4 @@
-import type { TeamsById } from "./teamsStore";
+import type { TeamsById } from "./teamsSlice";
 
 export const DEFAULT_TEAMS_COUNT = 10;
 export const generateTeams = (numberOfTeams: number, startingIndex: number = 0) => {

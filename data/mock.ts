@@ -1,12 +1,5 @@
 import { PlayersById } from "../types/Players";
 
-export const MY_MOCK_TEAM_ID = "dummy-mock-team";
-export const MY_INITIAL_TEAM = {
-  name: "My team",
-  id: MY_MOCK_TEAM_ID,
-  playerIds: [],
-};
-
 export const PLAYERS_MOCK: PlayersById = {
   "1": {
     id: "1",

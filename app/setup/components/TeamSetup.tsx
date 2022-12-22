@@ -4,8 +4,8 @@ import { useTeamsStore } from "../../../data/stores/teamsStore";
 interface Props {}
 
 const TeamSetup: FC<Props> = () => {
-  const setupTeamNames = useTeamsStore((state) => state.setupTeamNames);
-  const modifySetupTeam = useTeamsStore((state) => state.modifySetupTeam);
+  const setupTeamNames = useTeamsStore((state) => state.teamsSlice.setupTeamNames);
+  const modifySetupTeam = useTeamsStore((state) => state.teamsSlice.modifySetupTeam);
 
   const teamNameInputs = useMemo(
     () =>

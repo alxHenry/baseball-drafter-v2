@@ -1,4 +1,4 @@
-import type { StoreSet } from "./teamsStore";
+import type { StoreGet, StoreSet } from "./teamsStore";
 
 export interface DraftSlice {
   // Methods
@@ -6,11 +6,11 @@ export interface DraftSlice {
   readonly currentPickTeamId: string | null;
 }
 
-export const getDraftSliceDefinitions = (set: StoreSet): DraftSlice => ({
+export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
   currentPickTeamId: null,
 
   advanceDraft: () => {
-    set(({ teamsById, draftSlice }) => {
+    set(({ teamsSlice: { teamsById }, draftSlice }) => {
       const { currentPickTeamId } = draftSlice;
       const draftOrderKeys = Object.keys(teamsById);
       const currentPickIndex = draftOrderKeys.findIndex((key) => key === currentPickTeamId);

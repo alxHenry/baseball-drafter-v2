@@ -7,7 +7,7 @@ interface Props {
 }
 
 const DraftButton = ({ row }: Props) => {
-  const draftPlayer = useTeamsStore((state) => state.draftPlayer);
+  const draftPlayer = useTeamsStore((state) => state.teamsSlice.draftPlayer);
   const advanceDraft = useTeamsStore((state) => state.draftSlice.advanceDraft);
 
   return (

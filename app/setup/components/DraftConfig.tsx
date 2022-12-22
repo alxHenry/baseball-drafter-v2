@@ -8,8 +8,8 @@ import TeamSetup from "./TeamSetup";
 interface Props {}
 
 const DraftConfig: FC<Props> = () => {
-  const changeSetupTeamCount = useTeamsStore((state) => state.changeSetupTeamCount);
-  const teamCount = useTeamsStore((state) => state.setupTeamNames.length);
+  const changeSetupTeamCount = useTeamsStore((state) => state.teamsSlice.changeSetupTeamCount);
+  const teamCount = useTeamsStore((state) => state.teamsSlice.setupTeamNames.length);
 
   const onNumberOfTeamsChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
     const newNumberOfTeams = parseInt(ev.currentTarget.value, 10);

@@ -7,14 +7,20 @@ export const getCurrentPickingTeamId = ({ draftSlice: { currentPickTeamId } }: T
   return currentPickTeamId;
 };
 
-export const getCurrentPickingTeamName = ({ draftSlice: { currentPickTeamId }, teamsById }: TeamsStore) => {
+export const getCurrentPickingTeamName = ({
+  draftSlice: { currentPickTeamId },
+  teamsSlice: { teamsById },
+}: TeamsStore) => {
   if (currentPickTeamId == null) {
     throw new Error("Reading the current picking team name before the draft has been setup.");
   }
   return teamsById[currentPickTeamId].name;
 };
 
-export const getCurrentPickingTeamsPlayers = ({ draftSlice: { currentPickTeamId }, teamsById }: TeamsStore) => {
+export const getCurrentPickingTeamsPlayers = ({
+  draftSlice: { currentPickTeamId },
+  teamsSlice: { teamsById },
+}: TeamsStore) => {
   if (currentPickTeamId == null) {
     throw new Error("Reading the current picking teams players before the draft has been setup.");
   }

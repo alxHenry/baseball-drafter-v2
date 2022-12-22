@@ -7,7 +7,7 @@ import { useTeamsStore } from "../../../data/stores/teamsStore";
 const DraftConfigSubmit: FC = () => {
   const router = useRouter();
 
-  const finalizeSetupTeams = useTeamsStore((state) => state.finalizeSetupTeams);
+  const finalizeSetupTeams = useTeamsStore((state) => state.teamsSlice.finalizeSetupTeams);
   const startDraft = () => {
     finalizeSetupTeams();
     router.push("/draft");
