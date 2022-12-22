@@ -1,46 +1,18 @@
 import { ChangeEventHandler, FC, useEffect, useMemo, useState } from "react";
+import { useTeamsStore } from "../../../data/stores/teamsStore";
 
-interface Props {
-  readonly numberOfTeams: number;
-}
+interface Props {}
 
-let LOCAL_ID_INCREMENTER = 0;
-
-const TeamSetup: FC<Props> = ({ numberOfTeams }) => {
-  const [teamNames, setTeamNames] = useState(new Array(numberOfTeams).fill("").map((_, index) => `Team-${index}`));
-  const teamNamesLength = teamNames.length;
-
-  // TODO: Hate this. How can we handle the changing number of teams and the concurrently rendered input fields without losing data?
-  useEffect(() => {
-    // When number of teams changes, modify the end of the array to the correct length
-    if (numberOfTeams < teamNamesLength) {
-      setTeamNames((prevTeamNames) => {
-        return prevTeamNames.slice(0, numberOfTeams);
-      });
-      return;
-    }
-
-    // Add to list
-    const newTeamsNeededCount = numberOfTeams - teamNamesLength;
-    setTeamNames((prevTeamNames) => {
-      const additionalTeamNames = new Array(newTeamsNeededCount)
-        .fill("")
-        .map((_, index) => `Team-${teamNamesLength + index}`);
-      return [...prevTeamNames, ...additionalTeamNames];
-    });
-  }, [numberOfTeams, teamNamesLength]);
+const TeamSetup: FC<Props> = () => {
+  const setupTeamNames = useTeamsStore((state) => state.setupTeamNames);
+  const modifySetupTeam = useTeamsStore((state) => state.modifySetupTeam);
 
   const teamNameInputs = useMemo(
     () =>
-      teamNames.map((teamName, index) => {
+      setupTeamNames.map((teamName, index) => {
         const updateName: ChangeEventHandler<HTMLInputElement> = (ev) => {
           const newTeamName = ev.currentTarget.value;
-
-          setTeamNames((prevTeamNames) => {
-            prevTeamNames[index] = newTeamName;
-
-            return [...prevTeamNames.slice(0, index), newTeamName, ...prevTeamNames.slice(index + 1)];
-          });
+          modifySetupTeam(index, newTeamName);
         };
 
         const inputId = `team-name-input-${index}`;
@@ -51,7 +23,7 @@ const TeamSetup: FC<Props> = ({ numberOfTeams }) => {
           </div>
         );
       }),
-    [teamNames]
+    [modifySetupTeam, setupTeamNames]
   );
 
   return <div>{teamNameInputs}</div>;

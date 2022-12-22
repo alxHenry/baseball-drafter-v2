@@ -1,16 +1,19 @@
 "use client";
 
-import { FC, useState } from "react";
-import { useTeamsStore } from "../../../data/stores/teamsStore";
+import { ChangeEventHandler, FC, useState } from "react";
+import { DEFAULT_TEAMS_COUNT, useTeamsStore } from "../../../data/stores/teamsStore";
 import TeamSetup from "./TeamSetup";
-
-const DEFAULT_TEAMS = 10;
 
 interface Props {}
 
 const DraftConfig: FC<Props> = () => {
-  const setupNewEmptyTeams = useTeamsStore((state) => state.setupNewEmptyTeams);
-  const [numberOfTeams, setNumberOfTeams] = useState(DEFAULT_TEAMS);
+  const changeSetupTeamCount = useTeamsStore((state) => state.changeSetupTeamCount);
+  const teamCount = useTeamsStore((state) => state.setupTeamNames.length);
+
+  const onNumberOfTeamsChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
+    const newNumberOfTeams = parseInt(ev.currentTarget.value, 10);
+    changeSetupTeamCount(newNumberOfTeams);
+  };
 
   return (
     <div>
@@ -22,14 +25,11 @@ const DraftConfig: FC<Props> = () => {
           type="number"
           min={2}
           max={20}
-          value={numberOfTeams}
-          onChange={(ev) => {
-            const newNumberOfTeams = parseInt(ev.currentTarget.value, 10);
-            setNumberOfTeams(newNumberOfTeams);
-          }}
+          value={teamCount}
+          onChange={onNumberOfTeamsChange}
         />
       </div>
-      <TeamSetup numberOfTeams={numberOfTeams} />
+      <TeamSetup />
     </div>
   );
 };
