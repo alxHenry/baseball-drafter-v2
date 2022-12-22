@@ -6,7 +6,6 @@ import { getDraftSliceDefinitions } from "./draftSlice";
 import { getTeamsSliceDefinitions } from "./teamsSlice";
 
 export interface Store {
-  // Slices
   readonly draftSlice: DraftSlice;
   readonly teamsSlice: TeamsSlice;
 }
