@@ -3,9 +3,18 @@ import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 
-export const usePlayerTableRows = (): BatterPlayerRow[] => {
+interface UsePlayerTableRowsArgs {
+  readonly shouldHideDrafted: boolean;
+}
+export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): BatterPlayerRow[] => {
   const battersById = useStore((state) => state.playersSlice.battersById);
-  const playerRows = useMemo(() => Object.values(battersById), [battersById]);
+  const playerRows = useMemo(() => {
+    const rows = Object.values(battersById);
+    if (shouldHideDrafted === false) {
+      return rows;
+    }
+    return rows.filter((player) => player.isDrafted === false);
+  }, [battersById, shouldHideDrafted]);
 
   return playerRows;
 };

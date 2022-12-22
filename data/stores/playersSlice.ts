@@ -1,11 +1,16 @@
 import type { StoreGet, StoreSet } from "./store";
 
-export type BattersById = Record<string, BatterPlayerRow>;
-export interface BatterPlayerRow {
+export type ServerPlayerById = Record<string, ServerPlayer>;
+export interface ServerPlayer {
   id: string;
   avg: number;
   name: string;
   hr: number;
+}
+
+export type BattersById = Record<string, BatterPlayerRow>;
+export interface BatterPlayerRow extends ServerPlayer {
+  isDrafted: boolean;
 }
 
 export interface PlayersSlice {

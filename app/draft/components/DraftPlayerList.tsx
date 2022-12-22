@@ -21,7 +21,7 @@ const columns = [
 interface Props {}
 
 const DraftPlayerList = () => {
-  const playerRows = usePlayerTableRows();
+  const playerRows = usePlayerTableRows({ shouldHideDrafted: true });
   const table = useReactTable({
     data: playerRows,
     columns,

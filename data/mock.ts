@@ -1,6 +1,6 @@
-import { BattersById } from "./stores/playersSlice";
+import type { ServerPlayerById } from "./stores/playersSlice";
 
-export const PLAYERS_MOCK: BattersById = {
+export const PLAYERS_MOCK: ServerPlayerById = {
   "1": {
     id: "1",
     name: "Jose Abreu",
@@ -63,7 +63,7 @@ export const PLAYERS_MOCK: BattersById = {
   },
 };
 
-export const getMockPlayerData = (): Promise<BattersById> => {
+export const getMockPlayerData = (): Promise<ServerPlayerById> => {
   return new Promise((resolve) => {
     resolve(PLAYERS_MOCK);
   });
