@@ -1,12 +1,19 @@
 "use client";
 import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersSlice";
 
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
 import DraftButton from "./DraftButton";
 import { useEffect, useMemo, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 
+const PAGE_SIZE = 10;
 const columnHelper = createColumnHelper<BatterPlayerRow>();
 const columns = [
   columnHelper.accessor("name", { header: "Name" }),
@@ -14,20 +21,37 @@ const columns = [
   columnHelper.accessor("hr", { header: "hr" }),
   columnHelper.display({
     id: "draft-button",
-    cell: (props) => <DraftButton playerId={props.row.original.id} />,
+    cell: (props) => {
+      if (props.row.original.draftedByTeamId !== null) {
+        return;
+      }
+      return <DraftButton playerId={props.row.original.id} />;
+    },
   }),
+  columnHelper.accessor("draftedByTeamId", {}),
 ];
 
 interface Props {}
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
-  const playerRows = usePlayerTableRows();
+  const playerRows = usePlayerTableRows({ shouldHideDrafted });
   const table = useReactTable({
     data: playerRows,
     columns,
+    state: {
+      pagination: {
+        pageIndex: currentPageIndex,
+        pageSize: PAGE_SIZE,
+      },
+      columnVisibility: {
+        draftedByTeamId: false,
+      },
+    },
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   const headers = table.getHeaderGroups().map((headerGroup) => {
@@ -39,24 +63,18 @@ const DraftPlayerList = () => {
       </tr>
     );
   });
-  const rows = table
-    .getRowModel()
-    .rows.filter((row) => {
-      if (shouldHideDrafted === false) {
-        return true;
-      }
-      const playerIsUndrafted = row.original.draftedByTeamId === null;
-      return playerIsUndrafted;
-    })
-    .map((row) => {
-      return (
-        <tr key={row.id}>
-          {row.getVisibleCells().map((cell) => (
-            <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-          ))}
-        </tr>
-      );
-    });
+  const rows = table.getRowModel().rows.map((row) => {
+    return (
+      <tr key={row.id}>
+        {row.getVisibleCells().map((cell) => (
+          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+        ))}
+      </tr>
+    );
+  });
+
+  const numPages = Math.ceil(playerRows.length / PAGE_SIZE);
+  const isOnLastPage = currentPageIndex + 1 === numPages;
 
   return (
     <div>
@@ -76,6 +94,24 @@ const DraftPlayerList = () => {
         <thead>{headers}</thead>
         <tbody>{rows}</tbody>
       </table>
+      <div>
+        <button
+          disabled={currentPageIndex === 0}
+          onClick={() => {
+            setCurrentPageIndex((prev) => prev - 1);
+          }}
+        >
+          Previous Page
+        </button>
+        <button
+          disabled={isOnLastPage}
+          onClick={() => {
+            setCurrentPageIndex((prev) => prev + 1);
+          }}
+        >
+          Next Page
+        </button>
+      </div>
     </div>
   );
 };
