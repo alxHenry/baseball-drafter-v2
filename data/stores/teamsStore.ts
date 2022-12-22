@@ -1,13 +1,16 @@
 import create from "zustand";
 import { MY_INITIAL_TEAM, MY_MOCK_TEAM_ID } from "../mock";
 
+type TeamsById = Record<string, Team>;
+
 export interface TeamsStore {
   // Properties
   readonly userTeamId: string;
-  readonly teamsById: Record<string, Team>;
+  readonly teamsById: TeamsById;
 
   // Methods
   readonly draftPlayer: (teamId: string, playerId: string) => void;
+  readonly setupNewEmptyTeams: (teamNames: string[]) => void;
 }
 
 export interface Team {
@@ -29,4 +32,20 @@ export const useTeamsStore = create<TeamsStore>((set) => ({
         },
       },
     })),
+  setupNewEmptyTeams: (teamNames) => {
+    const teamsById = teamNames.reduce<TeamsById>((agg, teamName, index) => {
+      const teamId = `team-${index}`;
+      agg[teamId] = {
+        name: teamName,
+        id: teamId,
+        playerIds: [],
+      };
+
+      return agg;
+    }, {});
+
+    set((state) => ({
+      teamsById,
+    }));
+  },
 }));
