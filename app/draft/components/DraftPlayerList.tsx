@@ -1,8 +1,11 @@
 "use client";
+import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersSlice";
 
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { BatterPlayerRow } from "../../../data/transforms/player";
+import { useStore } from "../../../data/stores/store";
 import DraftButton from "./DraftButton";
+import { useEffect } from "react";
+import { usePlayerTableRows } from "./usePlayerTableRows";
 
 const columnHelper = createColumnHelper<BatterPlayerRow>();
 const columns = [
@@ -15,11 +18,11 @@ const columns = [
   }),
 ];
 
-interface Props {
-  playerRows: BatterPlayerRow[];
-}
+interface Props {}
 
-const DraftPlayerList = ({ playerRows }: Props) => {
+const DraftPlayerList = () => {
+  const playerRows = usePlayerTableRows();
+
   const table = useReactTable({
     data: playerRows,
     columns,
@@ -53,4 +56,18 @@ const DraftPlayerList = ({ playerRows }: Props) => {
   );
 };
 
-export default DraftPlayerList;
+interface HydratorProps extends Props {
+  battersById: BattersById;
+}
+
+const DraftPlayerListWithHydrator = ({ battersById, ...rest }: HydratorProps) => {
+  const hydratePlayers = useStore((state) => state.playersSlice.hydratePlayers);
+
+  useEffect(() => {
+    hydratePlayers(battersById);
+  }, [battersById, hydratePlayers]);
+
+  return <DraftPlayerList {...rest} />;
+};
+
+export default DraftPlayerListWithHydrator;

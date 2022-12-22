@@ -1,4 +1,5 @@
-import { getCurrentPickingTeamId } from "../selectors/draftSelectors";
+import { DraftPlayerAction, getDraftPlayerToTeamAction } from "../actions/teamsActions";
+
 import type { StoreGet, StoreSet } from "./store";
 import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
 
@@ -15,7 +16,7 @@ export interface TeamsSlice {
   readonly setupTeamNames: string[];
 
   // Methods
-  readonly draftPlayer: (playerId: string) => void;
+  readonly draftPlayer: DraftPlayerAction;
   readonly modifySetupTeam: (index: number, newName: string) => void;
   readonly changeSetupTeamCount: (desiredTeamCount: number) => void;
   readonly finalizeSetupTeams: () => void;
@@ -25,24 +26,7 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
   teamsById: {},
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
 
-  draftPlayer: (playerId) =>
-    set((state) => {
-      const { teamsById } = state.teamsSlice;
-
-      const draftingTeamId = getCurrentPickingTeamId(state);
-      return {
-        teamsSlice: {
-          ...state.teamsSlice,
-          teamsById: {
-            ...teamsById,
-            [draftingTeamId]: {
-              ...teamsById[draftingTeamId],
-              playerIds: [...teamsById[draftingTeamId].playerIds, playerId],
-            },
-          },
-        },
-      };
-    }),
+  draftPlayer: getDraftPlayerToTeamAction(set),
   modifySetupTeam: (index, newName) => {
     set((state) => ({
       teamsSlice: {
