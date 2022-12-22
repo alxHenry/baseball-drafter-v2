@@ -7,8 +7,12 @@ export const getDraftPlayerToTeamAction = (set: StoreSet): DraftPlayerAction => 
   return (playerId) => {
     set((state) => {
       const { teamsById } = state.teamsSlice;
-
+      const { battersById } = state.playersSlice;
       const draftingTeamId = getCurrentPickingTeamId(state);
+
+      const battersByIdWithPlayerRemove = { ...battersById };
+      delete battersByIdWithPlayerRemove[playerId];
+
       return {
         teamsSlice: {
           ...state.teamsSlice,
@@ -19,6 +23,10 @@ export const getDraftPlayerToTeamAction = (set: StoreSet): DraftPlayerAction => 
               playerIds: [...teamsById[draftingTeamId].playerIds, playerId],
             },
           },
+        },
+        playersSlice: {
+          ...state.playersSlice,
+          battersById: battersByIdWithPlayerRemove,
         },
       };
     });

@@ -4,7 +4,7 @@ import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersS
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
 import DraftButton from "./DraftButton";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 
 const columnHelper = createColumnHelper<BatterPlayerRow>();
@@ -22,7 +22,6 @@ interface Props {}
 
 const DraftPlayerList = () => {
   const playerRows = usePlayerTableRows();
-
   const table = useReactTable({
     data: playerRows,
     columns,
