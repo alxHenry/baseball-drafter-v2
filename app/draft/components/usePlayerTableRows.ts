@@ -3,18 +3,9 @@ import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 
-interface UsePlayerTableRowsArgs {
-  readonly shouldHideDrafted: boolean;
-}
-export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): BatterPlayerRow[] => {
+export const usePlayerTableRows = (): BatterPlayerRow[] => {
   const battersById = useStore((state) => state.playersSlice.battersById);
-  const playerRows = useMemo(() => {
-    const rows = Object.values(battersById);
-    if (shouldHideDrafted === false) {
-      return rows;
-    }
-    return rows.filter((player) => player.draftedByTeamId === null);
-  }, [battersById, shouldHideDrafted]);
+  const playerRows = useMemo(() => Object.values(battersById), [battersById]);
 
   return playerRows;
 };

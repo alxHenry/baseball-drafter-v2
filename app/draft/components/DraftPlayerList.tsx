@@ -4,7 +4,7 @@ import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersS
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
 import DraftButton from "./DraftButton";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 
 const columnHelper = createColumnHelper<BatterPlayerRow>();
@@ -14,14 +14,16 @@ const columns = [
   columnHelper.accessor("hr", { header: "hr" }),
   columnHelper.display({
     id: "draft-button",
-    cell: (props) => <DraftButton row={props.row} />,
+    cell: (props) => <DraftButton playerId={props.row.original.id} />,
   }),
 ];
 
 interface Props {}
 
 const DraftPlayerList = () => {
-  const playerRows = usePlayerTableRows({ shouldHideDrafted: true });
+  const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
+
+  const playerRows = usePlayerTableRows();
   const table = useReactTable({
     data: playerRows,
     columns,
@@ -37,16 +39,39 @@ const DraftPlayerList = () => {
       </tr>
     );
   });
-  const rows = table.getRowModel().rows.map((row) => (
-    <tr key={row.id}>
-      {row.getVisibleCells().map((cell) => (
-        <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-      ))}
-    </tr>
-  ));
+  const rows = table
+    .getRowModel()
+    .rows.filter((row) => {
+      if (shouldHideDrafted === false) {
+        return true;
+      }
+      const playerIsUndrafted = row.original.draftedByTeamId === null;
+      return playerIsUndrafted;
+    })
+    .map((row) => {
+      return (
+        <tr key={row.id}>
+          {row.getVisibleCells().map((cell) => (
+            <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+          ))}
+        </tr>
+      );
+    });
 
   return (
     <div>
+      <div>
+        <label htmlFor="hide-drafted">Hide drafted players: </label>
+        <input
+          type="checkbox"
+          id="hide-drafted"
+          name="hide-drafted"
+          checked={shouldHideDrafted}
+          onChange={() => {
+            setShouldHideDrafted((prev) => !prev);
+          }}
+        />
+      </div>
       <table>
         <thead>{headers}</thead>
         <tbody>{rows}</tbody>

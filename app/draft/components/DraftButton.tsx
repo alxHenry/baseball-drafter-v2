@@ -1,19 +1,20 @@
-import { Row } from "@tanstack/react-table";
-import { BatterPlayerRow } from "../../../data/transforms/player";
+import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+
 import { useStore } from "../../../data/stores/store";
+import { memo } from "react";
 
 interface Props {
-  row: Row<BatterPlayerRow>;
+  playerId: BatterPlayerRow["id"];
 }
 
-const DraftButton = ({ row }: Props) => {
+const DraftButton = ({ playerId }: Props) => {
   const draftPlayer = useStore((state) => state.teamsSlice.draftPlayer);
   const advanceDraft = useStore((state) => state.draftSlice.advanceDraft);
 
   return (
     <button
       onClick={() => {
-        draftPlayer(row.original.id);
+        draftPlayer(playerId);
         advanceDraft();
       }}
     >
@@ -22,4 +23,4 @@ const DraftButton = ({ row }: Props) => {
   );
 };
 
-export default DraftButton;
+export default memo(DraftButton);
