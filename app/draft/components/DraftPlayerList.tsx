@@ -1,37 +1,13 @@
 "use client";
-import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersSlice";
+import type { BattersById } from "../../../data/stores/playersSlice";
 
-import styles from "./DraftPlayerList.module.css";
-
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
-import DraftButton from "./DraftButton";
 import { useEffect, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
-
-const PAGE_SIZE = 10;
-const columnHelper = createColumnHelper<BatterPlayerRow>();
-const columns = [
-  columnHelper.accessor("name", { header: "Name" }),
-  columnHelper.accessor("avg", { header: "avg" }),
-  columnHelper.accessor("hr", { header: "hr" }),
-  columnHelper.display({
-    id: "draft-button",
-    cell: (props) => {
-      if (props.row.original.draftedByTeamId !== null) {
-        return;
-      }
-      return <DraftButton playerId={props.row.original.id} />;
-    },
-  }),
-  columnHelper.accessor("draftedByTeamId", {}),
-];
+import { columns, PAGE_SIZE } from "./tableConfig";
+import TableRows from "./TableRows";
+import TableHeaders from "./TableHeaders";
 
 interface Props {}
 
@@ -56,28 +32,6 @@ const DraftPlayerList = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const headers = table.getHeaderGroups().map((headerGroup) => {
-    return (
-      <tr key={headerGroup.id}>
-        {headerGroup.headers.map((header) => (
-          <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
-        ))}
-      </tr>
-    );
-  });
-  const rows = table.getRowModel().rows.map((row) => {
-    const isDrafted = row.original.draftedByTeamId !== null;
-    const strikeThroughClass = isDrafted ? styles.strikethrough : "";
-
-    return (
-      <tr key={row.id} className={strikeThroughClass}>
-        {row.getVisibleCells().map((cell) => (
-          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-        ))}
-      </tr>
-    );
-  });
-
   const numPages = Math.ceil(playerRows.length / PAGE_SIZE);
   const isOnLastPage = currentPageIndex + 1 === numPages;
 
@@ -96,8 +50,12 @@ const DraftPlayerList = () => {
         />
       </div>
       <table>
-        <thead>{headers}</thead>
-        <tbody>{rows}</tbody>
+        <thead>
+          <TableHeaders headerGroups={table.getHeaderGroups()} />
+        </thead>
+        <tbody>
+          <TableRows rows={table.getRowModel().rows} />
+        </tbody>
       </table>
       <div>
         <button
