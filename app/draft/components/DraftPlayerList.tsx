@@ -1,6 +1,8 @@
 "use client";
 import type { BatterPlayerRow, BattersById } from "../../../data/stores/playersSlice";
 
+import styles from "./DraftPlayerList.module.css";
+
 import {
   createColumnHelper,
   flexRender,
@@ -10,7 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
 import DraftButton from "./DraftButton";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 
 const PAGE_SIZE = 10;
@@ -64,8 +66,11 @@ const DraftPlayerList = () => {
     );
   });
   const rows = table.getRowModel().rows.map((row) => {
+    const isDrafted = row.original.draftedByTeamId !== null;
+    const strikeThroughClass = isDrafted ? styles.strikethrough : "";
+
     return (
-      <tr key={row.id}>
+      <tr key={row.id} className={strikeThroughClass}>
         {row.getVisibleCells().map((cell) => (
           <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
         ))}
