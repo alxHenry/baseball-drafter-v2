@@ -1,15 +1,12 @@
 "use client";
 import type { BattersById } from "../../../data/stores/playersSlice";
 
-import styles from "./DraftPlayerList.module.css";
-
 import { useStore } from "../../../data/stores/store";
 import { usePagination } from "@table-library/react-table-library/pagination";
 import { useEffect, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 import { PAGE_SIZE } from "./tableConfig";
-import { Body, Cell, Header, HeaderCell, HeaderRow, Row, Table } from "@table-library/react-table-library";
-import DraftButton from "./DraftButton";
+import DraftPlayerListTable from "./DraftPlayerListTable";
 
 interface Props {}
 
@@ -42,33 +39,7 @@ const DraftPlayerList = () => {
         />
       </div>
 
-      <Table data={playerRows} pagination={pagination}>
-        {(tableList) => (
-          <>
-            <Header>
-              <HeaderRow>
-                <HeaderCell>Name</HeaderCell>
-                <HeaderCell>AVG</HeaderCell>
-                <HeaderCell>HR</HeaderCell>
-                <HeaderCell></HeaderCell>
-              </HeaderRow>
-            </Header>
-            <Body>
-              {tableList.map((item) => {
-                const isDrafted = item.draftedByTeamId != null;
-                return (
-                  <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>
-                    <Cell>{item.name}</Cell>
-                    <Cell>{item.avg}</Cell>
-                    <Cell>{item.hr}</Cell>
-                    <Cell>{isDrafted ? null : <DraftButton playerId={item.id} />}</Cell>
-                  </Row>
-                );
-              })}
-            </Body>
-          </>
-        )}
-      </Table>
+      <DraftPlayerListTable data={playerRows} pagination={pagination} />
 
       <div>
         <button

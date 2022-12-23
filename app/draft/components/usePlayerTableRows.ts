@@ -6,6 +6,7 @@ import { useStore } from "../../../data/stores/store";
 interface UsePlayerTableRowsArgs {
   readonly shouldHideDrafted: boolean;
 }
+
 export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): { nodes: BatterPlayerRow[] } => {
   const battersById = useStore((state) => state.playersSlice.battersById);
 
