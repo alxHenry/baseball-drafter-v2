@@ -1,0 +1,4 @@
+.strikethrough > td > div {
+  text-decoration: line-through;
+  color: gray;
+}

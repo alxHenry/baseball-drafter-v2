@@ -1,39 +1,28 @@
 "use client";
 import type { BattersById } from "../../../data/stores/playersSlice";
 
-import { getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
 import { useStore } from "../../../data/stores/store";
+import { usePagination } from "@table-library/react-table-library/pagination";
 import { useEffect, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
-import { columns, PAGE_SIZE } from "./tableConfig";
-import TableRows from "./TableRows";
-import TableHeaders from "./TableHeaders";
+import { PAGE_SIZE } from "./tableConfig";
+import DraftPlayerListTable from "./DraftPlayerListTable";
 
 interface Props {}
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
-
   const playerRows = usePlayerTableRows({ shouldHideDrafted });
-  const table = useReactTable({
-    data: playerRows,
-    columns,
-    state: {
-      pagination: {
-        pageIndex: currentPageIndex,
-        pageSize: PAGE_SIZE,
-      },
-      columnVisibility: {
-        draftedByTeamId: false,
-      },
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-  });
 
-  const numPages = Math.ceil(playerRows.length / PAGE_SIZE);
-  const isOnLastPage = currentPageIndex + 1 === numPages;
+  const pagination = usePagination(playerRows, {
+    state: {
+      page: 0,
+      size: PAGE_SIZE,
+    },
+  });
+  const currentPage = pagination.state.page;
+  const isOnFirstPage = currentPage === 0;
+  const isOnLastPage = currentPage === pagination.state.getTotalPages(playerRows.nodes);
 
   return (
     <div>
@@ -49,19 +38,14 @@ const DraftPlayerList = () => {
           }}
         />
       </div>
-      <table>
-        <thead>
-          <TableHeaders headerGroups={table.getHeaderGroups()} />
-        </thead>
-        <tbody>
-          <TableRows rows={table.getRowModel().rows} />
-        </tbody>
-      </table>
+
+      <DraftPlayerListTable data={playerRows} pagination={pagination} />
+
       <div>
         <button
-          disabled={currentPageIndex === 0}
+          disabled={isOnFirstPage}
           onClick={() => {
-            setCurrentPageIndex((prev) => prev - 1);
+            pagination.fns.onSetPage(currentPage - 1);
           }}
         >
           Previous Page
@@ -69,7 +53,7 @@ const DraftPlayerList = () => {
         <button
           disabled={isOnLastPage}
           onClick={() => {
-            setCurrentPageIndex((prev) => prev + 1);
+            pagination.fns.onSetPage(currentPage + 1);
           }}
         >
           Next Page

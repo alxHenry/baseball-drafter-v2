@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-table": "^8.7.3",
+    "@emotion/react": "^11.10.5",
+    "@table-library/react-table-library": "^4.0.23",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
