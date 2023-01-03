@@ -5,6 +5,8 @@ import { FC, memo } from "react";
 import { Body, Table } from "@table-library/react-table-library";
 import DraftPlayerListTableRow from "./DraftPlayerListTableRow";
 import { useTableHeaders } from "./useTableHeaders";
+import { useTheme } from "@table-library/react-table-library/theme";
+import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/chakra-ui";
 
 interface Props {
   readonly data: { nodes: BatterPlayerRow[] };
@@ -13,9 +15,11 @@ interface Props {
 
 const DraftPlayerListTable: FC<Props> = ({ data, pagination }) => {
   const headers = useTableHeaders(data.nodes);
+  const chakraTheme = getTheme(DEFAULT_OPTIONS);
+  const tableTheme = useTheme(chakraTheme);
 
   return (
-    <Table data={data} pagination={pagination}>
+    <Table data={data} pagination={pagination} theme={tableTheme}>
       {(tableList) => (
         <>
           {headers}
