@@ -1,11 +1,21 @@
 import type { StoreGet, StoreSet } from "./store";
 
+export type StatId = "avg" | "hr";
+export type StatById = Record<StatId, Stat>;
+export interface Stat {
+  id: StatId;
+  display: string;
+  abs: number; // Absolute value - i.e. 5 HRs
+  rel: number; // Relative value - i.e. 8.5 z-scores above average HRs
+  isHigherBetter: boolean;
+}
+
 export type ServerPlayerById = Record<string, ServerPlayer>;
 export interface ServerPlayer {
   id: string;
-  avg: number;
   name: string;
-  hr: number;
+  team: string;
+  stats: StatById;
 }
 
 export type BattersById = Record<string, BatterPlayerRow>;
