@@ -3,11 +3,9 @@ import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 import { useMemo } from "react";
 
-const DEFAULT_HEADERS = [
-  <HeaderCell key="name">Name</HeaderCell>,
-  <HeaderCell key="team">Team</HeaderCell>,
-  <HeaderCell key="draft-button" />,
-];
+const DEFAULT_HEADERS = [<HeaderCell key="name">Name</HeaderCell>, <HeaderCell key="team">Team</HeaderCell>];
+
+const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 
 export const useTableHeaders = (nodes: BatterPlayerRow[]) => {
   const firstNodeStats = nodes[0]?.stats;
@@ -16,7 +14,10 @@ export const useTableHeaders = (nodes: BatterPlayerRow[]) => {
     if (firstNodeStats == null) {
       return (
         <Header>
-          <HeaderRow>{DEFAULT_HEADERS}</HeaderRow>
+          <HeaderRow>
+            {DEFAULT_HEADERS}
+            {DRAFT_BUTTON}
+          </HeaderRow>
         </Header>
       );
     }
@@ -29,6 +30,7 @@ export const useTableHeaders = (nodes: BatterPlayerRow[]) => {
         <HeaderRow>
           {DEFAULT_HEADERS}
           {statHeaders}
+          {DRAFT_BUTTON}
         </HeaderRow>
       </Header>
     );
