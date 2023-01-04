@@ -25,7 +25,12 @@ const TeamPlayersDisplay: FC<Props> = ({ players }) => {
     );
   });
 
-  return <div>{playersRendered}</div>;
+  return (
+    <div>
+      <h2>Team Players</h2>
+      {playersRendered}
+    </div>
+  );
 };
 
 export default memo(TeamPlayersDisplay);
