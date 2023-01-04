@@ -1,8 +1,10 @@
 "use client";
 
-import { ChangeEventHandler, FC, useState } from "react";
+import type { ChangeEventHandler, FC } from "react";
+
 import { useStore } from "../../../data/stores/store";
 import DraftConfigSubmit from "./DraftConfigSubmit";
+import PositionSelection from "./PositionSelection";
 import TeamSetup from "./TeamSetup";
 
 interface Props {}
@@ -32,6 +34,7 @@ const DraftConfig: FC<Props> = () => {
         />
       </div>
       <TeamSetup />
+      <PositionSelection />
       <div>
         <DraftConfigSubmit />
       </div>
