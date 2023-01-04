@@ -3,7 +3,11 @@ import type { Player } from "../../../data/stores/playersSlice";
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 import { useMemo } from "react";
 
-const DEFAULT_HEADERS = [<HeaderCell key="name">Name</HeaderCell>, <HeaderCell key="team">Team</HeaderCell>];
+const DEFAULT_HEADERS = [
+  <HeaderCell key="name">Name</HeaderCell>,
+  <HeaderCell key="team">Team</HeaderCell>,
+  <HeaderCell key="position">Position</HeaderCell>,
+];
 
 const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 

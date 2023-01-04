@@ -1,3 +1,4 @@
+import type { PositionId } from "./setupSlice";
 import type { StoreGet, StoreSet } from "./store";
 
 export type StatId = "avg" | "hr";
@@ -14,6 +15,7 @@ export type ServerPlayerById = Record<string, ServerPlayer>;
 export interface ServerPlayer {
   id: string;
   name: string;
+  position: PositionId;
   team: string;
   stats: StatById;
 }

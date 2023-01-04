@@ -5,6 +5,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "1",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -26,6 +27,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "2",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -47,6 +49,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "3",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -68,6 +71,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "4",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -89,6 +93,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "5",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -110,6 +115,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "6",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -131,6 +137,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "7",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -152,6 +159,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "8",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -173,6 +181,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "9",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -194,6 +203,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "10",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -215,6 +225,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "11",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -236,6 +247,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "12",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -257,6 +269,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "13",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -278,6 +291,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "14",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",
@@ -299,6 +313,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     id: "15",
     name: "Aaron Judge",
     team: "NYY",
+    position: "OF",
     stats: {
       hr: {
         id: "hr",

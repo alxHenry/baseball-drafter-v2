@@ -21,6 +21,7 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
     <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>
       <Cell>{item.name}</Cell>
       <Cell>{item.team}</Cell>
+      <Cell>{item.position}</Cell>
       {renderedStatCells}
       <Cell>{isDrafted ? null : <DraftButton playerId={item.id} />}</Cell>
     </Row>
