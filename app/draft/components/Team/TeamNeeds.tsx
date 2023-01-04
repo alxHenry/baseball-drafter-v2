@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import shallow from "zustand/shallow";
 import { getTeamsPositionNeedsSelector } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
 
@@ -7,7 +8,7 @@ interface Props {
 }
 
 const TeamNeeds: FC<Props> = ({ teamId }) => {
-  const positionToNeedCount = useStore(getTeamsPositionNeedsSelector(teamId));
+  const positionToNeedCount = useStore(getTeamsPositionNeedsSelector(teamId), shallow);
   const teamNeedsRendered = Object.entries(positionToNeedCount).map(([position, count]) => {
     return (
       <div key={position}>
