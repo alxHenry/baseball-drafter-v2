@@ -1,4 +1,4 @@
-import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+import type { BatterPlayerRow } from "../../../../data/stores/playersSlice";
 
 import { FC, memo } from "react";
 

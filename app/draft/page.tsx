@@ -1,7 +1,7 @@
 import { getMockPlayerData } from "../../data/mock";
 import DraftPlayerList from "./components/DraftPlayerList";
 import styles from "./Draft.module.css";
-import TeamDisplay from "./components/TeamDisplay";
+import TeamDisplay from "./components/Team/TeamDisplay";
 import { transformServerPlayerToLocalPlayer } from "../transforms/serverPlayerToLocalPlayer";
 
 export default async function Page() {
