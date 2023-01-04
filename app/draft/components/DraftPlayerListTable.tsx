@@ -1,4 +1,4 @@
-import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+import type { Player } from "../../../data/stores/playersSlice";
 import type { Pagination } from "@table-library/react-table-library/types/index";
 
 import { FC, memo } from "react";
@@ -9,7 +9,7 @@ import { useTheme } from "@table-library/react-table-library/theme";
 import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/chakra-ui";
 
 interface Props {
-  readonly data: { nodes: BatterPlayerRow[] };
+  readonly data: { nodes: Player[] };
   readonly pagination: Pagination;
 }
 
@@ -25,7 +25,7 @@ const DraftPlayerListTable: FC<Props> = ({ data, pagination }) => {
           {headers}
           <Body>
             {tableList.map((item) => (
-              <DraftPlayerListTableRow key={item.id} item={item as BatterPlayerRow} />
+              <DraftPlayerListTableRow key={item.id} item={item as Player} />
             ))}
           </Body>
         </>

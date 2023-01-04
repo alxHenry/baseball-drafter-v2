@@ -1,4 +1,4 @@
-import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+import type { Player } from "../../../data/stores/playersSlice";
 
 import styles from "./DraftPlayerListTableRow.module.css";
 
@@ -8,7 +8,7 @@ import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 
 interface Props {
-  item: BatterPlayerRow;
+  item: Player;
 }
 
 const DraftPlayerListTableRow: FC<Props> = ({ item }) => {

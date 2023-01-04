@@ -1,10 +1,10 @@
-import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+import type { Player } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 import { memo } from "react";
 
 interface Props {
-  playerId: BatterPlayerRow["id"];
+  playerId: Player["id"];
 }
 
 const DraftButton = ({ playerId }: Props) => {

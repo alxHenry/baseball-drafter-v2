@@ -1,4 +1,4 @@
-import type { BatterPlayerRow } from "../../../data/stores/playersSlice";
+import type { Player } from "../../../data/stores/playersSlice";
 
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 import { useMemo } from "react";
@@ -7,7 +7,7 @@ const DEFAULT_HEADERS = [<HeaderCell key="name">Name</HeaderCell>, <HeaderCell k
 
 const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 
-export const useTableHeaders = (nodes: BatterPlayerRow[]) => {
+export const useTableHeaders = (nodes: Player[]) => {
   const firstNodeStats = nodes[0]?.stats;
 
   return useMemo(() => {

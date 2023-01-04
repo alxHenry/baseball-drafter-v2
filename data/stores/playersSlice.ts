@@ -18,8 +18,8 @@ export interface ServerPlayer {
   stats: StatById;
 }
 
-export type BattersById = Record<string, BatterPlayerRow>;
-export interface BatterPlayerRow extends ServerPlayer {
+export type BattersById = Record<string, Player>;
+export interface Player extends ServerPlayer {
   draftedByTeamId: string | null;
 }
 

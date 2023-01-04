@@ -1,9 +1,9 @@
-import type { BatterPlayerRow } from "../../../../data/stores/playersSlice";
+import type { Player } from "../../../../data/stores/playersSlice";
 
 import { FC, memo } from "react";
 
 interface Props {
-  readonly players: BatterPlayerRow[];
+  readonly players: Player[];
 }
 
 const TeamPlayersDisplay: FC<Props> = ({ players }) => {
