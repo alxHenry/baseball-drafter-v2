@@ -1,0 +1,26 @@
+.detector {
+  display: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+
+.startDetector {
+  left: 0rem;
+}
+
+.endDetector {
+  right: 0rem;
+}
+
+.overlayedArrow {
+  position: absolute;
+}
+
+.startArrow {
+  left: 0.5rem;
+}
+
+.endArrow {
+  right: 0.5rem;
+}
