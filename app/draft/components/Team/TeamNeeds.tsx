@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, memo } from "react";
 import shallow from "zustand/shallow";
 import { getTeamsPositionNeedsSelector } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
@@ -25,4 +25,4 @@ const TeamNeeds: FC<Props> = ({ teamId }) => {
   );
 };
 
-export default TeamNeeds;
+export default memo(TeamNeeds);
