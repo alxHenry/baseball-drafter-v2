@@ -1,0 +1,15 @@
+.detector {
+  display: hidden;
+}
+
+.overlayedArrow {
+  position: absolute;
+}
+
+.startArrow {
+  left: 0.5rem;
+}
+
+.endArrow {
+  right: 0.5rem;
+}

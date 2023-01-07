@@ -5,6 +5,8 @@ import shallow from "zustand/shallow";
 import { getTeamsPositionNeedsSelector } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
 
+export const DRAFT_TRACKER_CARD_MIN_WIDTH = 96;
+
 interface Props {
   teamId: string;
 }
