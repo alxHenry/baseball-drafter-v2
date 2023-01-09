@@ -1,13 +1,17 @@
 import type { StoreGet, StoreSet } from "./store";
 
 export interface DraftSlice {
+  readonly currentPickTeamId: string | null;
+  readonly showRelativeStatValues: boolean;
+
   // Methods
   readonly advanceDraft: () => void;
-  readonly currentPickTeamId: string | null;
+  readonly toggleRelativeStats: () => void;
 }
 
 export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
   currentPickTeamId: null,
+  showRelativeStatValues: false,
 
   advanceDraft: () => {
     set(({ teamsSlice: { teamsById }, draftSlice }) => {
@@ -20,6 +24,16 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
         draftSlice: {
           ...draftSlice,
           currentPickTeamId: nextTeam,
+        },
+      };
+    });
+  },
+  toggleRelativeStats: () => {
+    set(({ draftSlice }) => {
+      return {
+        draftSlice: {
+          ...draftSlice,
+          showRelativeStatValues: !draftSlice.showRelativeStatValues,
         },
       };
     });

@@ -1,6 +1,7 @@
 import type { Player } from "../../../../data/stores/playersSlice";
 
 import { FC, memo } from "react";
+import StatDisplayValue from "../StatDisplayValue";
 
 interface Props {
   readonly players: Player[];
@@ -11,7 +12,7 @@ const TeamPlayersDisplay: FC<Props> = ({ players }) => {
     const playerStats = Object.values(player.stats).map((stat) => {
       return (
         <div key={stat.id}>
-          {stat.display}: {stat.abs}
+          {stat.display}: <StatDisplayValue stat={stat} />
         </div>
       );
     });

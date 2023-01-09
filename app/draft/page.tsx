@@ -4,6 +4,7 @@ import styles from "./Draft.module.css";
 import TeamDisplay from "./components/Team/TeamDisplay";
 import { transformServerPlayerToLocalPlayer } from "../transforms/serverPlayerToLocalPlayer";
 import DraftTracker from "./components/DraftTracker/DraftTracker";
+import DraftStatTypeToggle from "./components/DraftStatTypeToggle";
 
 export default async function Page() {
   const battersById = await getMockPlayerData();
@@ -13,6 +14,7 @@ export default async function Page() {
     <>
       <h1 className={styles.header}>Draft</h1>
       <DraftTracker />
+      <DraftStatTypeToggle />
       <DraftPlayerList battersById={transformedBatterById} />
       <TeamDisplay />
     </>
