@@ -2,6 +2,7 @@ import type { Player } from "../../../data/stores/playersSlice";
 
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 import { useMemo } from "react";
+import { HeaderCellSort } from "@table-library/react-table-library/sort";
 
 const DEFAULT_HEADERS = [
   <HeaderCell key="name">Name</HeaderCell>,
@@ -26,7 +27,9 @@ export const useTableHeaders = (nodes: Player[]) => {
       );
     }
     const statHeaders = Object.values(firstNodeStats).map((stat) => (
-      <HeaderCell key={stat.id}>{stat.display}</HeaderCell>
+      <HeaderCellSort key={stat.id} sortKey={stat.id}>
+        {stat.display}
+      </HeaderCellSort>
     ));
 
     return (

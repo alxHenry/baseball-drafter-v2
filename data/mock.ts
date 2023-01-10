@@ -331,6 +331,28 @@ export const PLAYERS_MOCK: ServerPlayerById = {
       },
     },
   },
+  "16": {
+    id: "16",
+    name: "Bobby Bonilla",
+    team: "NYM",
+    position: "OF",
+    stats: {
+      hr: {
+        id: "hr",
+        display: "HRs",
+        isHigherBetter: true,
+        abs: 0,
+        rel: 0,
+      },
+      avg: {
+        id: "avg",
+        display: "AVG",
+        isHigherBetter: true,
+        abs: 0,
+        rel: 0,
+      },
+    },
+  },
 };
 
 export const getMockPlayerData = (): Promise<ServerPlayerById> => {
