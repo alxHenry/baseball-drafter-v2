@@ -1,16 +1,20 @@
 import type { Player } from "../../../data/stores/playersSlice";
-import type { Pagination } from "@table-library/react-table-library/types/index";
+import type { Pagination, SortFn } from "@table-library/react-table-library/types/index";
 
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useMemo } from "react";
 import { Body, Table } from "@table-library/react-table-library";
 import DraftPlayerListTableRow from "./DraftPlayerListTableRow";
 import { useTableHeaders } from "./useTableHeaders";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { useSort } from "@table-library/react-table-library/sort";
 import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/chakra-ui";
+import { EMPTY_OBJECT } from "../../utils/emptyObject";
+import { useTableSortFns } from "./useTableSortFns";
+
+export type TableData = { nodes: Player[] };
 
 interface Props {
-  readonly data: { nodes: Player[] };
+  readonly data: TableData;
   readonly pagination: Pagination;
 }
 
@@ -19,32 +23,11 @@ const DraftPlayerListTable: FC<Props> = ({ data, pagination }) => {
   const tableTheme = useTheme(chakraTheme);
 
   const headers = useTableHeaders(data.nodes);
-  const sort = useSort(
-    data,
-    {
-      onChange: (action, state) => {
-        console.log(action, state);
-      },
-    },
-    {
-      sortFns: {
-        avg: (array) =>
-          array.sort((a, b) => {
-            const playerA = a as Player;
-            const playerB = b as Player;
 
-            return playerB.stats["avg"].rel - playerA.stats["avg"].rel;
-          }),
-        hr: (array) =>
-          array.sort((a, b) => {
-            const playerA = a as Player;
-            const playerB = b as Player;
-
-            return playerB.stats["hr"].rel - playerA.stats["hr"].rel;
-          }),
-      },
-    }
-  );
+  const sortFns = useTableSortFns(data);
+  const sort = useSort(data, EMPTY_OBJECT, {
+    sortFns,
+  });
 
   return (
     <Table data={data} pagination={pagination} sort={sort} theme={tableTheme}>
