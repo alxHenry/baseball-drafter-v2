@@ -22,9 +22,9 @@ const DraftPlayerListTable: FC<Props> = ({ data, pagination }) => {
   const chakraTheme = getTheme(DEFAULT_OPTIONS);
   const tableTheme = useTheme(chakraTheme);
 
-  const headers = useTableHeaders(data.nodes);
+  const headers = useTableHeaders();
 
-  const sortFns = useTableSortFns(data);
+  const sortFns = useTableSortFns();
   const sort = useSort(data, EMPTY_OBJECT, {
     sortFns,
   });

@@ -6,16 +6,22 @@ import { FC, memo, useMemo } from "react";
 import { Cell, Row } from "@table-library/react-table-library";
 import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
+import { useStore } from "../../../data/stores/store";
 
 interface Props {
   item: Player;
 }
 
 const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
+  const batterStats = useStore((state) => state.draftSlice.batterStats);
+
   const isDrafted = item.draftedByTeamId != null;
   const renderedStatCells = useMemo(() => {
-    return Object.values(item.stats).map((stat) => <StatCell key={stat.id} stat={stat} />);
-  }, [item.stats]);
+    return batterStats.map((stat) => {
+      const statData = item.stats[stat]!;
+      return <StatCell key={statData.id} stat={statData} />;
+    });
+  }, [batterStats, item.stats]);
 
   return (
     <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>

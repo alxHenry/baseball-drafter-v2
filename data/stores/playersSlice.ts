@@ -1,8 +1,11 @@
 import type { PositionId } from "./setupSlice";
 import type { StoreGet, StoreSet } from "./store";
 
-export type StatId = "avg" | "hr";
-export type StatById = Record<StatId, Stat>;
+export type BatterStatId = "avg" | "rbi" | "r" | "sb" | "hr";
+export type PitcherStatId = "w" | "sv" | "era" | "whip" | "so";
+export type StatId = BatterStatId | PitcherStatId;
+
+export type StatById = Partial<Record<StatId, Stat>>; // Need partial because Typescript keys are exhaustive, but we won't have every possible stat!
 export interface Stat {
   id: StatId;
   display: string;
