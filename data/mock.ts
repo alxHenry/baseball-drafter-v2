@@ -689,6 +689,49 @@ export const PLAYERS_MOCK: ServerPlayerById = {
       },
     },
   },
+  "17": {
+    id: "17",
+    name: "Shane McClanahan",
+    team: "TB",
+    position: "SP",
+    stats: {
+      era: {
+        id: "era",
+        display: "ERA",
+        isHigherBetter: false,
+        abs: 2.89,
+        rel: 4.1,
+      },
+      whip: {
+        id: "whip",
+        display: "WHIP",
+        isHigherBetter: false,
+        abs: 0.98,
+        rel: 3.6,
+      },
+      w: {
+        id: "w",
+        display: "W",
+        isHigherBetter: true,
+        abs: 17,
+        rel: 6.1,
+      },
+      so: {
+        id: "so",
+        display: "SO",
+        isHigherBetter: true,
+        abs: 234,
+        rel: 8.2,
+      },
+      sv: {
+        id: "sv",
+        display: "SV",
+        isHigherBetter: true,
+        abs: 0,
+        rel: -1.1,
+      },
+    },
+  },
 };
 
 export const getMockPlayerData = (): Promise<ServerPlayerById> => {
