@@ -16,10 +16,30 @@ const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 export const useTableHeaders = () => {
   const batterStats = useStore((state) => state.draftSlice.batterStats);
   const pitcherStats = useStore((state) => state.draftSlice.pitcherStats);
+  const displayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {
     // TODO: Make this work if you don't have equal batter and pitcher stats (who does that?)
-    const statHeaders = batterStats.map((stat, index) => <HeaderCellSort key={stat} sortKey={stat}>{stat.toUpperCase()}</HeaderCellSort>);
+    const statHeaders = batterStats.map((batterStat, index) => {
+      const pitcherStat = pitcherStats[index];
+
+      if (displayMode === "All") {
+        const key = `${batterStat}/${pitcherStat}`;
+        return <HeaderCell key={key}>{key.toUpperCase()}</HeaderCell>;
+      } else if (displayMode === "Pitchers") {
+        return (
+          <HeaderCellSort key={pitcherStat} sortKey={pitcherStat}>
+            {pitcherStat.toUpperCase()}
+          </HeaderCellSort>
+        );
+      } else {
+        return (
+          <HeaderCellSort key={batterStat} sortKey={batterStat}>
+            {batterStat.toUpperCase()}
+          </HeaderCellSort>
+        );
+      }
+    });
 
     return (
       <Header>
@@ -30,5 +50,5 @@ export const useTableHeaders = () => {
         </HeaderRow>
       </Header>
     );
-  }, [batterStats]);
+  }, [batterStats, displayMode, pitcherStats]);
 };

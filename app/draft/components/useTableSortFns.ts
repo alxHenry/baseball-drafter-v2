@@ -15,7 +15,6 @@ export const useTableSortFns = (): Record<string, SortFn> => {
           const playerA = a as Player;
           const playerB = b as Player;
 
-          // TODO: When enabling pitchers, we'll have to handle the case where a sort happens on a shared column somehow
           return playerB.stats[stat]!.rel - playerA.stats[stat]!.rel;
         });
 
