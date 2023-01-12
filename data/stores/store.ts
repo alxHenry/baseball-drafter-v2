@@ -1,18 +1,15 @@
-import type { DraftSlice } from "./draftSlice";
-import type { TeamsSlice } from "./teamsSlice";
-import type { PlayersSlice } from "./playersSlice";
-import type { SetupSlice } from "./setupSlice";
-
 import create from "zustand";
-import { getDraftSliceDefinitions } from "./draftSlice";
-import { getPlayersSliceDefinitions } from "./playersSlice";
-import { getTeamsSliceDefinitions } from "./teamsSlice";
-import { getSetupSliceDefinitions } from './setupSlice';
+import { DraftSlice, getDraftSliceDefinitions } from "./draftSlice";
+import { PlayersSlice, getPlayersSliceDefinitions } from "./playersSlice";
+import { TeamsSlice, getTeamsSliceDefinitions } from "./teamsSlice";
+import { SetupSlice, getSetupSliceDefinitions } from "./setupSlice";
+import { getTableSliceDefinitions, TableSlice } from "./tableSlice";
 
 export interface Store {
   readonly draftSlice: DraftSlice;
   readonly playersSlice: PlayersSlice;
   readonly setupSlice: SetupSlice;
+  readonly tableSlice: TableSlice;
   readonly teamsSlice: TeamsSlice;
 }
 
@@ -26,5 +23,6 @@ export const useStore = create<Store>((set: StoreSet, get: StoreGet) => ({
   draftSlice: getDraftSliceDefinitions(set, get),
   playersSlice: getPlayersSliceDefinitions(set, get),
   setupSlice: getSetupSliceDefinitions(set, get),
+  tableSlice: getTableSliceDefinitions(set, get),
   teamsSlice: getTeamsSliceDefinitions(set, get),
 }));

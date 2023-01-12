@@ -51,11 +51,17 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
     });
   },
   setTableDisplayMode: (newMode) => {
-    set(({ draftSlice }) => {
+    set(({ draftSlice, tableSlice }) => {
       return {
         draftSlice: {
           ...draftSlice,
           currentTableDisplayMode: newMode,
+        },
+        tableSlice: {
+          ...tableSlice,
+          // Reset sort state to prevent error where the table tries to remain sorted when switching between player types
+          currentSortKey: "NONE",
+          isSortReversed: false,
         },
       };
     });
