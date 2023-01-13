@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
+import DraftPlayerDisplayModeSelect from "./DraftPlayerDisplayModeSelect";
 
 interface Props {}
 
@@ -26,6 +27,7 @@ const DraftPlayerList = () => {
 
   return (
     <div>
+      <DraftPlayerDisplayModeSelect />
       <div>
         <label htmlFor="hide-drafted">Hide drafted players: </label>
         <input

@@ -3,9 +3,10 @@ import type { StoreGet, StoreSet } from "./store";
 
 export type BatterStatId = "avg" | "rbi" | "r" | "sb" | "hr";
 export type PitcherStatId = "w" | "sv" | "era" | "whip" | "so";
-export type StatId = BatterStatId | PitcherStatId;
+export type RequiredStatId = "worth" | "aWorth";
+export type StatId = BatterStatId | PitcherStatId | RequiredStatId;
 
-export type StatById = Partial<Record<StatId, Stat>>; // Need partial because Typescript keys are exhaustive, but we won't have every possible stat!
+export type StatById = Record<RequiredStatId, Stat> & Partial<Record<StatId, Stat>>; // Need partial because Typescript keys are exhaustive, but we won't have every possible stat!
 export interface Stat {
   id: StatId;
   display: string;

@@ -1,7 +1,7 @@
-import type { Player } from "../../../data/stores/playersSlice";
-
+import { Player } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
+import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
 
 interface UsePlayerTableRowsArgs {
   readonly shouldHideDrafted: boolean;
@@ -9,12 +9,20 @@ interface UsePlayerTableRowsArgs {
 
 export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): { nodes: Player[] } => {
   const battersById = useStore((state) => state.playersSlice.battersById);
+  const tableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {
-    const rows = Object.values(battersById);
-    if (!shouldHideDrafted) {
-      return { nodes: rows };
+    let players = Object.values(battersById);
+    if (shouldHideDrafted) {
+      players = players.filter((player) => player.draftedByTeamId === null);
     }
-    return { nodes: rows.filter((player) => player.draftedByTeamId === null) };
-  }, [battersById, shouldHideDrafted]);
+    if (tableDisplayMode === "Batters") {
+      // TODO: Update for position arrays and eventually handle for Shohei
+      players = players.filter((player) => !isPlayerPitcher(player.position));
+    } else if (tableDisplayMode === "Pitchers") {
+      players = players.filter((player) => isPlayerPitcher(player.position));
+    }
+
+    return { nodes: players };
+  }, [battersById, shouldHideDrafted, tableDisplayMode]);
 };
