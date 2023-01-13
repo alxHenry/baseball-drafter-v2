@@ -1,4 +1,4 @@
-import { BatterStatId, PitcherStatId } from "./playersSlice";
+import { BatterStatId, PitcherStatId, RequiredStatId } from "./playersSlice";
 import type { StoreGet, StoreSet } from "./store";
 
 export type TableDisplayMode = "All" | "Batters" | "Pitchers";
@@ -16,6 +16,8 @@ export interface DraftSlice {
   readonly setTableDisplayMode: (newMode: TableDisplayMode) => void;
   readonly toggleRelativeStats: () => void;
 }
+
+export const requiredStats: RequiredStatId[] = ["worth", "aWorth"];
 
 export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
   batterStats: ["avg", "rbi", "r", "sb", "hr"],

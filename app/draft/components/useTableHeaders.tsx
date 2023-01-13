@@ -11,6 +11,15 @@ const DEFAULT_HEADERS = [
   <HeaderCell key="position">Position</HeaderCell>,
 ];
 
+const REQUIRED_STAT_HEADERS = [
+  <HeaderCellSort key="worth" sortKey="worth">
+    Worth
+  </HeaderCellSort>,
+  <HeaderCellSort key="aWorth" sortKey="aWorth">
+    Adjusted Worth
+  </HeaderCellSort>,
+];
+
 const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 
 export const useTableHeaders = () => {
@@ -46,6 +55,7 @@ export const useTableHeaders = () => {
         <HeaderRow>
           {DEFAULT_HEADERS}
           {statHeaders}
+          {REQUIRED_STAT_HEADERS}
           {DRAFT_BUTTON}
         </HeaderRow>
       </Header>

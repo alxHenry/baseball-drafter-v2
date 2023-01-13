@@ -1,7 +1,20 @@
 import { SortFn } from "@table-library/react-table-library/types/sort";
-import { Player } from "../../../data/stores/playersSlice";
+import { Player, StatId } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
+import { requiredStats } from "../../../data/stores/draftSlice";
+
+const playerStatReducer = (agg: Record<string, SortFn>, stat: StatId) => {
+  agg[stat] = (array) =>
+    array.sort((a, b) => {
+      const playerA = a as Player;
+      const playerB = b as Player;
+
+      return playerB.stats[stat]!.rel - playerA.stats[stat]!.rel;
+    });
+
+  return agg;
+};
 
 export const useTableSortFns = (): Record<string, SortFn> => {
   const batterStats = useStore((state) => state.draftSlice.batterStats);
@@ -10,19 +23,9 @@ export const useTableSortFns = (): Record<string, SortFn> => {
 
   return useMemo(() => {
     if (tableDisplayMode === "All") {
-      return {};
+      return requiredStats.reduce<Record<string, SortFn>>(playerStatReducer, {});
     }
 
-    return [...batterStats, ...pitcherStats].reduce<Record<string, SortFn>>((agg, stat) => {
-      agg[stat] = (array) =>
-        array.sort((a, b) => {
-          const playerA = a as Player;
-          const playerB = b as Player;
-
-          return playerB.stats[stat]!.rel - playerA.stats[stat]!.rel;
-        });
-
-      return agg;
-    }, {});
+    return [...batterStats, ...pitcherStats, ...requiredStats].reduce<Record<string, SortFn>>(playerStatReducer, {});
   }, [batterStats, pitcherStats, tableDisplayMode]);
 };
