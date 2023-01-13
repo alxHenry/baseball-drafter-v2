@@ -1,0 +1,8 @@
+.listContainer {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.listCell {
+  margin: 0.25rem;
+}

@@ -1,4 +1,5 @@
 import { DraftPlayerAction, getDraftPlayerToTeamAction } from "../actions/teamsActions";
+import { StatId } from "./playersSlice";
 
 import type { StoreGet, StoreSet } from "./store";
 import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
@@ -9,11 +10,13 @@ export interface Team {
   readonly playerIds: string[];
 }
 export type TeamsById = Record<string, Team>;
+export type TeamTotalStats = Partial<Record<StatId, number>>;
 
 export interface TeamsSlice {
   // Properties
   readonly teamsById: TeamsById;
   readonly setupTeamNames: string[];
+  readonly teamTotalStatsById: Record<string, TeamTotalStats>;
 
   // Methods
   readonly draftPlayer: DraftPlayerAction;
@@ -25,8 +28,9 @@ export interface TeamsSlice {
 export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSlice => ({
   teamsById: {},
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
+  teamTotalStatsById: {},
 
-  draftPlayer: getDraftPlayerToTeamAction(set),
+  draftPlayer: getDraftPlayerToTeamAction(set, get),
   modifySetupTeam: (index, newName) => {
     set((state) => ({
       teamsSlice: {

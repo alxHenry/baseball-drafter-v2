@@ -1,17 +1,13 @@
 "use client";
 import styles from "./TeamDisplay.module.css";
 
-import {
-  getCurrentPickingTeamId,
-  getCurrentPickingTeamName,
-  getCurrentPickingTeamsPlayers,
-} from "../../../../data/selectors/teamsSelectors";
+import { getCurrentPickingTeamId, getCurrentPickingTeamName } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
 import TeamPlayersDisplay from "./TeamPlayersDisplay";
 import TeamNeeds from "./TeamNeeds";
+import { FC, memo } from "react";
 
-export default function TeamDisplay() {
-  const currentDraftingTeamsPlayers = useStore(getCurrentPickingTeamsPlayers);
+const TeamDisplay: FC = () => {
   const currentDraftingTeamName = useStore(getCurrentPickingTeamName);
   const currentDraftingTeamId = useStore(getCurrentPickingTeamId);
 
@@ -22,8 +18,10 @@ export default function TeamDisplay() {
         <TeamNeeds teamId={currentDraftingTeamId} />
       </div>
       <div>
-        <TeamPlayersDisplay players={currentDraftingTeamsPlayers} />
+        <TeamPlayersDisplay />
       </div>
     </div>
   );
-}
+};
+
+export default memo(TeamDisplay);
