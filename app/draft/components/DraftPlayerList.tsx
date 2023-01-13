@@ -1,5 +1,5 @@
 "use client";
-import type { BattersById } from "../../../data/stores/playersSlice";
+import type { PlayersById } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 import { usePagination } from "@table-library/react-table-library/pagination";
@@ -66,15 +66,15 @@ const DraftPlayerList = () => {
 };
 
 interface HydratorProps extends Props {
-  battersById: BattersById;
+  playersById: PlayersById;
 }
 
-const DraftPlayerListWithHydrator = ({ battersById, ...rest }: HydratorProps) => {
+const DraftPlayerListWithHydrator = ({ playersById, ...rest }: HydratorProps) => {
   const hydratePlayers = useStore((state) => state.playersSlice.hydratePlayers);
 
   useEffect(() => {
-    hydratePlayers(battersById);
-  }, [battersById, hydratePlayers]);
+    hydratePlayers(playersById);
+  }, [playersById, hydratePlayers]);
 
   return <DraftPlayerList {...rest} />;
 };

@@ -1,7 +1,7 @@
-import type { BattersById, ServerPlayerById } from "../../data/stores/playersSlice";
+import type { PlayersById, ServerPlayerById } from "../../data/stores/playersSlice";
 
-export const transformServerPlayerToLocalPlayer = (serverPlayerById: ServerPlayerById): BattersById => {
-  return Object.values(serverPlayerById).reduce<BattersById>((agg, serverPlayer) => {
+export const transformServerPlayerToLocalPlayer = (serverPlayerById: ServerPlayerById): PlayersById => {
+  return Object.values(serverPlayerById).reduce<PlayersById>((agg, serverPlayer) => {
     agg[serverPlayer.id] = {
       ...serverPlayer,
       draftedByTeamId: null,

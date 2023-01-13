@@ -24,25 +24,25 @@ export interface ServerPlayer {
   stats: StatById;
 }
 
-export type BattersById = Record<string, Player>;
+export type PlayersById = Record<string, Player>;
 export interface Player extends ServerPlayer {
   draftedByTeamId: string | null;
 }
 
 export interface PlayersSlice {
-  battersById: BattersById;
+  playersById: PlayersById;
 
-  hydratePlayers: (battersById: BattersById) => void;
+  hydratePlayers: (playersById: PlayersById) => void;
 }
 
 export const getPlayersSliceDefinitions = (set: StoreSet, get: StoreGet): PlayersSlice => ({
-  battersById: {},
+  playersById: {},
 
-  hydratePlayers: (battersById) => {
+  hydratePlayers: (playersById) => {
     set((state) => ({
       playersSlice: {
         ...state.playersSlice,
-        battersById,
+        playersById,
       },
     }));
   },

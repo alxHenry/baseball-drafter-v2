@@ -7,15 +7,15 @@ import DraftTracker from "./components/DraftTracker/DraftTracker";
 import DraftStatTypeToggle from "./components/DraftStatTypeToggle";
 
 export default async function Page() {
-  const battersById = await getMockPlayerData();
-  const transformedBatterById = transformServerPlayerToLocalPlayer(battersById);
+  const playersById = await getMockPlayerData();
+  const transformedPlayersById = transformServerPlayerToLocalPlayer(playersById);
 
   return (
     <>
       <h1 className={styles.header}>Draft</h1>
       <DraftTracker />
       <DraftStatTypeToggle />
-      <DraftPlayerList battersById={transformedBatterById} />
+      <DraftPlayerList playersById={transformedPlayersById} />
       <TeamDisplay />
     </>
   );

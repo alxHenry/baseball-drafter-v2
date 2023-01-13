@@ -17,23 +17,23 @@ export const getCurrentPickingTeamName = ({ draftSlice: { currentPickTeamId }, t
 export const getCurrentPickingTeamsPlayers = ({
   draftSlice: { currentPickTeamId },
   teamsSlice: { teamsById },
-  playersSlice: { battersById },
+  playersSlice: { playersById },
 }: Store) => {
   if (currentPickTeamId == null) {
     throw new Error("Reading the current picking teams players before the draft has been setup.");
   }
   const playerIds = teamsById[currentPickTeamId].playerIds;
-  return playerIds.map((playerId) => battersById[playerId]);
+  return playerIds.map((playerId) => playersById[playerId]);
 };
 
 export const getTeamsPlayersSelector = (teamId: string) => (store: Store) => {
   const {
     teamsSlice: { teamsById },
-    playersSlice: { battersById },
+    playersSlice: { playersById },
   } = store;
 
   const playerIds = teamsById[teamId].playerIds;
-  return playerIds.map((playerId) => battersById[playerId]);
+  return playerIds.map((playerId) => playersById[playerId]);
 };
 
 // Note: This will re-render everytime unless a custom comparison method is passed due to creating a new object everytime

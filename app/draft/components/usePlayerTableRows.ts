@@ -8,11 +8,11 @@ interface UsePlayerTableRowsArgs {
 }
 
 export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): { nodes: Player[] } => {
-  const battersById = useStore((state) => state.playersSlice.battersById);
+  const playersById = useStore((state) => state.playersSlice.playersById);
   const tableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {
-    let players = Object.values(battersById);
+    let players = Object.values(playersById);
     if (shouldHideDrafted) {
       players = players.filter((player) => player.draftedByTeamId === null);
     }
@@ -24,5 +24,5 @@ export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs
     }
 
     return { nodes: players };
-  }, [battersById, shouldHideDrafted, tableDisplayMode]);
+  }, [playersById, shouldHideDrafted, tableDisplayMode]);
 };
