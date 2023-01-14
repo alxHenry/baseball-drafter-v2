@@ -3,8 +3,7 @@ import styles from "./TeamPlayersDisplay.module.css";
 import { FC, memo, useMemo } from "react";
 import StatDisplayValue from "../StatDisplayValue";
 import { useStore } from "../../../../data/stores/store";
-import { getCurrentPickingTeamsPlayers } from "../../../../data/selectors/teamsSelectors";
-import { getCurrentPickingTeamId } from "../../../../data/selectors/draftSelectors";
+import { getCurrentPickingTeamId, getCurrentPickingTeamsPlayers } from "../../../../data/selectors/teamsSelectors";
 import shallow from "zustand/shallow";
 
 interface Props {}

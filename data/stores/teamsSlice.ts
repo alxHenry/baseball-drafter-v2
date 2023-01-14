@@ -1,4 +1,6 @@
-import { DraftPlayerAction, getDraftPlayerToTeamAction } from "../actions/teamsActions";
+import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
+import { getStateWithModifiedTeamConfigCount } from "../state/getStateWithModifiedTeamConfigCount";
+import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
 import { StatId } from "./playersSlice";
 
 import type { StoreGet, StoreSet } from "./store";
@@ -19,7 +21,7 @@ export interface TeamsSlice {
   readonly teamTotalStatsById: Record<string, TeamTotalStats>;
 
   // Methods
-  readonly draftPlayer: DraftPlayerAction;
+  readonly draftPlayer: (playerId: string) => void;
   readonly modifySetupTeam: (index: number, newName: string) => void;
   readonly changeSetupTeamCount: (desiredTeamCount: number) => void;
   readonly finalizeSetupTeams: () => void;
@@ -30,7 +32,14 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
   teamTotalStatsById: {},
 
-  draftPlayer: getDraftPlayerToTeamAction(set, get),
+  draftPlayer: (playerId: string) => {
+    set((state) => {
+      const stateWithUpdatedStats = getStateWithTabulatedTotalStats(state, playerId);
+      const stateWithDraftedPlayer = getStateWithDraftedPlayer(stateWithUpdatedStats, playerId);
+
+      return stateWithDraftedPlayer;
+    });
+  },
   modifySetupTeam: (index, newName) => {
     set((state) => ({
       teamsSlice: {
@@ -45,27 +54,7 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
   },
   changeSetupTeamCount: (desiredTeamCount) => {
     set((state) => {
-      const { setupTeamNames } = state.teamsSlice;
-
-      const currentTeamsCount = setupTeamNames.length;
-      if (currentTeamsCount === desiredTeamCount) {
-        return state;
-      } else if (currentTeamsCount < desiredTeamCount) {
-        const teamsToGenerateCount = desiredTeamCount - currentTeamsCount;
-        return {
-          teamsSlice: {
-            ...state.teamsSlice,
-            setupTeamNames: [...setupTeamNames, ...generateTeams(teamsToGenerateCount, currentTeamsCount)],
-          },
-        };
-      } else {
-        return {
-          teamsSlice: {
-            ...state.teamsSlice,
-            setupTeamNames: setupTeamNames.slice(0, desiredTeamCount),
-          },
-        };
-      }
+      return getStateWithModifiedTeamConfigCount(state, desiredTeamCount);
     });
   },
   finalizeSetupTeams: () => {
