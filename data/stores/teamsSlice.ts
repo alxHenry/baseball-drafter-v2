@@ -1,5 +1,4 @@
 import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
-import { getStateWithModifiedTeamConfigCount } from "../state/getStateWithModifiedTeamConfigCount";
 import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
 import { StatId } from "./playersSlice";
 
@@ -54,7 +53,27 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
   },
   changeSetupTeamCount: (desiredTeamCount) => {
     set((state) => {
-      return getStateWithModifiedTeamConfigCount(state, desiredTeamCount);
+      const { setupTeamNames } = state.teamsSlice;
+
+      const currentTeamsCount = setupTeamNames.length;
+      if (currentTeamsCount === desiredTeamCount) {
+        return state;
+      } else if (currentTeamsCount < desiredTeamCount) {
+        const teamsToGenerateCount = desiredTeamCount - currentTeamsCount;
+        return {
+          teamsSlice: {
+            ...state.teamsSlice,
+            setupTeamNames: [...setupTeamNames, ...generateTeams(teamsToGenerateCount, currentTeamsCount)],
+          },
+        };
+      } else {
+        return {
+          teamsSlice: {
+            ...state.teamsSlice,
+            setupTeamNames: setupTeamNames.slice(0, desiredTeamCount),
+          },
+        };
+      }
     });
   },
   finalizeSetupTeams: () => {
