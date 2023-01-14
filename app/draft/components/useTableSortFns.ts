@@ -2,30 +2,38 @@ import { SortFn } from "@table-library/react-table-library/types/sort";
 import { Player, StatId } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
-import { requiredStats } from "../../../data/stores/draftSlice";
 
-const playerStatReducer = (agg: Record<string, SortFn>, stat: StatId) => {
+const playerStatReducer = (agg: Record<string, SortFn>, stat: string) => {
   agg[stat] = (array) =>
     array.sort((a, b) => {
       const playerA = a as Player;
       const playerB = b as Player;
 
-      return playerB.stats[stat]!.rel - playerA.stats[stat]!.rel;
+      return playerB.stats[stat as StatId]!.rel - playerA.stats[stat as StatId]!.rel;
     });
 
   return agg;
 };
 
 export const useTableSortFns = (): Record<string, SortFn> => {
-  const batterStats = useStore((state) => state.draftSlice.batterStats);
-  const pitcherStats = useStore((state) => state.draftSlice.pitcherStats);
+  const batterStats = useStore((state) => state.draftSlice.batterStatsById);
+  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatsById);
+  const requiredStats = useStore((state) => state.draftSlice.requiredStatsById);
   const tableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {
     if (tableDisplayMode === "All") {
-      return requiredStats.reduce<Record<string, SortFn>>(playerStatReducer, {});
+      return Object.keys(requiredStats).reduce<Record<string, SortFn>>(playerStatReducer, {});
+    } else if (tableDisplayMode === "Batters") {
+      return [...Object.keys(batterStats), ...Object.keys(requiredStats)].reduce<Record<string, SortFn>>(
+        playerStatReducer,
+        {}
+      );
+    } else {
+      return [...Object.keys(pitcherStats), ...Object.keys(requiredStats)].reduce<Record<string, SortFn>>(
+        playerStatReducer,
+        {}
+      );
     }
-
-    return [...batterStats, ...pitcherStats, ...requiredStats].reduce<Record<string, SortFn>>(playerStatReducer, {});
-  }, [batterStats, pitcherStats, tableDisplayMode]);
+  }, [batterStats, pitcherStats, requiredStats, tableDisplayMode]);
 };

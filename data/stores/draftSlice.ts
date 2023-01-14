@@ -1,27 +1,49 @@
-import { BatterStatId, PitcherStatId, RequiredStatId } from "./playersSlice";
+import { statConfigsById } from "../../app/utils/statConfigsById";
+import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "./playersSlice";
 import type { StoreGet, StoreSet } from "./store";
 
 export type TableDisplayMode = "All" | "Batters" | "Pitchers";
+export type StatConfigById = Partial<Record<StatId, StatConfig>>;
+type BatterStatById = Partial<Record<BatterStatId, StatConfig>>;
+type PitcherStatById = Partial<Record<PitcherStatId, StatConfig>>;
+type RequiredStatById = Record<RequiredStatId, StatConfig>;
+
+export type StatConfig = {
+  readonly id: StatId;
+  readonly display: string;
+  readonly isHigherBetter: boolean;
+  readonly isDisplayed: boolean;
+};
+
+const generateStatConfigById = <T>(statIds: StatId[]): T => {
+  return statIds.reduce((agg, statId) => {
+    agg[statId] = statConfigsById[statId];
+    return agg;
+  }, {} as any); // TODO: Could improve this typing with some fancy typescript
+};
+const defaultBatterStatsById = generateStatConfigById<BatterStatById>(["avg", "rbi", "r", "sb", "hr"]);
+const defaultPitcherStatsById = generateStatConfigById<PitcherStatById>(["w", "sv", "era", "whip", "so"]);
+const requiredStatsById = generateStatConfigById<RequiredStatById>(["worth", "aWorth"]);
 
 export interface DraftSlice {
   readonly currentPickTeamId: string | null;
   readonly currentTableDisplayMode: TableDisplayMode;
   readonly showRelativeStatValues: boolean;
-  readonly batterStats: BatterStatId[];
-  readonly pitcherStats: PitcherStatId[];
+  readonly batterStatsById: BatterStatById;
+  readonly pitcherStatsById: PitcherStatById;
+  readonly requiredStatsById: RequiredStatById;
 
   // Methods
   readonly advanceDraft: () => void;
-  readonly setStatConfig: (batterStats: BatterStatId[], pitcherStats: PitcherStatId[]) => void;
+  readonly setStatConfig: (batterStats: BatterStatById, pitcherStats: PitcherStatById) => void;
   readonly setTableDisplayMode: (newMode: TableDisplayMode) => void;
   readonly toggleRelativeStats: () => void;
 }
 
-export const requiredStats: RequiredStatId[] = ["worth", "aWorth"];
-
 export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
-  batterStats: ["avg", "rbi", "r", "sb", "hr"],
-  pitcherStats: ["w", "sv", "era", "whip", "so"],
+  batterStatsById: defaultBatterStatsById,
+  pitcherStatsById: defaultPitcherStatsById,
+  requiredStatsById,
   currentPickTeamId: null,
   currentTableDisplayMode: "All",
   showRelativeStatValues: false,
@@ -41,13 +63,13 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
       };
     });
   },
-  setStatConfig: (batterStats, pitcherStats) => {
+  setStatConfig: (batterStatsById, pitcherStatsById) => {
     set(({ draftSlice }) => {
       return {
         draftSlice: {
           ...draftSlice,
-          batterStats,
-          pitcherStats,
+          batterStatsById,
+          pitcherStatsById,
         },
       };
     });

@@ -1,4 +1,11 @@
-import type { PitcherStatId, Player } from "../../../data/stores/playersSlice";
+import type {
+  BatterStatId,
+  PitcherStatId,
+  Player,
+  RequiredStatId,
+  StatById,
+  StatId,
+} from "../../../data/stores/playersSlice";
 
 import styles from "./DraftPlayerListTableRow.module.css";
 
@@ -8,40 +15,45 @@ import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
 import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
-import { requiredStats } from "../../../data/stores/draftSlice";
 
 interface Props {
   item: Player;
 }
 
 const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
-  const batterStats = useStore((state) => state.draftSlice.batterStats);
-  const pitcherStats = useStore((state) => state.draftSlice.pitcherStats);
+  const batterStats = useStore((state) => state.draftSlice.batterStatsById);
+  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatsById);
+  const requiredStats = useStore((state) => state.draftSlice.requiredStatsById);
 
   const isDrafted = item.draftedByTeamId != null;
 
   // TODO: Support position array and shohei otani
+  // TODO: Has to be a way to clean up this code duplication for generating stat cells with typescript safety
   const renderedStatCells = useMemo(() => {
-    const requiredStatCells = [
-      <StatCell key={item.stats.worth.id} stat={item.stats.worth} />,
-      <StatCell key={item.stats.aWorth.id} stat={item.stats.aWorth} />,
-    ];
+    const requiredStatCells = Object.keys(requiredStats).map((stat) => {
+      // TODO: Why does typescript not know these are RequiredStatIds not strings? Is it because of Object.keys typings?
+      const statId = stat as RequiredStatId;
+      const statData = item.stats[statId]!;
+      return <StatCell key={statData.id} stat={statData} />;
+    });
 
     let playerStatCells = [];
     if (isPlayerPitcher(item.position)) {
-      playerStatCells = pitcherStats.map((stat) => {
-        const statData = item.stats[stat]!;
-        return <StatCell key={statData.id} stat={statData} />;
+      playerStatCells = Object.keys(pitcherStats).map((stat) => {
+        const statId = stat as PitcherStatId;
+        const statData = item.stats[statId]!;
+        return <StatCell key={statId} stat={statData} />;
       });
     } else {
-      playerStatCells = batterStats.map((stat) => {
-        const statData = item.stats[stat]!;
-        return <StatCell key={statData.id} stat={statData} />;
+      playerStatCells = Object.keys(batterStats).map((stat) => {
+        const statId = stat as BatterStatId;
+        const statData = item.stats[statId]!;
+        return <StatCell key={statId} stat={statData} />;
       });
     }
 
     return [...playerStatCells, ...requiredStatCells];
-  }, [item.position, item.stats, pitcherStats, batterStats]);
+  }, [requiredStats, item.position, item.stats, pitcherStats, batterStats]);
 
   return (
     <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>

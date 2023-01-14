@@ -8,11 +8,9 @@ export type StatId = BatterStatId | PitcherStatId | RequiredStatId;
 
 export type StatById = Record<RequiredStatId, Stat> & Partial<Record<StatId, Stat>>; // Need partial because Typescript keys are exhaustive, but we won't have every possible stat!
 export interface Stat {
-  id: StatId;
-  display: string;
-  abs: number; // Absolute value - i.e. 5 HRs
-  rel: number; // Relative value - i.e. 8.5 z-scores above average HRs
-  isHigherBetter: boolean;
+  readonly id: StatId;
+  readonly abs: number; // Absolute value - i.e. 5 HRs
+  readonly rel: number; // Relative value - i.e. 8.5 z-scores above average HRs
 }
 
 export type ServerPlayerById = Record<string, ServerPlayer>;
