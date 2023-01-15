@@ -1,8 +1,10 @@
 import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
+import { getStateWithInitializeTeamTotalStatsById } from "../state/getStateWithInitializeTeamTotalStatsById";
 import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
+import { getStateWithTeams } from "../state/getStateWithTeams";
 import { StatId } from "./playersSlice";
 
-import type { StoreGet, StoreSet } from "./store";
+import type { Store, StoreGet, StoreSet } from "./store";
 import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
 
 export interface Team {
@@ -12,12 +14,13 @@ export interface Team {
 }
 export type TeamsById = Record<string, Team>;
 export type TeamTotalStats = Partial<Record<StatId, number>>;
+export type TeamTotalStatsById = Record<string, TeamTotalStats>;
 
 export interface TeamsSlice {
   // Properties
   readonly teamsById: TeamsById;
   readonly setupTeamNames: string[];
-  readonly teamTotalStatsById: Record<string, TeamTotalStats>;
+  readonly teamTotalStatsById: TeamTotalStatsById;
 
   // Methods
   readonly draftPlayer: (playerId: string) => void;
@@ -78,19 +81,9 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
   },
   finalizeSetupTeams: () => {
     set((state) => {
-      const { setupTeamNames } = state.teamsSlice;
-      const fullTeamObjects = transformTeamNamesToFullTeams(setupTeamNames);
-
-      return {
-        teamsSlice: {
-          ...state.teamsSlice,
-          teamsById: fullTeamObjects,
-        },
-        draftSlice: {
-          ...state.draftSlice,
-          currentPickTeamId: Object.keys(fullTeamObjects)[0],
-        },
-      };
+      const stateWithTeams = getStateWithTeams(state);
+      const stateWithTotalStats = getStateWithInitializeTeamTotalStatsById(stateWithTeams);
+      return stateWithTotalStats;
     });
   },
 });

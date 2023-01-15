@@ -8,7 +8,7 @@ export const getStateWithTabulatedTotalStats = (state: Store, playerId: string) 
   const player = playersById[playerId];
 
   // Tabulate stats
-  const teamTotalStats = teamTotalStatsById[draftingTeamId] ?? {};
+  const teamTotalStats = teamTotalStatsById[draftingTeamId];
   const newTotalStats = { ...teamTotalStats };
   Object.values(player.stats).forEach((stat) => {
     newTotalStats[stat.id] = (newTotalStats[stat.id] ?? 0) + stat.abs;

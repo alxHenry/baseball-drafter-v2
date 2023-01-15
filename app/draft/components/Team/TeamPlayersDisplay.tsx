@@ -37,7 +37,7 @@ const TeamPlayersDisplay: FC<Props> = () => {
 
   const totalStatsRendered = useMemo(
     () =>
-      Object.entries(currentTeamsStats ?? {}).map(([key, value]) => {
+      Object.entries(currentTeamsStats).map(([key, value]) => {
         return <div key={key} className={styles.listCell}>{`${key}: ${value}`}</div>;
       }),
     [currentTeamsStats]

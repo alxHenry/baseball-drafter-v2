@@ -5,6 +5,7 @@ import TeamDisplay from "./components/Team/TeamDisplay";
 import { transformServerPlayerToLocalPlayer } from "../transforms/serverPlayerToLocalPlayer";
 import DraftTracker from "./components/DraftTracker/DraftTracker";
 import DraftStatTypeToggle from "./components/DraftStatTypeToggle";
+import RotoRankings from "./components/RotoRankings/RotoRankings";
 
 export default async function Page() {
   const playersById = await getMockPlayerData();
@@ -17,6 +18,7 @@ export default async function Page() {
       <DraftStatTypeToggle />
       <DraftPlayerList playersById={transformedPlayersById} />
       <TeamDisplay />
+      <RotoRankings />
     </>
   );
 }
