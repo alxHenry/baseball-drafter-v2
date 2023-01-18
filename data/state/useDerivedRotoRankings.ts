@@ -27,10 +27,11 @@ export const useDerivedRotoRankings = () => {
         return [teamId, teamTotalStatsById[teamId][statId]!];
       });
 
+      // TODO: This fails to properly calculate ties
       totalTeamTuples.sort((a, b) => a[1] - b[1]);
       totalTeamTuples.forEach(([teamId, value], rank) => {
         // TODO: Handle stats where lower is better.
-        rotoRankingsByTeamId[teamId][statId] = [rank, value];
+        rotoRankingsByTeamId[teamId][statId] = [rank + 1, value];
       });
     });
 

@@ -7,8 +7,7 @@ interface Props {}
 
 const RotoRankings: FC<Props> = () => {
   const rotoRankingsById = useDerivedRotoRankings();
-  console.log(rotoRankingsById);
-  return <div>Roto Rankings</div>;
+  return <div>Roto Rankings: {JSON.stringify(rotoRankingsById)}</div>;
 };
 
 export default RotoRankings;
