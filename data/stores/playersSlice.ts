@@ -46,19 +46,8 @@ export interface Player extends ServerPlayer {
 
 export interface PlayersSlice {
   playersById: PlayersById;
-
-  hydratePlayers: (playersById: PlayersById) => void;
 }
 
 export const getPlayersSliceDefinitions = (set: StoreSet, get: StoreGet): PlayersSlice => ({
   playersById: {},
-
-  hydratePlayers: (playersById) => {
-    set((state) => ({
-      playersSlice: {
-        ...state.playersSlice,
-        playersById,
-      },
-    }));
-  },
 });

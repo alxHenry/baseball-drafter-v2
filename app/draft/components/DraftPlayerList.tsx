@@ -70,11 +70,15 @@ interface HydratorProps extends Props {
 }
 
 const DraftPlayerListWithHydrator = ({ playersById, ...rest }: HydratorProps) => {
-  const hydratePlayers = useStore((state) => state.playersSlice.hydratePlayers);
-
   const initialized = useRef(false);
   if (!initialized.current) {
-    hydratePlayers(playersById);
+    useStore.setState((store) => ({
+      ...store,
+      playersSlice: {
+        ...store.playersSlice,
+        playersById,
+      },
+    }));
     initialized.current = true;
   }
 
