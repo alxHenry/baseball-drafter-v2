@@ -3,7 +3,7 @@ import type { PlayersById } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 import { usePagination } from "@table-library/react-table-library/pagination";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
@@ -72,9 +72,11 @@ interface HydratorProps extends Props {
 const DraftPlayerListWithHydrator = ({ playersById, ...rest }: HydratorProps) => {
   const hydratePlayers = useStore((state) => state.playersSlice.hydratePlayers);
 
-  useEffect(() => {
+  const initialized = useRef(false);
+  if (!initialized.current) {
     hydratePlayers(playersById);
-  }, [playersById, hydratePlayers]);
+    initialized.current = true;
+  }
 
   return <DraftPlayerList {...rest} />;
 };
