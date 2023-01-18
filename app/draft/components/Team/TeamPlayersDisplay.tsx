@@ -1,10 +1,10 @@
 import styles from "./TeamPlayersDisplay.module.css";
 
 import { FC, memo, useMemo } from "react";
-import StatDisplayValue from "../StatDisplayValue";
 import { useStore } from "../../../../data/stores/store";
 import { getCurrentPickingTeamId, getCurrentPickingTeamsPlayers } from "../../../../data/selectors/teamsSelectors";
 import shallow from "zustand/shallow";
+import PlayerStatDisplay from "./PlayerStatDisplay";
 
 interface Props {}
 
@@ -17,11 +17,7 @@ const TeamPlayersDisplay: FC<Props> = () => {
     () =>
       players.map((player) => {
         const playerStats = Object.values(player.stats).map((stat) => {
-          return (
-            <div key={stat.id} className={styles.listCell}>
-              {stat.display}: <StatDisplayValue stat={stat} />
-            </div>
-          );
+          return <PlayerStatDisplay key={`${player.id}-${stat.id}`} stat={stat} />;
         });
 
         return (
