@@ -16,3 +16,19 @@ export const getStatDisplay = (statId: StatId) => (store: Store) => {
   // Should never happen. Would log here in real life prod
   return "";
 };
+
+export const getStatIsDisplayed = (statId: StatId) => (store: Store) => {
+  const {
+    draftSlice: { batterStatsById, pitcherStatsById, requiredStatsById },
+  } = store;
+
+  if (isBatterStat(statId)) {
+    return batterStatsById[statId]?.isDisplayed ?? false;
+  } else if (isPitcherStat(statId)) {
+    return pitcherStatsById[statId]?.isDisplayed ?? false;
+  } else if (isRequiredStat(statId)) {
+    return requiredStatsById[statId]?.isDisplayed ?? false;
+  }
+  // Should never happen. Would log here in real life prod
+  return false;
+};

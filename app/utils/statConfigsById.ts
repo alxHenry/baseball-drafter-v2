@@ -1,6 +1,18 @@
 import { StatConfigById } from "../../data/stores/draftSlice";
 
 export const statConfigsById: StatConfigById = {
+  h: {
+    id: "h",
+    display: "H",
+    isHigherBetter: true,
+    isDisplayed: false,
+  },
+  ab: {
+    id: "ab",
+    display: "AB",
+    isHigherBetter: true,
+    isDisplayed: false,
+  },
   avg: {
     id: "avg",
     display: "AVG",
@@ -60,6 +72,30 @@ export const statConfigsById: StatConfigById = {
     display: "SO",
     isHigherBetter: true,
     isDisplayed: true,
+  },
+  hAllowed: {
+    id: "hAllowed",
+    display: "H",
+    isHigherBetter: false,
+    isDisplayed: false,
+  },
+  bbAllowed: {
+    id: "bbAllowed",
+    display: "BB",
+    isHigherBetter: false,
+    isDisplayed: false,
+  },
+  er: {
+    id: "er",
+    display: "ER",
+    isHigherBetter: false,
+    isDisplayed: false,
+  },
+  ip: {
+    id: "ip",
+    display: "IP",
+    isHigherBetter: true,
+    isDisplayed: false,
   },
   worth: {
     id: "worth",

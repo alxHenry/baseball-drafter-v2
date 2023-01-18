@@ -5,6 +5,8 @@ import { useStore } from "../../../../data/stores/store";
 import { getCurrentPickingTeamId, getCurrentPickingTeamsPlayers } from "../../../../data/selectors/teamsSelectors";
 import shallow from "zustand/shallow";
 import PlayerStatDisplay from "./PlayerStatDisplay";
+import TeamTotalStatDisplay from "./TeamTotalStatDisplay";
+import { StatId } from "../../../../data/stores/playersSlice";
 
 interface Props {}
 
@@ -34,7 +36,7 @@ const TeamPlayersDisplay: FC<Props> = () => {
   const totalStatsRendered = useMemo(
     () =>
       Object.entries(currentTeamsStats).map(([key, value]) => {
-        return <div key={key} className={styles.listCell}>{`${key}: ${value}`}</div>;
+        return <TeamTotalStatDisplay key={key} statId={key as StatId} statValue={value} />;
       }),
     [currentTeamsStats]
   );

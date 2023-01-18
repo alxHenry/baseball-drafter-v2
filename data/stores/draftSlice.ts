@@ -3,7 +3,7 @@ import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "./playersSl
 import type { StoreGet, StoreSet } from "./store";
 
 export type TableDisplayMode = "All" | "Batters" | "Pitchers";
-export type StatConfigById = Partial<Record<StatId, StatConfig>>;
+export type StatConfigById = Record<StatId, StatConfig>;
 type BatterStatById = Partial<Record<BatterStatId, StatConfig>>;
 type PitcherStatById = Partial<Record<PitcherStatId, StatConfig>>;
 type RequiredStatById = Record<RequiredStatId, StatConfig>;

@@ -7,6 +7,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -50,6 +60,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -93,6 +113,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -136,6 +166,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -179,6 +219,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -222,6 +272,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -265,6 +325,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -308,6 +378,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -351,6 +431,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -394,6 +484,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -437,6 +537,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -480,6 +590,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -523,6 +643,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -566,6 +696,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -609,6 +749,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYY",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 63,
@@ -652,6 +802,16 @@ export const PLAYERS_MOCK: ServerPlayerById = {
     team: "NYM",
     position: "OF",
     stats: {
+      h: {
+        id: "h",
+        abs: 177,
+        rel: 12.1,
+      },
+      ab: {
+        id: "ab",
+        abs: 570,
+        rel: 14.2,
+      },
       hr: {
         id: "hr",
         abs: 0,
@@ -700,6 +860,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 2.89,
         rel: 4.1,
       },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
+      },
       whip: {
         id: "whip",
         abs: 0.98,
@@ -742,6 +922,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "era",
         abs: 2.89,
         rel: 4.1,
+      },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
       },
       whip: {
         id: "whip",
@@ -786,6 +986,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 2.89,
         rel: 4.1,
       },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
+      },
       whip: {
         id: "whip",
         abs: 0.98,
@@ -828,6 +1048,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "era",
         abs: 2.89,
         rel: 4.1,
+      },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
       },
       whip: {
         id: "whip",
@@ -872,6 +1112,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 2.89,
         rel: 4.1,
       },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
+      },
       whip: {
         id: "whip",
         abs: 0.98,
@@ -914,6 +1174,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "era",
         abs: 2.89,
         rel: 4.1,
+      },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
       },
       whip: {
         id: "whip",
@@ -958,6 +1238,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 2.89,
         rel: 4.1,
       },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
+      },
       whip: {
         id: "whip",
         abs: 0.98,
@@ -1001,6 +1301,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 2.89,
         rel: 4.1,
       },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
+      },
       whip: {
         id: "whip",
         abs: 0.98,
@@ -1043,6 +1363,26 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "era",
         abs: 2.89,
         rel: 4.1,
+      },
+      hAllowed: {
+        id: "hAllowed",
+        abs: 116,
+        rel: 6.6,
+      },
+      bbAllowed: {
+        id: "bbAllowed",
+        abs: 38,
+        rel: 6.7,
+      },
+      er: {
+        id: "er",
+        abs: 53,
+        rel: 5.6,
+      },
+      ip: {
+        id: "ip",
+        abs: 166.1,
+        rel: 9.2,
       },
       whip: {
         id: "whip",
