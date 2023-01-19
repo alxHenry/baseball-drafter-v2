@@ -64,12 +64,14 @@ export const statConfigsById: StatConfigById = {
     display: "ERA",
     isHigherBetter: false,
     isDisplayed: true,
+    calculator: (stats) => ((stats["er"] ?? 0) * 9) / (stats["ip"] ?? 0),
   },
   whip: {
     id: "whip",
     display: "WHIP",
     isHigherBetter: false,
     isDisplayed: true,
+    calculator: (stats) => ((stats["hAllowed"] ?? 0) + (stats["bbAllowed"] ?? 0)) / (stats["ip"] ?? 0),
   },
   so: {
     id: "so",
