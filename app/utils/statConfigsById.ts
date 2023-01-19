@@ -18,6 +18,10 @@ export const statConfigsById: StatConfigById = {
     display: "AVG",
     isHigherBetter: true,
     isDisplayed: true,
+    calculator: (stats) => {
+      // TODO: Figure out better type story for these tabulation stats to be required for batters and not pitchers
+      return (stats["h"] ?? 0) / (stats["ab"] ?? 0);
+    },
   },
   rbi: {
     id: "rbi",

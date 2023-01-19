@@ -1,18 +1,37 @@
 import { statConfigsById } from "../../app/utils/statConfigsById";
-import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "./playersSlice";
+import { BatterStatId, isBatterStat, isPitcherStat, PitcherStatId, RequiredStatId, StatId } from "./playersSlice";
 import type { StoreGet, StoreSet } from "./store";
+import { TeamTotalStats } from "./teamsSlice";
 
 export type TableDisplayMode = "All" | "Batters" | "Pitchers";
 export type StatConfigById = Record<StatId, StatConfig>;
-type BatterStatById = Partial<Record<BatterStatId, StatConfig>>;
-type PitcherStatById = Partial<Record<PitcherStatId, StatConfig>>;
-type RequiredStatById = Record<RequiredStatId, StatConfig>;
+export type BatterStatById = Partial<Record<BatterStatId, StatConfig>>;
+export type PitcherStatById = Partial<Record<PitcherStatId, StatConfig>>;
+export type RequiredStatById = Record<RequiredStatId, StatConfig>;
 
+export type Calculator = (statsById: TeamTotalStats) => number;
 export type StatConfig = {
   readonly id: StatId;
   readonly display: string;
   readonly isHigherBetter: boolean;
   readonly isDisplayed: boolean;
+  readonly calculator?: Calculator;
+};
+
+export const getStatConfig = (
+  statId: StatId,
+  batterStatsById: BatterStatById,
+  pitcherStatsById: PitcherStatById,
+  requiredStatsById: RequiredStatById
+) => {
+  // TODO: Improve typings. We know it must be one of these and shouldn't have to use '!'
+  if (isBatterStat(statId)) {
+    return batterStatsById[statId]!;
+  } else if (isPitcherStat(statId)) {
+    return pitcherStatsById[statId]!;
+  } else {
+    return requiredStatsById[statId]!;
+  }
 };
 
 const generateStatConfigById = <T>(statIds: StatId[]): T => {
@@ -21,8 +40,18 @@ const generateStatConfigById = <T>(statIds: StatId[]): T => {
     return agg;
   }, {} as any); // TODO: Could improve this typing with some fancy typescript
 };
-const defaultBatterStatsById = generateStatConfigById<BatterStatById>(["avg", "rbi", "r", "sb", "hr"]);
-const defaultPitcherStatsById = generateStatConfigById<PitcherStatById>(["w", "sv", "era", "whip", "so"]);
+const defaultBatterStatsById = generateStatConfigById<BatterStatById>(["avg", "rbi", "r", "sb", "hr", "ab", "h"]);
+const defaultPitcherStatsById = generateStatConfigById<PitcherStatById>([
+  "w",
+  "sv",
+  "era",
+  "whip",
+  "so",
+  "hAllowed",
+  "bbAllowed",
+  "er",
+  "ip",
+]);
 const requiredStatsById = generateStatConfigById<RequiredStatById>(["worth", "aWorth"]);
 
 export interface DraftSlice {

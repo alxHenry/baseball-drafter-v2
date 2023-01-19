@@ -796,6 +796,59 @@ export const PLAYERS_MOCK: ServerPlayerById = {
       },
     },
   },
+  _15: {
+    id: "_15",
+    name: "Kyle Schwarber",
+    team: "BOS",
+    position: "OF",
+    stats: {
+      h: {
+        id: "h",
+        abs: 126,
+        rel: 7.2,
+      },
+      ab: {
+        id: "ab",
+        abs: 577,
+        rel: 15,
+      },
+      hr: {
+        id: "hr",
+        abs: 46,
+        rel: 6.5,
+      },
+      avg: {
+        id: "avg",
+        abs: 0.218,
+        rel: -1.3,
+      },
+      rbi: {
+        id: "rbi",
+        abs: 94,
+        rel: 4.6,
+      },
+      r: {
+        id: "r",
+        abs: 100,
+        rel: 4.8,
+      },
+      sb: {
+        id: "sb",
+        abs: 11,
+        rel: 2.1,
+      },
+      worth: {
+        id: "worth",
+        abs: 24.1,
+        rel: 24.1,
+      },
+      aWorth: {
+        id: "aWorth",
+        abs: 20.1,
+        rel: 20.1,
+      },
+    },
+  },
   "16": {
     id: "16",
     name: "Bobby Bonilla",

@@ -1,5 +1,8 @@
-import type {
+import {
   BatterStatId,
+  isBatterStat,
+  isPitcherStat,
+  isRequiredStat,
   PitcherStatId,
   Player,
   RequiredStatId,
@@ -15,6 +18,7 @@ import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
 import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
+import { getStatConfig } from "../../../data/stores/draftSlice";
 
 interface Props {
   item: Player;
@@ -31,6 +35,11 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
   // TODO: Has to be a way to clean up this code duplication for generating stat cells with typescript safety
   const renderedStatCells = useMemo(() => {
     const requiredStatCells = Object.keys(requiredStats).map((stat) => {
+      const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
+      if (config.isDisplayed === false) {
+        return null;
+      }
+
       // TODO: Why does typescript not know these are RequiredStatIds not strings? Is it because of Object.keys typings?
       const statId = stat as RequiredStatId;
       const statData = item.stats[statId]!;
@@ -40,12 +49,22 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
     let playerStatCells = [];
     if (isPlayerPitcher(item.position)) {
       playerStatCells = Object.keys(pitcherStats).map((stat) => {
+        const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
+        if (config.isDisplayed === false) {
+          return null;
+        }
+
         const statId = stat as PitcherStatId;
         const statData = item.stats[statId]!;
         return <StatCell key={statId} stat={statData} />;
       });
     } else {
       playerStatCells = Object.keys(batterStats).map((stat) => {
+        const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
+        if (config.isDisplayed === false) {
+          return null;
+        }
+
         const statId = stat as BatterStatId;
         const statData = item.stats[statId]!;
         return <StatCell key={statId} stat={statData} />;
