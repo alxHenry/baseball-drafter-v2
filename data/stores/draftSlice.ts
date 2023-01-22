@@ -1,10 +1,10 @@
 import {
-  BatterStatById,
-  defaultBatterStatsById,
-  defaultPitcherStatsById,
-  PitcherStatById,
-  RequiredStatById,
-  requiredStatsById,
+  BatterStatConfigsById,
+  defaultBatterStatConfigsById,
+  defaultPitcherStatConfigsById,
+  PitcherStatConfigsById,
+  RequiredStatConfigsById,
+  requiredStatConfigsById,
 } from "../types/statConfig";
 import type { StoreGet, StoreSet } from "./store";
 
@@ -14,21 +14,21 @@ export interface DraftSlice {
   readonly currentPickTeamId: string | null;
   readonly currentTableDisplayMode: TableDisplayMode;
   readonly showRelativeStatValues: boolean;
-  readonly batterStatsById: BatterStatById;
-  readonly pitcherStatsById: PitcherStatById;
-  readonly requiredStatsById: RequiredStatById;
+  readonly batterStatConfigsById: BatterStatConfigsById;
+  readonly pitcherStatConfigsById: PitcherStatConfigsById;
+  readonly requiredStatConfigsById: RequiredStatConfigsById;
 
   // Methods
   readonly advanceDraft: () => void;
-  readonly setStatConfig: (batterStats: BatterStatById, pitcherStats: PitcherStatById) => void;
+  readonly setStatConfig: (batterStats: BatterStatConfigsById, pitcherStats: PitcherStatConfigsById) => void;
   readonly setTableDisplayMode: (newMode: TableDisplayMode) => void;
   readonly toggleRelativeStats: () => void;
 }
 
 export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
-  batterStatsById: defaultBatterStatsById,
-  pitcherStatsById: defaultPitcherStatsById,
-  requiredStatsById,
+  batterStatConfigsById: defaultBatterStatConfigsById,
+  pitcherStatConfigsById: defaultPitcherStatConfigsById,
+  requiredStatConfigsById: requiredStatConfigsById,
   currentPickTeamId: null,
   currentTableDisplayMode: "All",
   showRelativeStatValues: false,
@@ -53,8 +53,8 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
       return {
         draftSlice: {
           ...draftSlice,
-          batterStatsById,
-          pitcherStatsById,
+          batterStatConfigsById: batterStatsById,
+          pitcherStatConfigsById: pitcherStatsById,
         },
       };
     });

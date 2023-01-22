@@ -16,9 +16,9 @@ const playerStatReducer = (agg: Record<string, SortFn>, stat: string) => {
 };
 
 export const useTableSortFns = (): Record<string, SortFn> => {
-  const batterStats = useStore((state) => state.draftSlice.batterStatsById);
-  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatsById);
-  const requiredStats = useStore((state) => state.draftSlice.requiredStatsById);
+  const batterStats = useStore((state) => state.draftSlice.batterStatConfigsById);
+  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatConfigsById);
+  const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
   const tableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {

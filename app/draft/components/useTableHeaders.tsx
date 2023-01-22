@@ -4,7 +4,7 @@ import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-librar
 import { useMemo } from "react";
 import { HeaderCellSort } from "@table-library/react-table-library/sort";
 import { useStore } from "../../../data/stores/store";
-import { StatConfig } from "../../../data/stores/draftSlice";
+import { StatConfig } from "../../../data/types/stats";
 
 const filterDisplayableStats = (statConfig: StatConfig) => statConfig.isDisplayed === true;
 
@@ -16,9 +16,9 @@ const DEFAULT_HEADERS = [
 const DRAFT_BUTTON = <HeaderCell key="draft-button" />;
 
 export const useTableHeaders = () => {
-  const batterStats = useStore((state) => state.draftSlice.batterStatsById);
-  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatsById);
-  const requiredStats = useStore((state) => state.draftSlice.requiredStatsById);
+  const batterStats = useStore((state) => state.draftSlice.batterStatConfigsById);
+  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatConfigsById);
+  const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
   const displayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   return useMemo(() => {

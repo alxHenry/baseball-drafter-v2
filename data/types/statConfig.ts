@@ -1,15 +1,15 @@
 import { statConfigsById } from "./statConfigsById";
 import { BatterStatId, isBatterStat, isPitcherStat, PitcherStatId, RequiredStatId, StatConfig, StatId } from "./stats";
 
-export type BatterStatById = Partial<Record<BatterStatId, StatConfig>>;
-export type PitcherStatById = Partial<Record<PitcherStatId, StatConfig>>;
-export type RequiredStatById = Record<RequiredStatId, StatConfig>;
+export type BatterStatConfigsById = Partial<Record<BatterStatId, StatConfig>>;
+export type PitcherStatConfigsById = Partial<Record<PitcherStatId, StatConfig>>;
+export type RequiredStatConfigsById = Record<RequiredStatId, StatConfig>;
 
 export const getStatConfig = (
   statId: StatId,
-  batterStatsById: BatterStatById,
-  pitcherStatsById: PitcherStatById,
-  requiredStatsById: RequiredStatById
+  batterStatsById: BatterStatConfigsById,
+  pitcherStatsById: PitcherStatConfigsById,
+  requiredStatsById: RequiredStatConfigsById
 ) => {
   // TODO: Improve typings. We know it must be one of these and shouldn't have to use '!'
   if (isBatterStat(statId)) {
@@ -27,7 +27,7 @@ const generateStatConfigById = <T>(statIds: StatId[]): T => {
     return agg;
   }, {} as any); // TODO: Could improve this typing with some fancy typescript
 };
-export const defaultBatterStatsById = generateStatConfigById<BatterStatById>([
+export const defaultBatterStatConfigsById = generateStatConfigById<BatterStatConfigsById>([
   "avg",
   "rbi",
   "r",
@@ -36,7 +36,7 @@ export const defaultBatterStatsById = generateStatConfigById<BatterStatById>([
   "ab",
   "h",
 ]);
-export const defaultPitcherStatsById = generateStatConfigById<PitcherStatById>([
+export const defaultPitcherStatConfigsById = generateStatConfigById<PitcherStatConfigsById>([
   "w",
   "sv",
   "era",
@@ -47,4 +47,4 @@ export const defaultPitcherStatsById = generateStatConfigById<PitcherStatById>([
   "er",
   "ip",
 ]);
-export const requiredStatsById = generateStatConfigById<RequiredStatById>(["worth", "aWorth"]);
+export const requiredStatConfigsById = generateStatConfigById<RequiredStatConfigsById>(["worth", "aWorth"]);

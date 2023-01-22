@@ -15,9 +15,9 @@ interface Props {
 }
 
 const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
-  const batterStats = useStore((state) => state.draftSlice.batterStatsById);
-  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatsById);
-  const requiredStats = useStore((state) => state.draftSlice.requiredStatsById);
+  const batterStats = useStore((state) => state.draftSlice.batterStatConfigsById);
+  const pitcherStats = useStore((state) => state.draftSlice.pitcherStatConfigsById);
+  const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
 
   const isDrafted = item.draftedByTeamId != null;
 

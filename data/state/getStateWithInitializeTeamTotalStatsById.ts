@@ -1,13 +1,12 @@
-import { StatId } from "../stores/playersSlice";
 import { Store } from "../stores/store";
-import { TeamTotalStats, TeamTotalStatsById } from "../stores/teamsSlice";
+import { StatId, TeamTotalStats, TeamTotalStatsById } from "../types/stats";
 
 export const getStateWithInitializeTeamTotalStatsById = (state: Store): Store => {
   const teamIds = Object.keys(state.teamsSlice.teamsById);
   const statIds = [
-    ...Object.keys(state.draftSlice.batterStatsById),
-    ...Object.keys(state.draftSlice.pitcherStatsById),
-    ...Object.keys(state.draftSlice.requiredStatsById),
+    ...Object.keys(state.draftSlice.batterStatConfigsById),
+    ...Object.keys(state.draftSlice.pitcherStatConfigsById),
+    ...Object.keys(state.draftSlice.requiredStatConfigsById),
   ];
 
   const teamTotalStatsById = teamIds.reduce<TeamTotalStatsById>((agg, teamId) => {

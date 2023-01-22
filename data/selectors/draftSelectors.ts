@@ -3,7 +3,11 @@ import { isBatterStat, isPitcherStat, isRequiredStat, StatId } from "../types/st
 
 export const getStatDisplay = (statId: StatId) => (store: Store) => {
   const {
-    draftSlice: { batterStatsById, pitcherStatsById, requiredStatsById },
+    draftSlice: {
+      batterStatConfigsById: batterStatsById,
+      pitcherStatConfigsById: pitcherStatsById,
+      requiredStatConfigsById: requiredStatsById,
+    },
   } = store;
 
   if (isBatterStat(statId)) {
@@ -19,7 +23,11 @@ export const getStatDisplay = (statId: StatId) => (store: Store) => {
 
 export const getStatIsDisplayed = (statId: StatId) => (store: Store) => {
   const {
-    draftSlice: { batterStatsById, pitcherStatsById, requiredStatsById },
+    draftSlice: {
+      batterStatConfigsById: batterStatsById,
+      pitcherStatConfigsById: pitcherStatsById,
+      requiredStatConfigsById: requiredStatsById,
+    },
   } = store;
 
   if (isBatterStat(statId)) {

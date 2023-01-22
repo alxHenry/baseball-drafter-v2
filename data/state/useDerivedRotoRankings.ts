@@ -8,8 +8,8 @@ type RotoRankings = Partial<Record<StatId, RotoTuple>>;
 // We don't want this in a store selector because it's too expensive to re-run every render. Maybe we could reintroduce re-reselect to zustand and that would
 // make it possible as a selector. Instead of that, I'm pulling it into a memoized hook that will not rerun if the store reference values don't change.
 export const useDerivedRotoRankings = () => {
-  const batterStatsById = useStore((state) => state.draftSlice.batterStatsById);
-  const pitcherStatsById = useStore((state) => state.draftSlice.pitcherStatsById);
+  const batterStatsById = useStore((state) => state.draftSlice.batterStatConfigsById);
+  const pitcherStatsById = useStore((state) => state.draftSlice.pitcherStatConfigsById);
   const teamTotalStatsById = useStore((state) => state.teamsSlice.teamTotalStatsById);
   const teamsById = useStore((state) => state.teamsSlice.teamsById);
 
