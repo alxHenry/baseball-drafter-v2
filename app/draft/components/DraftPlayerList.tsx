@@ -3,19 +3,21 @@ import type { PlayersById } from "../../../data/stores/playersSlice";
 
 import { useStore } from "../../../data/stores/store";
 import { usePagination } from "@table-library/react-table-library/pagination";
-import { useRef, useState } from "react";
+import { useDeferredValue, useRef, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
 import DraftPlayerDisplayModeSelect from "./DraftPlayerDisplayModeSelect";
+import DraftPlayerListSearchFilterInput from "./DraftPlayerListSearchFilterInput";
 
 interface Props {}
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
   const [search, setSearch] = useState("");
+  const deferredSearch = useDeferredValue(search);
 
-  const playerRows = usePlayerTableRows({ shouldHideDrafted, search });
+  const playerRows = usePlayerTableRows({ shouldHideDrafted, search: deferredSearch });
 
   const pagination = usePagination(playerRows, {
     state: {
@@ -30,18 +32,7 @@ const DraftPlayerList = () => {
   return (
     <div>
       <DraftPlayerDisplayModeSelect />
-      <div>
-        <label htmlFor="player-search">Search players: </label>
-        <input
-          id="player-search"
-          name="player-search"
-          type="text"
-          value={search}
-          onChange={(ev) => {
-            setSearch(ev.currentTarget.value);
-          }}
-        />
-      </div>
+      <DraftPlayerListSearchFilterInput searchValue={search} setSearchFilter={setSearch} />
       <div>
         <label htmlFor="hide-drafted">Hide drafted players: </label>
         <input
@@ -54,9 +45,7 @@ const DraftPlayerList = () => {
           }}
         />
       </div>
-
       <DraftPlayerListTable data={playerRows} pagination={pagination} />
-
       <div>
         <button
           disabled={isOnFirstPage}
