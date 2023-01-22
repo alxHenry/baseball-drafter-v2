@@ -1,6 +1,25 @@
 // Weird typescript workaround, but allows us to quickly type narrow a generic StatId, which is ideal
 // if we're doing the type narrow in a selector that runs every state update. The values do not matter.
-const batterStats = { avg: false, rbi: false, r: false, sb: false, hr: false, h: false, ab: false };
+const batterStats = {
+  avg: false,
+  rbi: false,
+  r: false,
+  sb: false,
+  hr: false,
+  h: false,
+  ab: false,
+  bb: false,
+  hbp: false,
+  sf: false,
+  "1b": false,
+  "2b": false,
+  "3b": false,
+  ibb: false,
+  obp: false,
+  slg: false,
+  ops: false,
+  woba: false,
+};
 export type BatterStatId = keyof typeof batterStats;
 export function isBatterStat(statId: StatId): statId is BatterStatId {
   return batterStats.hasOwnProperty(statId);
@@ -15,7 +34,12 @@ const pitcherStats = {
   hAllowed: false,
   bbAllowed: false,
   er: false,
+  hld: false,
   ip: false,
+  k9: false,
+  kbb: false,
+  qs: false,
+  svhld: false,
 };
 export type PitcherStatId = keyof typeof pitcherStats;
 export function isPitcherStat(statId: StatId): statId is PitcherStatId {
