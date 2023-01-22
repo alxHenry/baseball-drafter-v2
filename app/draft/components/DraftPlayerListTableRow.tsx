@@ -1,24 +1,14 @@
-import {
-  BatterStatId,
-  isBatterStat,
-  isPitcherStat,
-  isRequiredStat,
-  PitcherStatId,
-  Player,
-  RequiredStatId,
-  StatById,
-  StatId,
-} from "../../../data/stores/playersSlice";
-
 import styles from "./DraftPlayerListTableRow.module.css";
 
+import { Player } from "../../../data/stores/playersSlice";
 import { FC, memo, useMemo } from "react";
 import { Cell, Row } from "@table-library/react-table-library";
 import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
 import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
-import { getStatConfig } from "../../../data/stores/draftSlice";
+import { getStatConfig } from "../../../data/types/statConfig";
+import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "../../../data/types/stats";
 
 interface Props {
   item: Player;

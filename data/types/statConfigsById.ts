@@ -1,4 +1,4 @@
-import { StatConfigById } from "../../data/stores/draftSlice";
+import { StatConfigById } from "./stats";
 
 export const statConfigsById: StatConfigById = {
   h: {

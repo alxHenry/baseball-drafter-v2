@@ -1,7 +1,7 @@
 import { getCurrentPickingTeamId } from "../selectors/teamsSelectors";
-import { Calculator, getStatConfig } from "../stores/draftSlice";
-import { StatId } from "../stores/playersSlice";
 import { Store } from "../stores/store";
+import { getStatConfig } from "../types/statConfig";
+import { Calculator, StatId } from "../types/stats";
 
 export const getStateWithTabulatedTotalStats = (state: Store, playerId: string) => {
   const { batterStatsById, pitcherStatsById, requiredStatsById } = state.draftSlice;

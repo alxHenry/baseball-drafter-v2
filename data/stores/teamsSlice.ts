@@ -2,9 +2,9 @@ import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
 import { getStateWithInitializeTeamTotalStatsById } from "../state/getStateWithInitializeTeamTotalStatsById";
 import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
 import { getStateWithTeams } from "../state/getStateWithTeams";
-import { StatId } from "./playersSlice";
+import { TeamTotalStatsById } from "../types/stats";
 
-import type { Store, StoreGet, StoreSet } from "./store";
+import { StoreGet, StoreSet } from "./store";
 import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
 
 export interface Team {
@@ -13,8 +13,6 @@ export interface Team {
   readonly playerIds: string[];
 }
 export type TeamsById = Record<string, Team>;
-export type TeamTotalStats = Partial<Record<StatId, number>>;
-export type TeamTotalStatsById = Record<string, TeamTotalStats>;
 
 export interface TeamsSlice {
   // Properties

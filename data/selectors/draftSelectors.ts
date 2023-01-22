@@ -1,5 +1,5 @@
-import { isBatterStat, isPitcherStat, isRequiredStat, StatId } from "../stores/playersSlice";
 import { Store } from "../stores/store";
+import { isBatterStat, isPitcherStat, isRequiredStat, StatId } from "../types/stats";
 
 export const getStatDisplay = (statId: StatId) => (store: Store) => {
   const {

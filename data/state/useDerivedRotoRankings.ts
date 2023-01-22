@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { StatId } from "../stores/playersSlice";
 import { useStore } from "../stores/store";
+import { StatId } from "../types/stats";
 
 type RotoTuple = [number, number]; // [rank, total value]
 type RotoRankings = Partial<Record<StatId, RotoTuple>>;
