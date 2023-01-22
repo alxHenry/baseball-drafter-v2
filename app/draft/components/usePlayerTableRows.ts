@@ -24,8 +24,11 @@ export const usePlayerTableRows = ({ search, shouldHideDrafted }: UsePlayerTable
       players = players.filter((player) => isPlayerPitcher(player.position));
     }
 
-    const searchFilteredPlayers = players.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+    const cleanedSearch = search.toLowerCase().trim();
+    if (cleanedSearch.length > 0) {
+      players = players.filter((item) => item.name.toLowerCase().includes(cleanedSearch));
+    }
 
-    return { nodes: searchFilteredPlayers };
+    return { nodes: players };
   }, [playersById, search, shouldHideDrafted, tableDisplayMode]);
 };
