@@ -1,3 +1,4 @@
+import { getStateWithToggledStat } from "../state/getStateWithToggledStat";
 import {
   BatterStatConfigsById,
   defaultBatterStatConfigsById,
@@ -6,6 +7,7 @@ import {
   RequiredStatConfigsById,
   requiredStatConfigsById,
 } from "../types/statConfig";
+import { StatId } from "../types/stats";
 import type { StoreGet, StoreSet } from "./store";
 
 export type TableDisplayMode = "All" | "Batters" | "Pitchers";
@@ -23,6 +25,7 @@ export interface DraftSlice {
   readonly setStatConfig: (batterStats: BatterStatConfigsById, pitcherStats: PitcherStatConfigsById) => void;
   readonly setTableDisplayMode: (newMode: TableDisplayMode) => void;
   readonly toggleRelativeStats: () => void;
+  readonly toggleStatSelection: (stat: StatId) => void;
 }
 
 export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSlice => ({
@@ -83,6 +86,11 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
           showRelativeStatValues: !draftSlice.showRelativeStatValues,
         },
       };
+    });
+  },
+  toggleStatSelection: (stat) => {
+    set((store) => {
+      return getStateWithToggledStat(store, stat);
     });
   },
 });
