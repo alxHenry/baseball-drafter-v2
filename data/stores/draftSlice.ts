@@ -31,7 +31,7 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
   requiredStatConfigsById: requiredStatConfigsById,
   currentPickTeamId: null,
   currentTableDisplayMode: "All",
-  showRelativeStatValues: false,
+  showRelativeStatValues: true,
 
   advanceDraft: () => {
     set(({ teamsSlice: { teamsById }, draftSlice }) => {
