@@ -1,7 +1,8 @@
 import { SortFn } from "@table-library/react-table-library/types/sort";
-import { Player, StatId } from "../../../data/stores/playersSlice";
+import { Player } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
+import { StatId } from "../../../data/types/stats";
 
 const playerStatReducer = (agg: Record<string, SortFn>, stat: string) => {
   agg[stat] = (array) =>
