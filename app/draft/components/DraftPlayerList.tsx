@@ -13,7 +13,9 @@ interface Props {}
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
-  const playerRows = usePlayerTableRows({ shouldHideDrafted });
+  const [search, setSearch] = useState("");
+
+  const playerRows = usePlayerTableRows({ shouldHideDrafted, search });
 
   const pagination = usePagination(playerRows, {
     state: {
@@ -28,6 +30,18 @@ const DraftPlayerList = () => {
   return (
     <div>
       <DraftPlayerDisplayModeSelect />
+      <div>
+        <label htmlFor="player-search">Search players: </label>
+        <input
+          id="player-search"
+          name="player-search"
+          type="text"
+          value={search}
+          onChange={(ev) => {
+            setSearch(ev.currentTarget.value);
+          }}
+        />
+      </div>
       <div>
         <label htmlFor="hide-drafted">Hide drafted players: </label>
         <input

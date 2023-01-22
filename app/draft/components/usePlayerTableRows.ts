@@ -4,10 +4,11 @@ import { useStore } from "../../../data/stores/store";
 import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
 
 interface UsePlayerTableRowsArgs {
+  readonly search: string;
   readonly shouldHideDrafted: boolean;
 }
 
-export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs): { nodes: Player[] } => {
+export const usePlayerTableRows = ({ search, shouldHideDrafted }: UsePlayerTableRowsArgs): { nodes: Player[] } => {
   const playersById = useStore((state) => state.playersSlice.playersById);
   const tableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
@@ -23,6 +24,8 @@ export const usePlayerTableRows = ({ shouldHideDrafted }: UsePlayerTableRowsArgs
       players = players.filter((player) => isPlayerPitcher(player.position));
     }
 
-    return { nodes: players };
-  }, [playersById, shouldHideDrafted, tableDisplayMode]);
+    const searchFilteredPlayers = players.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+
+    return { nodes: searchFilteredPlayers };
+  }, [playersById, search, shouldHideDrafted, tableDisplayMode]);
 };
