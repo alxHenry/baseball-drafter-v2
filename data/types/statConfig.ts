@@ -27,24 +27,19 @@ const generateStatConfigById = <T>(statIds: StatId[]): T => {
     return agg;
   }, {} as any); // TODO: Could improve this typing with some fancy typescript
 };
+
+const defaultSelectedBatterStats: StatId[] = ["avg", "rbi", "r", "sb", "hr"];
+const requiredBatterTabulationStats: StatId[] = ["ab", "h", "bb", "hbp", "sf", "1b", "2b", "3b", "ibb"];
 export const defaultBatterStatConfigsById = generateStatConfigById<BatterStatConfigsById>([
-  "avg",
-  "rbi",
-  "r",
-  "sb",
-  "hr",
-  "ab",
-  "h",
+  ...defaultSelectedBatterStats,
+  ...requiredBatterTabulationStats,
 ]);
+
+const defaultSelectedPitcherStats: StatId[] = ["w", "sv", "era", "whip", "so"];
+const requiredPitcherTabulationStats: StatId[] = ["hAllowed", "bbAllowed", "er", "ip"]; // IP can also be selectable, but by default it is not selected
 export const defaultPitcherStatConfigsById = generateStatConfigById<PitcherStatConfigsById>([
-  "w",
-  "sv",
-  "era",
-  "whip",
-  "so",
-  "hAllowed",
-  "bbAllowed",
-  "er",
-  "ip",
+  ...defaultSelectedPitcherStats,
+  ...requiredPitcherTabulationStats,
 ]);
+
 export const requiredStatConfigsById = generateStatConfigById<RequiredStatConfigsById>(["worth", "aWorth"]);

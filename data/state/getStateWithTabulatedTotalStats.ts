@@ -1,14 +1,11 @@
+import { getIsStatSelected } from "../selectors/draftSelectors";
 import { getCurrentPickingTeamId } from "../selectors/teamsSelectors";
 import { Store } from "../stores/store";
 import { getStatConfig } from "../types/statConfig";
 import { Calculator, StatId } from "../types/stats";
 
 export const getStateWithTabulatedTotalStats = (state: Store, playerId: string) => {
-  const {
-    batterStatConfigsById: batterStatsById,
-    pitcherStatConfigsById: pitcherStatsById,
-    requiredStatConfigsById: requiredStatsById,
-  } = state.draftSlice;
+  const { batterStatConfigsById, pitcherStatConfigsById, requiredStatConfigsById } = state.draftSlice;
   const { teamTotalStatsById } = state.teamsSlice;
   const { playersById } = state.playersSlice;
   const draftingTeamId = getCurrentPickingTeamId(state);
@@ -19,7 +16,19 @@ export const getStateWithTabulatedTotalStats = (state: Store, playerId: string) 
 
   const statsToCalculateAfterSumming: [StatId, Calculator][] = [];
   Object.values(player.stats).forEach((stat) => {
-    const { calculator } = getStatConfig(stat.id, batterStatsById, pitcherStatsById, requiredStatsById);
+    const isStatSelected = getIsStatSelected(stat.id)(state);
+    if (isStatSelected === false) {
+      // TODO: Reconsider thinking about how we determine what stats go where in store. Right now the stat configs selected OR required all go into the state as one field.
+      // This makes it hard to tease apart whether something was selected as a cat or it's something we always have.
+      return;
+    }
+
+    const { calculator } = getStatConfig(
+      stat.id,
+      batterStatConfigsById,
+      pitcherStatConfigsById,
+      requiredStatConfigsById
+    );
     if (calculator != null) {
       statsToCalculateAfterSumming.push([stat.id, calculator]);
       return;

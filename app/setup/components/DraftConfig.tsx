@@ -5,6 +5,7 @@ import type { ChangeEventHandler, FC } from "react";
 import { useStore } from "../../../data/stores/store";
 import DraftConfigSubmit from "./DraftConfigSubmit";
 import PositionSelection from "./PositionSelection";
+import StatSelection from "./StatSelection";
 import TeamSetup from "./TeamSetup";
 
 interface Props {}
@@ -35,6 +36,7 @@ const DraftConfig: FC<Props> = () => {
       </div>
       <TeamSetup />
       <PositionSelection />
+      <StatSelection />
       <div>
         <DraftConfigSubmit />
       </div>
