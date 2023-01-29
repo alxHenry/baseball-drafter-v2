@@ -1883,6 +1883,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 234,
         rel: 8.2,
       },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
+      },
       sv: {
         id: "sv",
         abs: 0,
@@ -1945,6 +1970,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "so",
         abs: 234,
         rel: 8.2,
+      },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
       },
       sv: {
         id: "sv",
@@ -2009,6 +2059,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 234,
         rel: 8.2,
       },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
+      },
       sv: {
         id: "sv",
         abs: 0,
@@ -2071,6 +2146,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "so",
         abs: 234,
         rel: 8.2,
+      },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
       },
       sv: {
         id: "sv",
@@ -2135,6 +2235,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 234,
         rel: 8.2,
       },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
+      },
       sv: {
         id: "sv",
         abs: 0,
@@ -2197,6 +2322,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "so",
         abs: 234,
         rel: 8.2,
+      },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
       },
       sv: {
         id: "sv",
@@ -2261,6 +2411,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 234,
         rel: 8.2,
       },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
+      },
       sv: {
         id: "sv",
         abs: 0,
@@ -2324,6 +2499,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 234,
         rel: 8.2,
       },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
+      },
       sv: {
         id: "sv",
         abs: 0,
@@ -2386,6 +2586,31 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "so",
         abs: 234,
         rel: 8.2,
+      },
+      hld: {
+        id: "hld",
+        abs: 0,
+        rel: -1.0,
+      },
+      k9: {
+        id: "k9",
+        abs: 10.5,
+        rel: 9.4,
+      },
+      kbb: {
+        id: "kbb",
+        abs: 5.11,
+        rel: 11.0,
+      },
+      qs: {
+        id: "qs",
+        abs: 18,
+        rel: 4.6,
+      },
+      svhld: {
+        id: "svhld",
+        abs: 0,
+        rel: -3.4,
       },
       sv: {
         id: "sv",
