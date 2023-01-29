@@ -37,6 +37,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -89,6 +144,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -143,6 +253,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -195,6 +360,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -249,6 +469,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -301,6 +576,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -355,6 +685,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -407,6 +792,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -461,6 +901,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -513,6 +1008,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -567,6 +1117,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -619,6 +1224,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -673,6 +1333,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -725,6 +1440,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 105,
         rel: 5.1,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
@@ -779,6 +1549,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 105,
         rel: 5.1,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -832,6 +1657,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         abs: 100,
         rel: 4.8,
       },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
+      },
       sb: {
         id: "sb",
         abs: 11,
@@ -884,6 +1764,61 @@ export const PLAYERS_MOCK: ServerPlayerById = {
         id: "r",
         abs: 0,
         rel: -10,
+      },
+      bb: {
+        id: "bb",
+        abs: 84,
+        rel: 8.4,
+      },
+      hbp: {
+        id: "hbp",
+        abs: 11,
+        rel: 1.0,
+      },
+      sf: {
+        id: "sf",
+        abs: 6,
+        rel: 2.0,
+      },
+      "1b": {
+        id: "1b",
+        abs: 74,
+        rel: 5.4,
+      },
+      "2b": {
+        id: "2b",
+        abs: 45,
+        rel: 3.5,
+      },
+      "3b": {
+        id: "3b",
+        abs: 6,
+        rel: 2.4,
+      },
+      ibb: {
+        id: "ibb",
+        abs: 14,
+        rel: 7.6,
+      },
+      obp: {
+        id: "obp",
+        abs: 0.425,
+        rel: 11.4,
+      },
+      slg: {
+        id: "slg",
+        abs: 0.686,
+        rel: 12.6,
+      },
+      ops: {
+        id: "ops",
+        abs: 1.111,
+        rel: 13.1,
+      },
+      woba: {
+        id: "woba",
+        abs: 0.458,
+        rel: 14.3,
       },
       sb: {
         id: "sb",
