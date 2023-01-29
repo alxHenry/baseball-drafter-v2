@@ -1,5 +1,3 @@
-import type { Player } from "../../../data/stores/playersSlice";
-
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 import { useMemo } from "react";
 import { HeaderCellSort } from "@table-library/react-table-library/sort";
@@ -27,28 +25,35 @@ export const useTableHeaders = () => {
     const pitcherStatValues = Object.values(pitcherStats).filter(filterDisplayableStats);
     const requiredStatValues = Object.values(requiredStats).filter(filterDisplayableStats);
 
-    const statHeaders = batterStatValues.map((batterStat, index) => {
-      const pitcherStat = pitcherStatValues[index];
+    let lastIndex = -1;
+    let statHeaders: React.ReactNode[] = [];
+    for (let i = 0; i < Math.max(pitcherStatValues.length, batterStatValues.length); i++) {
+      const batterStat = batterStatValues[i];
+      const pitcherStat = pitcherStatValues[i];
 
+      lastIndex = i;
+
+      // TODO: All the defaulting in the case of an uneven number of batter and pitcher stats (unlikely) feels inelegant
       if (displayMode === "All") {
-        const key = `${batterStat.id}/${pitcherStat.id}`;
-        const display = `${batterStat.display}/${pitcherStat.display}`;
+        const key = `${batterStat?.id ?? ""}/${pitcherStat?.id ?? ""}`;
+        const display = `${batterStat?.display ?? ""}/${pitcherStat?.display ?? ""}`;
 
-        return <HeaderCell key={key}>{display}</HeaderCell>;
-      } else if (displayMode === "Pitchers") {
-        return (
+        statHeaders.push(<HeaderCell key={key}>{display}</HeaderCell>);
+      } else if (displayMode === "Pitchers" && pitcherStat != null) {
+        statHeaders.push(
           <HeaderCellSort key={pitcherStat.id} sortKey={pitcherStat.id}>
             {pitcherStat.display.toUpperCase()}
           </HeaderCellSort>
         );
-      } else {
-        return (
+      } else if (displayMode === "Batters" && batterStat != null) {
+        statHeaders.push(
           <HeaderCellSort key={batterStat.id} sortKey={batterStat.id}>
             {batterStat.display.toUpperCase()}
           </HeaderCellSort>
         );
       }
-    });
+    }
+
     const requiredStatHeaders = requiredStatValues.map((stat) => (
       <HeaderCellSort key={stat.id} sortKey={stat.id}>
         {stat.display}
