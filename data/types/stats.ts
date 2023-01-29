@@ -70,6 +70,7 @@ export type StatConfig = {
   readonly display: string;
   readonly isHigherBetter: boolean;
   readonly isDisplayed: boolean;
+  readonly isSelectable: boolean; // Can this be a category the user can select to use
   readonly calculator?: Calculator;
 };
 export type Calculator = (statsById: TeamTotalStats) => number;
