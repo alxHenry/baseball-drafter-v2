@@ -213,7 +213,7 @@ export const statConfigsById: StatConfigById = {
     display: "ER",
     isHigherBetter: false,
     isDisplayed: false,
-    isSelectable: true,
+    isSelectable: false,
   },
   hld: {
     id: "hld",
@@ -226,8 +226,8 @@ export const statConfigsById: StatConfigById = {
     id: "ip",
     display: "IP",
     isHigherBetter: true,
-    isDisplayed: true,
-    isSelectable: true,
+    isDisplayed: false,
+    isSelectable: false,
   },
   k9: {
     id: "k9",
