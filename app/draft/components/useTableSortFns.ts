@@ -9,9 +9,11 @@ const getPlayerStatReducer = (isShowingRelative: boolean) => (agg: Record<string
     array.sort((a, b) => {
       const playerA = a as Player;
       const playerB = b as Player;
+      const relValueB = playerB.stats[stat as StatId]!.rel;
+      const relValueA = playerA.stats[stat as StatId]!.rel;
 
-      if (isShowingRelative) {
-        return playerB.stats[stat as StatId]!.rel - playerA.stats[stat as StatId]!.rel;
+      if (isShowingRelative && relValueB != null && relValueA != null) {
+        return relValueB - relValueA;
       } else {
         return playerB.stats[stat as StatId]!.abs - playerA.stats[stat as StatId]!.abs;
       }
