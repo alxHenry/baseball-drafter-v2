@@ -1,24 +1,24 @@
 // Weird typescript workaround, but allows us to quickly type narrow a generic StatId, which is ideal
 // if we're doing the type narrow in a selector that runs every state update. The values do not matter.
 const batterStats = {
-  avg: false,
-  rbi: false,
-  r: false,
-  sb: false,
-  hr: false,
-  h: false,
-  ab: false,
-  bb: false,
-  hbp: false,
-  sf: false,
-  "1b": false,
-  "2b": false,
-  "3b": false,
-  ibb: false,
-  obp: false,
-  slg: false,
-  ops: false,
-  woba: false,
+  "1B": false,
+  "2B": false,
+  "3B": false,
+  AB: false,
+  AVG: false,
+  BB: false,
+  H: false,
+  HBP: false,
+  HR: false,
+  IBB: false,
+  OBP: false,
+  OPS: false,
+  R: false,
+  RBI: false,
+  SB: false,
+  SF: false,
+  SLG: false,
+  wOBA: false,
 };
 export type BatterStatId = keyof typeof batterStats;
 export function isBatterStat(statId: StatId): statId is BatterStatId {
@@ -26,27 +26,27 @@ export function isBatterStat(statId: StatId): statId is BatterStatId {
 }
 
 const pitcherStats = {
-  w: false,
-  sv: false,
-  era: false,
-  whip: false,
-  so: false,
-  hAllowed: false,
   bbAllowed: false,
-  er: false,
-  hld: false,
-  ip: false,
-  k9: false,
-  kbb: false,
-  qs: false,
-  svhld: false,
+  ER: false,
+  ERA: false,
+  hAllowed: false,
+  HLD: false,
+  IP: false,
+  "K/9": false,
+  "K/BB": false,
+  QS: false,
+  SO: false,
+  SV: false,
+  SVHLD: false,
+  W: false,
+  WHIP: false,
 };
 export type PitcherStatId = keyof typeof pitcherStats;
 export function isPitcherStat(statId: StatId): statId is PitcherStatId {
   return pitcherStats.hasOwnProperty(statId);
 }
 
-const requiredStats = { worth: false, aWorth: false };
+const requiredStats = { aWorth: false, worth: false };
 export type RequiredStatId = keyof typeof requiredStats;
 export function isRequiredStat(statId: StatId): statId is RequiredStatId {
   return requiredStats.hasOwnProperty(statId);
@@ -58,7 +58,7 @@ export type StatById = Record<RequiredStatId, Stat> & Partial<Record<StatId, Sta
 export interface Stat {
   readonly id: StatId;
   readonly abs: number; // Absolute value - i.e. 5 HRs
-  readonly rel: number; // Relative value - i.e. 8.5 z-scores above average HRs
+  readonly rel?: number; // Relative value - i.e. 8.5 z-scores above average HRs
 }
 
 export type TeamTotalStats = Partial<Record<StatId, number>>;

@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { getStatDisplay, getStatIsDisplayed } from "../../../../data/selectors/draftSelectors";
-import { Stat } from "../../../../data/stores/playersSlice";
 import { useStore } from "../../../../data/stores/store";
+import { Stat } from "../../../../data/types/stats";
 import StatDisplayValue from "../StatDisplayValue";
 
 import styles from "./TeamPlayersDisplay.module.css";

@@ -17,6 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Learnings
 
 - react-table can be kind of a pain to work with. There's a branch `react-table-library-switch` where I tested moving over to the react-table-library-switch library instead. The DX was much better, unfortunately perf took a huge hit due to the emotion css that was used internally. Renders were 4-5x slower and noticeably slower when throttling CPU. There's a chance that once I style my table with react-table I'll end up in the same situation, it's worth testing again at that point. On production mode, the experience, even when throttled, didn't feel bad. I'm going to stick with react-table-library in the meantime and keep in mind that switching back to react-table will be one way to claw performance back if I need to.
+- Just use typsecript enums instead of string literals. Had to refactor all my stat names to caps or slight re-arragements and it was a pain. Where an enum I could've changed in once place.
 
 ## Relevant Docs
 

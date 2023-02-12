@@ -8,7 +8,8 @@ import DraftStatTypeToggle from "./components/DraftStatTypeToggle";
 import RotoRankings from "./components/RotoRankings/RotoRankings";
 
 export default async function Page() {
-  const playersById = await getMockPlayerData();
+  const response = await fetch("http://localhost:3001/players");
+  const playersById = await response.json();
   const transformedPlayersById = transformServerPlayerToLocalPlayer(playersById);
 
   return (

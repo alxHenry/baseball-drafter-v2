@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import type { Stat } from "../../../data/stores/playersSlice";
 
 import { memo } from "react";
 import { Cell } from "@table-library/react-table-library";
 import StatDisplayValue from "./StatDisplayValue";
+import { Stat } from "../../../data/types/stats";
 
 interface Props {
   readonly stat: Stat;
