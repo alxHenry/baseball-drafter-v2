@@ -7,12 +7,13 @@ import shallow from "zustand/shallow";
 import { useStore } from "../../../../data/stores/store";
 import DraftTrackerCard from "./DraftTrackerCard";
 import DraftTrackerArrow from "./DraftTrackerArrow";
+import { getTeamIds } from "../../../../data/selectors/teamsSelectors";
 
 interface Props {}
 
 const DraftTracker: FC<Props> = () => {
   const scrollRef = useRef(null);
-  const teamIds = useStore((state) => Object.keys(state.teamsSlice.teamsById), shallow);
+  const teamIds = useStore(getTeamIds, shallow);
   const renderedCards = teamIds.map((teamId) => <DraftTrackerCard key={teamId} teamId={teamId} />);
 
   const startScrollArrow = <DraftTrackerArrow isStartArrow={true} scrollRef={scrollRef} />;

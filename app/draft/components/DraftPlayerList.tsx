@@ -1,16 +1,12 @@
 "use client";
-import type { PlayersById } from "../../../data/stores/playersSlice";
 
-import { useStore } from "../../../data/stores/store";
 import { usePagination } from "@table-library/react-table-library/pagination";
-import { useDeferredValue, useRef, useState } from "react";
+import { useDeferredValue, useState } from "react";
 import { usePlayerTableRows } from "./usePlayerTableRows";
 import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
 import DraftPlayerDisplayModeSelect from "./DraftPlayerDisplayModeSelect";
 import DraftPlayerListSearchFilterInput from "./DraftPlayerListSearchFilterInput";
-
-interface Props {}
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
@@ -68,24 +64,4 @@ const DraftPlayerList = () => {
   );
 };
 
-interface HydratorProps extends Props {
-  playersById: PlayersById;
-}
-
-const DraftPlayerListWithHydrator = ({ playersById, ...rest }: HydratorProps) => {
-  const initialized = useRef(false);
-  if (!initialized.current) {
-    useStore.setState((store) => ({
-      ...store,
-      playersSlice: {
-        ...store.playersSlice,
-        playersById,
-      },
-    }));
-    initialized.current = true;
-  }
-
-  return <DraftPlayerList {...rest} />;
-};
-
-export default DraftPlayerListWithHydrator;
+export default DraftPlayerList;

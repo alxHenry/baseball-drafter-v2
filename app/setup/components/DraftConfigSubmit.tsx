@@ -10,7 +10,7 @@ const DraftConfigSubmit: FC = () => {
   const finalizeSetupTeams = useStore((state) => state.teamsSlice.finalizeSetupTeams);
   const startDraft = () => {
     finalizeSetupTeams();
-    router.push("/draft");
+    router.push("/draft/big-board");
   };
 
   return <button onClick={startDraft}>Start Draft!</button>;

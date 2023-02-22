@@ -1,24 +1,27 @@
 "use client";
 import styles from "./TeamDisplay.module.css";
 
-import { getCurrentPickingTeamId, getCurrentPickingTeamName } from "../../../../data/selectors/teamsSelectors";
+import { getTeamNameSelector } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
 import TeamPlayersDisplay from "./TeamPlayersDisplay";
 import TeamNeeds from "./TeamNeeds";
 import { FC, memo } from "react";
 
-const TeamDisplay: FC = () => {
-  const currentDraftingTeamName = useStore(getCurrentPickingTeamName);
-  const currentDraftingTeamId = useStore(getCurrentPickingTeamId);
+interface Props {
+  teamId: string;
+}
+
+const TeamDisplay: FC<Props> = ({ teamId }) => {
+  const teamName = useStore(getTeamNameSelector(teamId));
 
   return (
     <div className={styles.container}>
-      <div>On the clock team: {currentDraftingTeamName}</div>
+      <h3>{teamName}</h3>
       <div>
-        <TeamNeeds teamId={currentDraftingTeamId} />
+        <TeamNeeds teamId={teamId} />
       </div>
       <div>
-        <TeamPlayersDisplay />
+        <TeamPlayersDisplay teamId={teamId} />
       </div>
     </div>
   );

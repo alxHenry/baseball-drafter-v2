@@ -14,18 +14,6 @@ export const getCurrentPickingTeamName = ({ draftSlice: { currentPickTeamId }, t
   return teamsById[currentPickTeamId].name;
 };
 
-export const getCurrentPickingTeamsPlayers = ({
-  draftSlice: { currentPickTeamId },
-  teamsSlice: { teamsById },
-  playersSlice: { playersById },
-}: Store) => {
-  if (currentPickTeamId == null) {
-    throw new Error("Reading the current picking teams players before the draft has been setup.");
-  }
-  const playerIds = teamsById[currentPickTeamId].playerIds;
-  return playerIds.map((playerId) => playersById[playerId]);
-};
-
 export const getTeamsPlayersSelector = (teamId: string) => (store: Store) => {
   const {
     teamsSlice: { teamsById },
@@ -50,4 +38,33 @@ export const getTeamsPositionNeedsSelector = (teamId: string) => (store: Store) 
   });
 
   return requiredPositionCounts;
+};
+
+export const getTeamIds = (store: Store) => {
+  const {
+    teamsSlice: { teamsById },
+  } = store;
+  return Object.keys(teamsById);
+};
+
+export const getTeamIdAndNameTuple = (store: Store) => {
+  const {
+    teamsSlice: { teamsById },
+  } = store;
+  return Object.values(teamsById).map((team) => [team.id, team.name]);
+};
+
+export const getTeamNames = (store: Store) => {
+  const {
+    teamsSlice: { teamsById },
+  } = store;
+  return Object.values(teamsById).map((team) => team.name);
+};
+
+export const getTeamNameSelector = (teamId: string) => (store: Store) => {
+  return store.teamsSlice.teamsById[teamId].name;
+};
+
+export const getTeamStatsSelector = (teamId: string) => (store: Store) => {
+  return store.teamsSlice.teamTotalStatsById[teamId];
 };

@@ -2,18 +2,19 @@ import styles from "./TeamPlayersDisplay.module.css";
 
 import { FC, memo, useMemo } from "react";
 import { useStore } from "../../../../data/stores/store";
-import { getCurrentPickingTeamId, getCurrentPickingTeamsPlayers } from "../../../../data/selectors/teamsSelectors";
+import { getTeamsPlayersSelector, getTeamStatsSelector } from "../../../../data/selectors/teamsSelectors";
 import shallow from "zustand/shallow";
 import PlayerStatDisplay from "./PlayerStatDisplay";
 import TeamTotalStatDisplay from "./TeamTotalStatDisplay";
-import { StatId } from "../../../../data/stores/playersSlice";
+import { StatId } from "../../../../data/types/stats";
 
-interface Props {}
+interface Props {
+  readonly teamId: string;
+}
 
-const TeamPlayersDisplay: FC<Props> = () => {
-  const players = useStore(getCurrentPickingTeamsPlayers);
-  const currentPickingTeamId = useStore(getCurrentPickingTeamId);
-  const currentTeamsStats = useStore((state) => state.teamsSlice.teamTotalStatsById[currentPickingTeamId], shallow);
+const TeamPlayersDisplay: FC<Props> = ({ teamId }) => {
+  const players = useStore(getTeamsPlayersSelector(teamId)); // TODO: Fix this from re-rendering every store change
+  const currentTeamsStats = useStore(getTeamStatsSelector(teamId), shallow);
 
   const playersRendered = useMemo(
     () =>
