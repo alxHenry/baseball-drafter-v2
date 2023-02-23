@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { transformServerPlayerToLocalPlayer } from "../transforms/serverPlayerToLocalPlayer";
+import { fetchServerPlayersWithCache } from "../../data/remote/fetchServerPlayersWithCache";
 import DraftPlayerHydrator from "./components/DraftPlayerHydrator";
+
+const TODO_CACHE_CONFIG_KEY = "ATC-default-9";
 
 export default async function DraftLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
-  const response = await fetch("http://localhost:3001/players");
-  const playersById = await response.json();
-  const transformedPlayersById = transformServerPlayerToLocalPlayer(playersById);
+  const transformedPlayersById = await fetchServerPlayersWithCache(TODO_CACHE_CONFIG_KEY);
 
   return (
     <DraftPlayerHydrator playersById={transformedPlayersById}>
