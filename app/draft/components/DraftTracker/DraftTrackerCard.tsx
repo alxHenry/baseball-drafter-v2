@@ -14,6 +14,7 @@ interface Props {
 const DraftTrackerCard: FC<Props> = ({ teamId }) => {
   const teamName = useStore((state) => state.teamsSlice.teamsById[teamId].name);
   const teamNeeds = useStore((state) => getTeamsPositionNeedsSelector(teamId)(state), shallow);
+  const isTeamOnTheClock = useStore((state) => state.draftSlice.currentPickTeamId === teamId);
 
   const needsString = Object.entries(teamNeeds).reduce((agg, [positionId, neededCount]) => {
     let separator = agg.length === 0 ? "" : ",";
@@ -21,7 +22,7 @@ const DraftTrackerCard: FC<Props> = ({ teamId }) => {
   }, "");
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isTeamOnTheClock ? styles.onTheClock : ""}`}>
       <div>{teamName}</div>
       <div>Needs: {needsString}</div>
     </div>
