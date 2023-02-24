@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { useStore } from "../stores/store";
 import { StatId } from "../types/stats";
 
-type RotoTuple = [number, number]; // [rank, total value]
-type RotoRankings = Partial<Record<StatId, RotoTuple>>;
+export type RotoTuple = [number, number]; // [rank, total value]
+export type RotoRankings = Partial<Record<StatId, RotoTuple>>;
 
 // We don't want this in a store selector because it's too expensive to re-run every render. Maybe we could reintroduce re-reselect to zustand and that would
 // make it possible as a selector. Instead of that, I'm pulling it into a memoized hook that will not rerun if the store reference values don't change.
