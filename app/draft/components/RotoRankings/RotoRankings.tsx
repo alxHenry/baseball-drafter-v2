@@ -23,8 +23,6 @@ interface TeamRotoRankings {
 
 interface Props {}
 
-const STAT_TYPE_SORT_ORDER = { batter: 0, pitcher: 1, required: 2 };
-
 const RotoRankings: FC<Props> = () => {
   const chakraTheme = getTheme(DEFAULT_OPTIONS);
   const tableTheme = useTheme(chakraTheme);
