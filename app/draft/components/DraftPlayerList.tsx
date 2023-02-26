@@ -7,10 +7,12 @@ import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
 import DraftPlayerDisplayModeSelect from "./DraftPlayerDisplayModeSelect";
 import DraftPlayerListSearchFilterInput from "./DraftPlayerListSearchFilterInput";
+import DraftPlayerListPositionFilterInput, { PositionFilterValue } from "./DraftPlayerListPositionFilterInput";
 
 const DraftPlayerList = () => {
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
   const [search, setSearch] = useState("");
+  const [filteredPosition, setFilteredPosition] = useState<PositionFilterValue>("All");
   const deferredSearch = useDeferredValue(search);
 
   const playerRows = usePlayerTableRows({ shouldHideDrafted, search: deferredSearch });
@@ -28,6 +30,7 @@ const DraftPlayerList = () => {
   return (
     <div>
       <DraftPlayerDisplayModeSelect />
+      <DraftPlayerListPositionFilterInput filteredPosition={filteredPosition} setPositionFilter={setFilteredPosition} />
       <DraftPlayerListSearchFilterInput searchValue={search} setSearchFilter={setSearch} />
       <div>
         <label htmlFor="hide-drafted">Hide drafted players: </label>

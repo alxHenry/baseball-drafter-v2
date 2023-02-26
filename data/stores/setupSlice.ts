@@ -1,6 +1,20 @@
 import type { StoreGet, StoreSet } from "./store";
 
-export type PositionId = "C" | "1B" | "2B" | "SS" | "3B" | "OF" | "MI" | "CI" | "IF" | "UT" | "SP" | "RP" | "P";
+export enum PositionId {
+  "C" = "C",
+  "1B" = "1B",
+  "2B" = "2B",
+  "SS" = "SS",
+  "3B" = "3B",
+  "OF" = "OF",
+  "MI" = "MI",
+  "CI" = "CI",
+  "IF" = "IF",
+  "UT" = "UT",
+  "SP" = "SP",
+  "RP" = "RP",
+  "P" = "P",
+}
 const positionIdToDefaultCounts: Record<PositionId, number> = {
   C: 1,
   "1B": 1,
