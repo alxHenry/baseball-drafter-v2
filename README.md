@@ -36,9 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [] Fix default value sort on table
 - [] Fix table name filter. Notice Gerrit Colr matches until the second r.
-- [] Fix Roto total caluclation
 - [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
-- [] Limit cell display to two/three decimal places
+- [x] Limit cell display to two/three decimal places
+- [x] Fix Roto total caluclation
 
 ### P3
 
