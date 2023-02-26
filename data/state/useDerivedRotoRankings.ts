@@ -48,7 +48,8 @@ export const useDerivedRotoRankings = () => {
         newTeamTotal[1] += statRank;
         rotoRankingsByTeamIdWithTotal[teamId][TOTAL_KEY] = newTeamTotal;
 
-        if (iter === rotoRankingEligibleStats.size - 1) {
+        // -2 because we skip Total
+        if (iter === rotoRankingEligibleStats.size - 2) {
           // this is the last stat and we now save the team totals off
           rotoTotalTuples.push([teamId, newTeamTotal[1]]);
         }

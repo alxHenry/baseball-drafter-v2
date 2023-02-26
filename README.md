@@ -23,6 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### P1
 
+- [] Support roto stats where lower values are better
 - [] Stat configuration end to end
 - [] Fix prebuild errors to allow deploying to prod/vercel
 - [] Lower is better rate stat scoring on Roto rankings
@@ -33,6 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### P2
 
 - [] Fix default value sort on table
+- [] Fix table name filter. Notice Gerrit Colr matches until the second r.
 - [] Fix Roto total caluclation
 - [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
 - [] Limit cell display to two/three decimal places

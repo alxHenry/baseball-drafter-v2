@@ -29,7 +29,7 @@ const RotoRankings: FC<Props> = () => {
   return (
     <>
       <div>
-        <label htmlFor={CHECKBOX_ID}>Show rank? </label>
+        <label htmlFor={CHECKBOX_ID}>Show relative value? </label>
         <input type="checkbox" id="CHECKBOX_ID" checked={isShowingRelative} onChange={toggleIsShowingRelative} />
       </div>
       <Table data={data} sort={sort} theme={tableTheme}>
