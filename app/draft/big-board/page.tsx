@@ -9,8 +9,6 @@ export default async function Page() {
       <DraftTracker />
       <DraftStatTypeToggle />
       <DraftPlayerList />
-      {/* <TeamDisplay />
-      <RotoRankings /> */}
     </>
   );
 }

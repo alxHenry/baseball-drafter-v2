@@ -10,10 +10,16 @@ import { TeamRotoRankings, useRotoRankingsTableData } from "./useRotoRankingsTab
 import { useRotoRankingsFilteredAndSortedStatIds } from "./useRotoRankingsFilteredAndSortedStatIds";
 import RotoRankingsTeamRow from "./RotoRankingsTeamRow";
 import RotoRankingsHeader from "./RotoRankingsHeader";
+import { useStore } from "../../../../data/stores/store";
+
+const CHECKBOX_ID = "rank-checkbox";
 
 interface Props {}
 
 const RotoRankings: FC<Props> = () => {
+  const toggleIsShowingRelative = useStore((state) => state.rotoRankingsSlice.toggleIsShowingRelative);
+  const isShowingRelative = useStore((state) => state.rotoRankingsSlice.isShowingRelative);
+
   const chakraTheme = getTheme(DEFAULT_OPTIONS);
   const tableTheme = useTheme(chakraTheme);
 
@@ -22,18 +28,24 @@ const RotoRankings: FC<Props> = () => {
   const sort = useRotoRankingsTableSort(data, filteredAndSortedStatIds);
 
   return (
-    <Table data={data} sort={sort} theme={tableTheme}>
-      {(tableList) => (
-        <>
-          <RotoRankingsHeader filteredAndSortedStatIds={filteredAndSortedStatIds} />
-          <Body>
-            {(tableList as TeamRotoRankings[]).map((item) => (
-              <RotoRankingsTeamRow key={item.id} filteredAndSortedStatIds={filteredAndSortedStatIds} team={item} />
-            ))}
-          </Body>
-        </>
-      )}
-    </Table>
+    <>
+      <div>
+        <label htmlFor={CHECKBOX_ID}>Show rank? </label>
+        <input type="checkbox" id="CHECKBOX_ID" checked={isShowingRelative} onChange={toggleIsShowingRelative} />
+      </div>
+      <Table data={data} sort={sort} theme={tableTheme}>
+        {(tableList) => (
+          <>
+            <RotoRankingsHeader filteredAndSortedStatIds={filteredAndSortedStatIds} />
+            <Body>
+              {(tableList as TeamRotoRankings[]).map((item) => (
+                <RotoRankingsTeamRow key={item.id} filteredAndSortedStatIds={filteredAndSortedStatIds} team={item} />
+              ))}
+            </Body>
+          </>
+        )}
+      </Table>
+    </>
   );
 };
 

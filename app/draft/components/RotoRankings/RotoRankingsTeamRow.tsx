@@ -1,5 +1,6 @@
 import { Cell, Row } from "@table-library/react-table-library";
-import { FC, memo } from "react";
+import { FC, memo, useMemo } from "react";
+import { useStore } from "../../../../data/stores/store";
 import { StatId } from "../../../../data/types/stats";
 import { TeamRotoRankings } from "./useRotoRankingsTableData";
 
@@ -9,14 +10,20 @@ interface Props {
 }
 
 const RotoRankingsTeamRow: FC<Props> = ({ filteredAndSortedStatIds, team }) => {
-  // Iterate through properly ordered and filtered list then pull out of our team's rankings
-  const renderedStatCells = filteredAndSortedStatIds.map((statId) => {
-    const tuple = team.rotoRankings[statId as StatId]!;
-    const rank = tuple[0];
-    const value = tuple[1];
+  const isShowingRelative = useStore((state) => state.rotoRankingsSlice.isShowingRelative);
 
-    return <Cell key={statId}>{rank}</Cell>;
-  });
+  // Iterate through properly ordered and filtered list then pull out of our team's rankings
+  const renderedStatCells = useMemo(
+    () =>
+      filteredAndSortedStatIds.map((statId) => {
+        const tuple = team.rotoRankings[statId as StatId]!;
+        const rank = tuple[0];
+        const value = tuple[1];
+
+        return <Cell key={statId}>{isShowingRelative ? rank : value}</Cell>;
+      }),
+    [filteredAndSortedStatIds, isShowingRelative, team.rotoRankings]
+  );
 
   return (
     <Row key={team.id} item={team}>
