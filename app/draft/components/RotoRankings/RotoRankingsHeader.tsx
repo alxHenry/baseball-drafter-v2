@@ -2,15 +2,16 @@ import { HeaderCellSort } from "@table-library/react-table-library/sort";
 import { Header, HeaderCell, HeaderRow } from "@table-library/react-table-library";
 
 import { FC, memo } from "react";
+import { useRotoRankingsFilteredAndSortedStatIds } from "./useRotoRankingsFilteredAndSortedStatIds";
 
 const NAME_KEY = "Name";
 
-interface Props {
-  readonly filteredAndSortedStatIds: string[];
-}
+interface Props {}
 
-const RotoRankingsHeader: FC<Props> = ({ filteredAndSortedStatIds }) => {
-  const headers = filteredAndSortedStatIds.map((statId) => (
+const RotoRankingsHeader: FC<Props> = () => {
+  const filteredAndSortedStatIds = useRotoRankingsFilteredAndSortedStatIds();
+
+  const headers = Array.from(filteredAndSortedStatIds).map((statId) => (
     <HeaderCellSort key={statId} sortKey={statId}>
       {statId}
     </HeaderCellSort>

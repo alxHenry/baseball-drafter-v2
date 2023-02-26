@@ -1,19 +1,19 @@
 import { useMemo } from "react";
+import { useRotoRankingsFilteredAndSortedStatIds } from "../../app/draft/components/RotoRankings/useRotoRankingsFilteredAndSortedStatIds";
 import { useStore } from "../stores/store";
+import { TOTAL_KEY } from "../types/rotoRankings";
 import { StatId } from "../types/stats";
 
 export type RotoTuple = [number, number]; // [rank, total value]
 export type RotoRankings = Partial<Record<StatId, RotoTuple>>;
 
-export const TOTAL_KEY: StatId = "Total" as StatId;
-
 // We don't want this in a store selector because it's too expensive to re-run every render. Maybe we could reintroduce re-reselect to zustand and that would
 // make it possible as a selector. Instead of that, I'm pulling it into a memoized hook that will not rerun if the store reference values don't change.
 export const useDerivedRotoRankings = () => {
-  const batterStatsById = useStore((state) => state.draftSlice.batterStatConfigsById);
-  const pitcherStatsById = useStore((state) => state.draftSlice.pitcherStatConfigsById);
   const teamTotalStatsById = useStore((state) => state.teamsSlice.teamTotalStatsById);
   const teamsById = useStore((state) => state.teamsSlice.teamsById);
+
+  const rotoRankingEligibleStats = useRotoRankingsFilteredAndSortedStatIds();
 
   return useMemo(() => {
     const teamIds = Object.keys(teamsById);
@@ -23,8 +23,9 @@ export const useDerivedRotoRankings = () => {
     }, {});
 
     const rotoTotalTuples: [string, number][] = [];
-    const statIds = [...Object.keys(batterStatsById), ...Object.keys(pitcherStatsById)];
-    statIds.forEach((stat, statIndex) => {
+    let iter = 0;
+
+    rotoRankingEligibleStats.forEach((stat) => {
       const statId = stat as StatId;
       const totalTeamTuples: [string, number][] = teamIds.map((teamId) => {
         return [teamId, teamTotalStatsById[teamId][statId]!];
@@ -42,11 +43,13 @@ export const useDerivedRotoRankings = () => {
         newTeamTotal[1] = newTeamTotal[1] + statRank;
         rotoRankingsByTeamId[teamId][TOTAL_KEY] = newTeamTotal;
 
-        if (statIndex === statIds.length - 1) {
-          // We now have the team totals and can save them to a tuple
+        if (iter === rotoRankingEligibleStats.size - 1) {
+          // this is the last stat and we now save the team totals off
           rotoTotalTuples.push([teamId, newTeamTotal[1]]);
         }
       });
+
+      iter++;
     });
 
     // Now sort the totals tuple and save off ranks to our object of truth
@@ -57,5 +60,5 @@ export const useDerivedRotoRankings = () => {
     });
 
     return rotoRankingsByTeamId;
-  }, [batterStatsById, pitcherStatsById, teamTotalStatsById, teamsById]);
+  }, [rotoRankingEligibleStats, teamTotalStatsById, teamsById]);
 };

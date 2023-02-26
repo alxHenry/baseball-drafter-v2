@@ -33,6 +33,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [] Fix default value sort on table
 - [] Fix Roto total caluclation
+- [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
+- [] Limit cell display to two/three decimal places
 
 ### P3
 

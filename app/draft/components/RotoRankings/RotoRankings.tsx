@@ -23,9 +23,8 @@ const RotoRankings: FC<Props> = () => {
   const chakraTheme = getTheme(DEFAULT_OPTIONS);
   const tableTheme = useTheme(chakraTheme);
 
-  const filteredAndSortedStatIds = useRotoRankingsFilteredAndSortedStatIds();
   const data = useRotoRankingsTableData();
-  const sort = useRotoRankingsTableSort(data, filteredAndSortedStatIds);
+  const sort = useRotoRankingsTableSort(data);
 
   return (
     <>
@@ -36,10 +35,10 @@ const RotoRankings: FC<Props> = () => {
       <Table data={data} sort={sort} theme={tableTheme}>
         {(tableList) => (
           <>
-            <RotoRankingsHeader filteredAndSortedStatIds={filteredAndSortedStatIds} />
+            <RotoRankingsHeader />
             <Body>
               {(tableList as TeamRotoRankings[]).map((item) => (
-                <RotoRankingsTeamRow key={item.id} filteredAndSortedStatIds={filteredAndSortedStatIds} team={item} />
+                <RotoRankingsTeamRow key={item.id} team={item} />
               ))}
             </Body>
           </>

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { TOTAL_KEY, useDerivedRotoRankings } from "../../../../data/state/useDerivedRotoRankings";
 import { useStore } from "../../../../data/stores/store";
+import { TOTAL_KEY } from "../../../../data/types/rotoRankings";
 import {
   BatterStatId,
   isBatterStat,
@@ -14,12 +14,16 @@ export const useRotoRankingsFilteredAndSortedStatIds = () => {
   const batterStats = useStore((state) => state.draftSlice.batterStatConfigsById);
   const pitcherStats = useStore((state) => state.draftSlice.pitcherStatConfigsById);
   const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
-  const rotoRankingsById = useDerivedRotoRankings();
 
   return useMemo(() => {
-    const firstTeam = Object.keys(rotoRankingsById)[0];
+    const statIds = [
+      ...Object.keys(batterStats),
+      ...Object.keys(pitcherStats),
+      ...Object.keys(requiredStats),
+      TOTAL_KEY,
+    ];
 
-    return Object.keys(rotoRankingsById[firstTeam])
+    const sortedAndFiltered = statIds
       .reduce<string[]>((agg, statId) => {
         const isDisplayedBatterStat =
           batterStats[statId as BatterStatId] != null &&
@@ -29,10 +33,10 @@ export const useRotoRankingsFilteredAndSortedStatIds = () => {
           pitcherStats[statId as PitcherStatId] != null &&
           pitcherStats[statId as PitcherStatId]?.isDisplayed === true &&
           pitcherStats[statId as PitcherStatId]?.isSelectable === true;
+        // TODO: Support worth and aWorth
         const isDisplayedRequiredStat =
           requiredStats[statId as RequiredStatId] != null &&
-          requiredStats[statId as RequiredStatId]?.isDisplayed === true &&
-          requiredStats[statId as RequiredStatId]?.isSelectable === true;
+          requiredStats[statId as RequiredStatId]?.isDisplayed === true; // Worth and aWorth are not selectable, but we still want them included
         const isRotoTotalStat = statId === TOTAL_KEY;
 
         if (isDisplayedBatterStat || isDisplayedPitcherStat || isDisplayedRequiredStat || isRotoTotalStat) {
@@ -45,5 +49,8 @@ export const useRotoRankingsFilteredAndSortedStatIds = () => {
         const bSortValue = isBatterStat(b as StatId) === true ? 0 : isPitcherStat(b as StatId) === true ? 1 : 2;
         return aSortValue - bSortValue;
       });
-  }, [batterStats, pitcherStats, requiredStats, rotoRankingsById]);
+
+    // Transform to set to add constant time lookup
+    return new Set(sortedAndFiltered);
+  }, [batterStats, pitcherStats, requiredStats]);
 };
