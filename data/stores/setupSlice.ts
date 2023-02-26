@@ -1,20 +1,6 @@
+import { PositionId } from "../types/positions";
 import type { StoreGet, StoreSet } from "./store";
 
-export enum PositionId {
-  "C" = "C",
-  "1B" = "1B",
-  "2B" = "2B",
-  "SS" = "SS",
-  "3B" = "3B",
-  "OF" = "OF",
-  "MI" = "MI",
-  "CI" = "CI",
-  "IF" = "IF",
-  "UT" = "UT",
-  "SP" = "SP",
-  "RP" = "RP",
-  "P" = "P",
-}
 const positionIdToDefaultCounts: Record<PositionId, number> = {
   C: 1,
   "1B": 1,

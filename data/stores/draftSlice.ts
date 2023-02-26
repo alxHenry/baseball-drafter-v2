@@ -1,4 +1,5 @@
 import { getStateWithToggledStat } from "../state/getStateWithToggledStat";
+import { TableDisplayMode } from "../types/positions";
 import {
   BatterStatConfigsById,
   defaultBatterStatConfigsById,
@@ -9,8 +10,6 @@ import {
 } from "../types/statConfig";
 import { StatId } from "../types/stats";
 import type { StoreGet, StoreSet } from "./store";
-
-export type TableDisplayMode = "All" | "Batters" | "Pitchers";
 
 export interface DraftSlice {
   readonly currentPickTeamId: string | null;

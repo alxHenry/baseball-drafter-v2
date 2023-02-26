@@ -1,8 +1,7 @@
 import { ChangeEventHandler, FC, memo, useMemo } from "react";
-import { PositionId } from "../../../data/stores/setupSlice";
+import { ALL_POSITION_KEY, PositionId } from "../../../data/types/positions";
 
-const ALL_VALUE = "All";
-export type PositionFilterValue = PositionId | typeof ALL_VALUE;
+export type PositionFilterValue = PositionId | typeof ALL_POSITION_KEY;
 
 const SELECT_ID = "position-filter";
 
@@ -18,7 +17,7 @@ const DraftPlayerListPositionFilterInput: FC<Props> = ({ filteredPosition, setPo
 
   const optionElems = useMemo(() => {
     const positionOptions = Object.keys(PositionId).map((position) => <option key={position}>{position}</option>);
-    positionOptions.push(<option>{ALL_VALUE}</option>);
+    positionOptions.push(<option>{ALL_POSITION_KEY}</option>);
     return positionOptions;
   }, []);
 
