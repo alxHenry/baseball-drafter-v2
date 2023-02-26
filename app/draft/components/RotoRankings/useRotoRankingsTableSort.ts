@@ -2,6 +2,7 @@ import { Data } from "@table-library/react-table-library";
 import { SortFn, useSort } from "@table-library/react-table-library/sort";
 
 import { useMemo } from "react";
+import { TOTAL_KEY } from "../../../../data/types/rotoRankings";
 import { useRotoRankingsFilteredAndSortedStatIds } from "./useRotoRankingsFilteredAndSortedStatIds";
 
 const EMPTY_FUNC = () => {};
@@ -23,6 +24,10 @@ export const useRotoRankingsTableSort = (data: Data) => {
   );
   const stateAndChange = useMemo(
     () => ({
+      state: {
+        sortKey: TOTAL_KEY,
+        reverse: true,
+      },
       onChange: EMPTY_FUNC,
     }),
     []
