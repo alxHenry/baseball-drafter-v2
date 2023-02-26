@@ -26,10 +26,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [] Fix bug with averages. Draft Judge then all bad players and observe their average numbers
 - [] Stat configuration end to end
 - [] Fix prebuild errors to allow deploying to prod/vercel
-- [] Lower is better rate stat scoring on Roto rankings
 - [] Team screen with position filling
 - [] Support multi position players
 - [] Big Board position filtering
+- [x] Lower is better rate stat scoring on Roto rankings
 - [x] Support roto stats where lower values are better
 
 ### P2
