@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useRotoRankingsFilteredAndSortedStatIds } from "../../app/draft/components/RotoRankings/useRotoRankingsFilteredAndSortedStatIds";
 import { useStore } from "../stores/store";
 import { TOTAL_KEY } from "../types/rotoRankings";
+import { statConfigsById } from "../types/statConfigsById";
 import { StatId } from "../types/stats";
 
 export type RotoTuple = [number, number]; // [rank, total value]
@@ -35,12 +36,16 @@ export const useDerivedRotoRankings = () => {
       const totalTeamTuples: [string, number][] = teamIds.map((teamId) => {
         return [teamId, teamTotalStatsById[teamId][statId]!];
       });
+      const numTeams = totalTeamTuples.length;
 
       // TODO: This fails to properly calculate ties
       totalTeamTuples.sort((a, b) => a[1] - b[1]);
       totalTeamTuples.forEach(([teamId, value], index) => {
-        const statRank = index + 1;
-        // TODO: Handle stats where lower is better.
+        let statRank = index + 1;
+        if (statConfigsById[statId].isHigherBetter === false) {
+          statRank = numTeams - index;
+        }
+
         rotoRankingsByTeamIdWithTotal[teamId][statId] = [statRank, value];
 
         // Tabulate roto score totals for team
@@ -48,9 +53,8 @@ export const useDerivedRotoRankings = () => {
         newTeamTotal[1] += statRank;
         rotoRankingsByTeamIdWithTotal[teamId][TOTAL_KEY] = newTeamTotal;
 
-        // -2 because we skip Total
         if (iter === rotoRankingEligibleStats.size - 2) {
-          // this is the last stat and we now save the team totals off
+          // -2 because we skip Total. This is the last stat and we now save the team totals off
           rotoTotalTuples.push([teamId, newTeamTotal[1]]);
         }
       });
