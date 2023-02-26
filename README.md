@@ -27,6 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [] Lower is better rate stat scoring on Roto rankings
 - [] Team screen with position filling
 - [] Support multi position players
+- [] Big Board position filtering
 
 ### P2
 
@@ -34,6 +35,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [] Fix Roto total caluclation
 
 ### P3
+
+### Features
+
+- [] Baseball Monster like search to find the best remaining player for a given set of target categories and positions
+- [] Player notes and flags
+- [] Draft log page with undo ability
 
 ## Relevant Docs
 
