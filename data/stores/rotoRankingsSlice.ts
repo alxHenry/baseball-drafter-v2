@@ -8,7 +8,7 @@ export interface RotoRankingsSlice {
 }
 
 export const getRotoRankingsSliceDefinitions = (set: StoreSet, get: StoreGet): RotoRankingsSlice => ({
-  isShowingRelative: true,
+  isShowingRelative: false,
 
   toggleIsShowingRelative: () => {
     set(({ rotoRankingsSlice }) => {

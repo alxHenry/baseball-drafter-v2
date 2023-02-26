@@ -2,6 +2,7 @@ import { Cell, Row } from "@table-library/react-table-library";
 import { FC, memo, useMemo } from "react";
 import { useStore } from "../../../../data/stores/store";
 import { StatId } from "../../../../data/types/stats";
+import TableCell from "../../../components/TableCell";
 import { useRotoRankingsFilteredAndSortedStatIds } from "./useRotoRankingsFilteredAndSortedStatIds";
 import { TeamRotoRankings } from "./useRotoRankingsTableData";
 
@@ -22,7 +23,7 @@ const RotoRankingsTeamRow: FC<Props> = ({ team }) => {
         const rank = tuple[0];
         const value = tuple[1];
 
-        return <Cell key={statId}>{isShowingRelative ? rank : value}</Cell>;
+        return <TableCell key={statId} rel={rank} abs={value} isShowingRel={isShowingRelative} />;
       }),
     [filteredAndSortedStatIds, isShowingRelative, team.rotoRankings]
   );
