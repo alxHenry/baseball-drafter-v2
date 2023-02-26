@@ -23,6 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### P1
 
+- [] Stat configuration end to end
 - [] Fix prebuild errors to allow deploying to prod/vercel
 - [] Lower is better rate stat scoring on Roto rankings
 - [] Team screen with position filling

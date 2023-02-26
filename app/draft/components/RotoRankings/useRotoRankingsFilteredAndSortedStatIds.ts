@@ -34,12 +34,12 @@ export const useRotoRankingsFilteredAndSortedStatIds = () => {
           pitcherStats[statId as PitcherStatId]?.isDisplayed === true &&
           pitcherStats[statId as PitcherStatId]?.isSelectable === true;
         // TODO: Support worth and aWorth
-        const isDisplayedRequiredStat =
-          requiredStats[statId as RequiredStatId] != null &&
-          requiredStats[statId as RequiredStatId]?.isDisplayed === true; // Worth and aWorth are not selectable, but we still want them included
+        // const isDisplayedRequiredStat =
+        //   requiredStats[statId as RequiredStatId] != null &&
+        //   requiredStats[statId as RequiredStatId]?.isDisplayed === true; // Worth and aWorth are not selectable, but we still want them included
         const isRotoTotalStat = statId === TOTAL_KEY;
 
-        if (isDisplayedBatterStat || isDisplayedPitcherStat || isDisplayedRequiredStat || isRotoTotalStat) {
+        if (isDisplayedBatterStat || isDisplayedPitcherStat || isRotoTotalStat) {
           agg.push(statId);
         }
         return agg;

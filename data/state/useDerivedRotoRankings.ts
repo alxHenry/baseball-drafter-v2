@@ -17,7 +17,7 @@ export const useDerivedRotoRankings = () => {
 
   return useMemo(() => {
     const teamIds = Object.keys(teamsById);
-    const rotoRankingsByTeamId = teamIds.reduce<Record<string, RotoRankings>>((agg, teamId) => {
+    const rotoRankingsByTeamIdWithTotal = teamIds.reduce<Record<string, RotoRankings>>((agg, teamId) => {
       agg[teamId] = {};
       return agg;
     }, {});
@@ -27,6 +27,11 @@ export const useDerivedRotoRankings = () => {
 
     rotoRankingEligibleStats.forEach((stat) => {
       const statId = stat as StatId;
+      if (statId === TOTAL_KEY) {
+        // Totals have already been tabulated through each indivudal stat. We'll tabulate total ranks after this loop
+        return;
+      }
+
       const totalTeamTuples: [string, number][] = teamIds.map((teamId) => {
         return [teamId, teamTotalStatsById[teamId][statId]!];
       });
@@ -36,12 +41,12 @@ export const useDerivedRotoRankings = () => {
       totalTeamTuples.forEach(([teamId, value], index) => {
         const statRank = index + 1;
         // TODO: Handle stats where lower is better.
-        rotoRankingsByTeamId[teamId][statId] = [statRank, value];
+        rotoRankingsByTeamIdWithTotal[teamId][statId] = [statRank, value];
 
         // Tabulate roto score totals for team
-        const newTeamTotal = rotoRankingsByTeamId[teamId][TOTAL_KEY] ?? [-1, 0];
-        newTeamTotal[1] = newTeamTotal[1] + statRank;
-        rotoRankingsByTeamId[teamId][TOTAL_KEY] = newTeamTotal;
+        const newTeamTotal = rotoRankingsByTeamIdWithTotal[teamId][TOTAL_KEY] ?? [-1, 0];
+        newTeamTotal[1] += statRank;
+        rotoRankingsByTeamIdWithTotal[teamId][TOTAL_KEY] = newTeamTotal;
 
         if (iter === rotoRankingEligibleStats.size - 1) {
           // this is the last stat and we now save the team totals off
@@ -56,9 +61,9 @@ export const useDerivedRotoRankings = () => {
     rotoTotalTuples.sort((a, b) => a[1] - b[1]);
     rotoTotalTuples.forEach(([teamId, _total], index) => {
       const totalRank = rotoTotalTuples.length - index;
-      rotoRankingsByTeamId[teamId][TOTAL_KEY]![0] = totalRank;
+      rotoRankingsByTeamIdWithTotal[teamId][TOTAL_KEY]![0] = totalRank;
     });
 
-    return rotoRankingsByTeamId;
+    return rotoRankingsByTeamIdWithTotal;
   }, [rotoRankingEligibleStats, teamTotalStatsById, teamsById]);
 };
