@@ -61,6 +61,16 @@ export const getTeamNames = (store: Store) => {
   return Object.values(teamsById).map((team) => team.name);
 };
 
+export const getIdsToTeamNames = (store: Store) => {
+  const {
+    teamsSlice: { teamsById },
+  } = store;
+  return Object.values(teamsById).reduce<Record<string, string>>((agg, team) => {
+    agg[team.id] = team.name;
+    return agg;
+  }, {});
+};
+
 export const getTeamNameSelector = (teamId: string) => (store: Store) => {
   return store.teamsSlice.teamsById[teamId].name;
 };
