@@ -2,7 +2,6 @@ import { State } from "@table-library/react-table-library/types/common";
 import { BatterStatId, PitcherStatId, RequiredStatId } from "../types/stats";
 import type { StoreGet, StoreSet } from "./store";
 
-export type TableDisplayMode = "All" | "Batters" | "Pitchers";
 export type TableSortKey = BatterStatId | PitcherStatId | RequiredStatId | "NONE";
 
 export interface TableSlice {

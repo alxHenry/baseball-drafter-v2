@@ -1,6 +1,6 @@
+import { PositionId } from "../types/positions";
 import type { StoreGet, StoreSet } from "./store";
 
-export type PositionId = "C" | "1B" | "2B" | "SS" | "3B" | "OF" | "MI" | "CI" | "IF" | "UT" | "SP" | "RP" | "P";
 const positionIdToDefaultCounts: Record<PositionId, number> = {
   C: 1,
   "1B": 1,

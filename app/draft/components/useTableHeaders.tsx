@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { HeaderCellSort } from "@table-library/react-table-library/sort";
 import { useStore } from "../../../data/stores/store";
 import { StatConfig } from "../../../data/types/stats";
+import { ALL_POSITION_KEY, isBatterFilter, isPlayerPitcher } from "../../../data/types/positions";
 
 const filterDisplayableStats = (statConfig: StatConfig) => statConfig.isDisplayed === true;
 
@@ -34,18 +35,18 @@ export const useTableHeaders = () => {
       lastIndex = i;
 
       // TODO: All the defaulting in the case of an uneven number of batter and pitcher stats (unlikely) feels inelegant
-      if (displayMode === "All") {
+      if (displayMode === ALL_POSITION_KEY) {
         const key = `${batterStat?.id ?? ""}/${pitcherStat?.id ?? ""}`;
         const display = `${batterStat?.display ?? ""}/${pitcherStat?.display ?? ""}`;
 
         statHeaders.push(<HeaderCell key={key}>{display}</HeaderCell>);
-      } else if (displayMode === "Pitchers" && pitcherStat != null) {
+      } else if (isPlayerPitcher(displayMode) && pitcherStat != null) {
         statHeaders.push(
           <HeaderCellSort key={pitcherStat.id} sortKey={pitcherStat.id}>
             {pitcherStat.display.toUpperCase()}
           </HeaderCellSort>
         );
-      } else if (displayMode === "Batters" && batterStat != null) {
+      } else if (isBatterFilter(displayMode) && batterStat != null) {
         statHeaders.push(
           <HeaderCellSort key={batterStat.id} sortKey={batterStat.id}>
             {batterStat.display.toUpperCase()}

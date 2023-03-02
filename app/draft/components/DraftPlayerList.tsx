@@ -7,13 +7,21 @@ import { PAGE_SIZE } from "./tableConfig";
 import DraftPlayerListTable from "./DraftPlayerListTable";
 import DraftPlayerDisplayModeSelect from "./DraftPlayerDisplayModeSelect";
 import DraftPlayerListSearchFilterInput from "./DraftPlayerListSearchFilterInput";
+import { useStore } from "../../../data/stores/store";
 
 const DraftPlayerList = () => {
+  const playerDisplayMode = useStore((store) => store.draftSlice.currentTableDisplayMode);
+
   const [shouldHideDrafted, setShouldHideDrafted] = useState(true);
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
+  const deferredPositionFilter = useDeferredValue(playerDisplayMode);
 
-  const playerRows = usePlayerTableRows({ shouldHideDrafted, search: deferredSearch });
+  const playerRows = usePlayerTableRows({
+    shouldHideDrafted,
+    positionFilter: deferredPositionFilter,
+    search: deferredSearch,
+  });
 
   const pagination = usePagination(playerRows, {
     state: {

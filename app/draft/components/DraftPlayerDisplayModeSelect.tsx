@@ -1,13 +1,33 @@
-import type { TableDisplayMode } from "../../../data/stores/draftSlice";
-import type { FC } from "react";
+import { FC, memo, useMemo } from "react";
 
 import { useStore } from "../../../data/stores/store";
+import {
+  ALL_POSITION_KEY,
+  BATTER_POSITION_KEY,
+  PITCHER_POSITION_KEY,
+  PositionId,
+  TableDisplayMode,
+} from "../../../data/types/positions";
 
 interface Props {}
 
 const DraftPlayerDisplayModeSelect: FC<Props> = () => {
   const currentDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
   const setTableDisplayMode = useStore((state) => state.draftSlice.setTableDisplayMode);
+
+  const optionElems = useMemo(() => {
+    const positionOptions = Object.keys(PositionId).map((position) => (
+      <option key={position} value={position}>
+        {position}
+      </option>
+    ));
+    positionOptions.unshift(
+      <option value={ALL_POSITION_KEY}>{ALL_POSITION_KEY}</option>,
+      <option value={BATTER_POSITION_KEY}>{BATTER_POSITION_KEY}</option>,
+      <option value={PITCHER_POSITION_KEY}>{PITCHER_POSITION_KEY}</option>
+    );
+    return positionOptions;
+  }, []);
 
   return (
     <div>
@@ -20,12 +40,10 @@ const DraftPlayerDisplayModeSelect: FC<Props> = () => {
         }}
         value={currentDisplayMode}
       >
-        <option value="All">All</option>
-        <option value="Batters">Batters</option>
-        <option value="Pitchers">Pitchers</option>
+        {optionElems}
       </select>
     </div>
   );
 };
 
-export default DraftPlayerDisplayModeSelect;
+export default memo(DraftPlayerDisplayModeSelect);

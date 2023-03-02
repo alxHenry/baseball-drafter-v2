@@ -6,9 +6,9 @@ import { Cell, Row } from "@table-library/react-table-library";
 import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
-import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
 import { getStatConfig } from "../../../data/types/statConfig";
 import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "../../../data/types/stats";
+import { isPlayerPitcher } from "../../../data/types/positions";
 
 interface Props {
   item: Player;
