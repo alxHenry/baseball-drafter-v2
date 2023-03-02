@@ -5,6 +5,8 @@ import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
 import {
   ALL_POSITION_KEY,
   BATTER_POSITION_KEY,
+  isCornerInfield,
+  isMiddleInfield,
   PITCHER_POSITION_KEY,
   TableDisplayMode,
 } from "../../../data/types/positions";
@@ -30,14 +32,22 @@ export const usePlayerTableRows = ({
 
     if (positionFilter !== ALL_POSITION_KEY) {
       // TODO: handle for Shohei
-      players.filter((player) => {
+      players = players.filter((player) => {
         switch (positionFilter) {
           case BATTER_POSITION_KEY:
+          case "UT":
             return !isPlayerPitcher(player.position);
           case PITCHER_POSITION_KEY:
+          case "P":
             return isPlayerPitcher(player.position);
+          case "CI":
+            return isCornerInfield(player.position);
+          case "MI":
+            return isMiddleInfield(player.position);
+          case "IF":
+            return isCornerInfield(player.position) || isMiddleInfield(player.position);
           default:
-            return player.position.contains(positionFilter);
+            return player.position.includes(positionFilter);
         }
       });
     }

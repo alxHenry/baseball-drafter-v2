@@ -22,3 +22,11 @@ export type TableDisplayMode =
   | typeof BATTER_POSITION_KEY
   | typeof PITCHER_POSITION_KEY
   | PositionId;
+
+export const isCornerInfield = (position: PositionId) => {
+  return position === PositionId["1B"] || position === PositionId["3B"];
+};
+
+export const isMiddleInfield = (position: PositionId) => {
+  return position === PositionId["2B"] || position === PositionId.SS;
+};

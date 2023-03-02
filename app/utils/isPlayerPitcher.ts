@@ -1,3 +1,3 @@
-import { PositionId } from "../../data/stores/setupSlice";
+import { PositionId } from "../../data/types/positions";
 
 export const isPlayerPitcher = (playerPosition: PositionId) => playerPosition === "SP" || playerPosition === "RP";
