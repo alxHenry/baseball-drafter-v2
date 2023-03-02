@@ -3,6 +3,7 @@ import { Player } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
 import { StatId } from "../../../data/types/stats";
+import { ALL_POSITION_KEY, isBatterFilter } from "../../../data/types/positions";
 
 const getPlayerStatReducer = (isShowingRelative: boolean) => (agg: Record<string, SortFn>, stat: string) => {
   agg[stat] = (array) =>
@@ -30,9 +31,9 @@ export const useTableSortFns = (): Record<string, SortFn> => {
   const isShowingRelative = useStore((state) => state.draftSlice.showRelativeStatValues);
 
   return useMemo(() => {
-    if (tableDisplayMode === "All") {
+    if (tableDisplayMode === ALL_POSITION_KEY) {
       return Object.keys(requiredStats).reduce<Record<string, SortFn>>(getPlayerStatReducer(isShowingRelative), {});
-    } else if (tableDisplayMode === "Batters") {
+    } else if (isBatterFilter(tableDisplayMode)) {
       return [...Object.keys(batterStats), ...Object.keys(requiredStats)].reduce<Record<string, SortFn>>(
         getPlayerStatReducer(isShowingRelative),
         {}
