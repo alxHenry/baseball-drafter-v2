@@ -1,12 +1,13 @@
 import { Player } from "../../../data/stores/playersSlice";
 import { useMemo } from "react";
 import { useStore } from "../../../data/stores/store";
-import { isPlayerPitcher } from "../../utils/isPlayerPitcher";
 import {
   ALL_POSITION_KEY,
   BATTER_POSITION_KEY,
   isCornerInfield,
   isMiddleInfield,
+  isPlayerBatter,
+  isPlayerPitcher,
   PITCHER_POSITION_KEY,
   TableDisplayMode,
 } from "../../../data/types/positions";
@@ -36,7 +37,7 @@ export const usePlayerTableRows = ({
         switch (positionFilter) {
           case BATTER_POSITION_KEY:
           case "UT":
-            return !isPlayerPitcher(player.position);
+            return isPlayerBatter(player.position);
           case PITCHER_POSITION_KEY:
           case "P":
             return isPlayerPitcher(player.position);
