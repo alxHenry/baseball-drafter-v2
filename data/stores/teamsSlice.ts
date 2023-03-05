@@ -5,7 +5,7 @@ import { getStateWithTeams } from "../state/getStateWithTeams";
 import { TeamTotalStatsById } from "../types/stats";
 
 import { StoreGet, StoreSet } from "./store";
-import { DEFAULT_TEAMS_COUNT, generateTeams, transformTeamNamesToFullTeams } from "./teamsUtils";
+import { DEFAULT_TEAMS_BY_ID, DEFAULT_TEAMS_COUNT, DEFAULT_TEAM_TOTAL_STATS_BY_ID, generateTeams } from "./teamsUtils";
 
 export interface Team {
   readonly name: string;
@@ -28,9 +28,9 @@ export interface TeamsSlice {
 }
 
 export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSlice => ({
-  teamsById: {},
+  teamsById: DEFAULT_TEAMS_BY_ID,
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
-  teamTotalStatsById: {},
+  teamTotalStatsById: DEFAULT_TEAM_TOTAL_STATS_BY_ID,
 
   draftPlayer: (playerId: string) => {
     set((state) => {
