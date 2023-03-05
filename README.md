@@ -10,6 +10,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Deployed
+
+Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87b34qf7k-alxhenry.vercel.app/setup
+
 ## What's Next
 
 - https://github.com/users/alxHenry/projects/1/views/1
@@ -25,8 +29,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [] Fix bug with averages. Draft Judge then all bad players and observe their average numbers
 - [] Stat configuration end to end
-- [] Fix prebuild errors to allow deploying to prod/vercel
 - [] Team screen with position filling
+- [x] Fix prebuild errors to allow deploying to prod/vercel
 - [x] Support multi position players
 - [x] Big Board position filtering
 - [x] Lower is better rate stat scoring on Roto rankings
