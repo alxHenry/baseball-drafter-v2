@@ -22,9 +22,15 @@ const DraftPlayerDisplayModeSelect: FC<Props> = () => {
       </option>
     ));
     positionOptions.unshift(
-      <option value={ALL_POSITION_KEY}>{ALL_POSITION_KEY}</option>,
-      <option value={BATTER_POSITION_KEY}>{BATTER_POSITION_KEY}</option>,
-      <option value={PITCHER_POSITION_KEY}>{PITCHER_POSITION_KEY}</option>
+      <option value={ALL_POSITION_KEY} key={ALL_POSITION_KEY}>
+        {ALL_POSITION_KEY}
+      </option>,
+      <option value={BATTER_POSITION_KEY} key={BATTER_POSITION_KEY}>
+        {BATTER_POSITION_KEY}
+      </option>,
+      <option value={PITCHER_POSITION_KEY} key={PITCHER_POSITION_KEY}>
+        {PITCHER_POSITION_KEY}
+      </option>
     );
     return positionOptions;
   }, []);
