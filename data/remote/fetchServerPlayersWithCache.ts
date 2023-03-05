@@ -1,6 +1,10 @@
 import { transformServerPlayerToLocalPlayer } from "../../app/transforms/serverPlayerToLocalPlayer";
 import { PlayersById } from "../stores/playersSlice";
 
+// TODO: Figure out Next.js prod vs dev env flags or make my own to switch on these
+const DEV_DATA_URL = "http://localhost:3001/players";
+const PROD_DATA_URL = "https://baseball-data-server.caprover.alxhenry.com/players";
+
 const cache = new Map<string, { players: PlayersById; iso: string }>();
 
 const isDateLessThan24HoursOld = (iso?: string) => {
@@ -23,7 +27,8 @@ export const fetchServerPlayersWithCache = async (configKey: string) => {
     }
   }
 
-  const response = await fetch("http://localhost:3001/players");
+  const playerDataUrl = PROD_DATA_URL;
+  const response = await fetch(playerDataUrl);
   const playersById = await response.json();
   const localPlayers = transformServerPlayerToLocalPlayer(playersById);
 
