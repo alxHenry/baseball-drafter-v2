@@ -33,9 +33,8 @@ export const getTeamsPositionNeedsSelector = (teamId: string) => (store: Store) 
   const requiredPositionCounts = { ...positionCounts };
   const teamsPlayers = getTeamsPlayersSelector(teamId)(store);
 
-  // TODO: getTeamNeeds supporting multiple positions, requires algorithm to fill the roster
   Object.values(teamsPlayers).forEach((player) => {
-    requiredPositionCounts[player.position]--; // TODO: This will not work for palyers with multiple positions and will need to be changed
+    requiredPositionCounts[player.position[0]]--; // TODO: Patching to work for team needs. Need to implement the full team filling algorithm and use it here to calculate team needs
   });
 
   return requiredPositionCounts;
