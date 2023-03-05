@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [] Stat configuration end to end
 - [] Fix prebuild errors to allow deploying to prod/vercel
 - [] Team screen with position filling
-- [] Support multi position players
+- [x] Support multi position players
 - [x] Big Board position filtering
 - [x] Lower is better rate stat scoring on Roto rankings
 - [x] Support roto stats where lower values are better
