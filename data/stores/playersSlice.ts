@@ -1,12 +1,12 @@
+import { PositionId } from "../types/positions";
 import { StatById } from "../types/stats";
-import type { PositionId } from "./setupSlice";
 import type { StoreGet, StoreSet } from "./store";
 
 export type ServerPlayerById = Record<string, ServerPlayer>;
 export interface ServerPlayer {
   id: string;
   name: string;
-  position: PositionId;
+  position: PositionId[];
   team: string;
   stats: StatById;
 }

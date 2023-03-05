@@ -1,8 +1,5 @@
 import type { PlayersById, ServerPlayerById } from "../../data/stores/playersSlice";
-
-const isPlayerPitcher = (position: string) => {
-  return position === "P" || position === "SP" || position === "RP";
-};
+import { isPlayerPitcher } from "../../data/types/positions";
 
 export const transformServerPlayerToLocalPlayer = (serverPlayerById: ServerPlayerById): PlayersById => {
   return Object.values(serverPlayerById).reduce<PlayersById>((agg, serverPlayer) => {

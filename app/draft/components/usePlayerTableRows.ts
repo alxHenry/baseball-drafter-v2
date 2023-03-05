@@ -36,7 +36,7 @@ export const usePlayerTableRows = ({
       players = players.filter((player) => {
         switch (positionFilter) {
           case BATTER_POSITION_KEY:
-          case "UT":
+          case "DH":
             return isPlayerBatter(player.position);
           case PITCHER_POSITION_KEY:
           case "P":

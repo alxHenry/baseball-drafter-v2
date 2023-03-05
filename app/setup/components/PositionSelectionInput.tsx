@@ -1,7 +1,7 @@
-import type { PositionId } from "../../../data/stores/setupSlice";
 import type { FC } from "react";
 
 import { useStore } from "../../../data/stores/store";
+import { PositionId } from "../../../data/types/positions";
 
 interface Props {
   position: PositionId;

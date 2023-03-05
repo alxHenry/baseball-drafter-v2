@@ -20,6 +20,7 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
   const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
 
   const isDrafted = item.draftedByTeamId != null;
+  const firstPosition = item.position[0];
 
   // TODO: Support position array and shohei otani
   // TODO: Has to be a way to clean up this code duplication for generating stat cells with typescript safety
@@ -37,7 +38,7 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
     });
 
     let playerStatCells = [];
-    if (isPlayerPitcher(item.position)) {
+    if (isPlayerPitcher(firstPosition)) {
       playerStatCells = Object.keys(pitcherStats).map((stat) => {
         const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
         if (config.isDisplayed === false) {
@@ -62,13 +63,13 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
     }
 
     return [...playerStatCells, ...requiredStatCells];
-  }, [requiredStats, item.position, item.stats, pitcherStats, batterStats]);
+  }, [requiredStats, firstPosition, item.stats, pitcherStats, batterStats]);
 
   return (
     <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>
       <Cell>{item.name}</Cell>
       <Cell>{item.team}</Cell>
-      <Cell>{item.position}</Cell>
+      <Cell>{item.position.join("/")}</Cell>
       {renderedStatCells}
       <Cell>{isDrafted ? null : <DraftButton playerId={item.id} />}</Cell>
     </Row>
