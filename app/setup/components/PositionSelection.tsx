@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import shallow from "zustand/shallow";
-import type { PositionId } from "../../../data/stores/setupSlice";
 
 import { useStore } from "../../../data/stores/store";
+import { PositionId } from "../../../data/types/positions";
 import PositionSelectionInput from "./PositionSelectionInput";
 
 interface Props {}

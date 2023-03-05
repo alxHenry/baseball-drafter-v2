@@ -2,8 +2,8 @@ import styles from "./TeamPlayersDisplay.module.css";
 
 import { FC, memo } from "react";
 import { getStatDisplay, getStatIsDisplayed } from "../../../../data/selectors/draftSelectors";
-import { StatId } from "../../../../data/stores/playersSlice";
 import { useStore } from "../../../../data/stores/store";
+import { StatId } from "../../../../data/types/stats";
 
 interface Props {
   readonly statId: StatId;

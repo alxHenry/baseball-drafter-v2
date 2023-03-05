@@ -1,6 +1,5 @@
-import type { ServerPlayerById } from "./stores/playersSlice";
-
-export const PLAYERS_MOCK: ServerPlayerById = {
+// If I need to use this again, set the type to ServerPlayer and fix any type errors
+export const PLAYERS_MOCK: any = {
   "1": {
     id: "1",
     name: "Aaron Judge",
@@ -2631,7 +2630,7 @@ export const PLAYERS_MOCK: ServerPlayerById = {
   },
 };
 
-export const getMockPlayerData = (): Promise<ServerPlayerById> => {
+export const getMockPlayerData = (): Promise<any> => {
   return new Promise((resolve) => {
     resolve(PLAYERS_MOCK);
   });

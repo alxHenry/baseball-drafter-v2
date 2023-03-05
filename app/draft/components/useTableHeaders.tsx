@@ -40,7 +40,7 @@ export const useTableHeaders = () => {
         const display = `${batterStat?.display ?? ""}/${pitcherStat?.display ?? ""}`;
 
         statHeaders.push(<HeaderCell key={key}>{display}</HeaderCell>);
-      } else if (isPlayerPitcher(displayMode) && pitcherStat != null) {
+      } else if (isPlayerPitcher([displayMode]) && pitcherStat != null) {
         statHeaders.push(
           <HeaderCellSort key={pitcherStat.id} sortKey={pitcherStat.id}>
             {pitcherStat.display.toUpperCase()}
