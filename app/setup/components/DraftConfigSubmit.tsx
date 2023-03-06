@@ -9,10 +9,11 @@ const DraftConfigSubmit: FC = () => {
 
   const finalizeSetupTeams = useStore((state) => state.teamsSlice.finalizeSetupTeams);
   const startDraft = () => {
-    const teams = JSON.stringify(useStore.getState().teamsSlice.teamsById);
     finalizeSetupTeams();
     router.push("/draft/big-board");
   };
+
+  const teams = JSON.stringify(useStore.getState().teamsSlice.teamsById);
 
   return <button onClick={startDraft}>Start Draft!</button>;
 };

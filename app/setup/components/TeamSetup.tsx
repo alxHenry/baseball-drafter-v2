@@ -25,6 +25,7 @@ const TeamSetup: FC<Props> = () => {
       }),
     [modifySetupTeam, setupTeamNames]
   );
+  console.log(setupTeamNames);
 
   return <div>{teamNameInputs}</div>;
 };
