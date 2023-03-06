@@ -1,3 +1,5 @@
+"use client";
+
 import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
 import { getStateWithInitializeTeamTotalStatsById } from "../state/getStateWithInitializeTeamTotalStatsById";
 import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
@@ -82,7 +84,6 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
       const stateWithTeams = getStateWithTeams(state);
       const stateWithTotalStats = getStateWithInitializeTeamTotalStatsById(stateWithTeams);
 
-      debugger;
       const teams = JSON.stringify(stateWithTotalStats.teamsSlice.setupTeamNames);
       console.log("Test store local redirect: ", teams);
       localStorage.setItem("test-store", teams);
