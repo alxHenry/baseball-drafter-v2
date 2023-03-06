@@ -5,15 +5,12 @@ import { PlayersById } from "../../../data/stores/playersSlice";
 import { useStore } from "../../../data/stores/store";
 
 const DraftPlayerHydrator = ({ children, playersById }: { children: ReactNode; playersById: PlayersById }) => {
+  const hydratePlayers = useStore((store) => store.playersSlice.hydratePlayers);
+
   const initialized = useRef(false);
   if (!initialized.current) {
-    useStore.setState((store) => ({
-      ...store,
-      playersSlice: {
-        ...store.playersSlice,
-        playersById,
-      },
-    }));
+    hydratePlayers(playersById);
+
     initialized.current = true;
   }
 

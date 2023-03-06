@@ -18,8 +18,21 @@ export interface Player extends ServerPlayer {
 
 export interface PlayersSlice {
   playersById: PlayersById;
+
+  // Methods
+  hydratePlayers: (players: PlayersById) => void;
 }
 
 export const getPlayersSliceDefinitions = (set: StoreSet, get: StoreGet): PlayersSlice => ({
   playersById: {},
+  hydratePlayers: (players) => {
+    set((state) => {
+      return {
+        playersSlice: {
+          ...state.playersSlice,
+          playersById: players,
+        },
+      };
+    });
+  },
 });
