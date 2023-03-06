@@ -81,6 +81,11 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
     set((state) => {
       const stateWithTeams = getStateWithTeams(state);
       const stateWithTotalStats = getStateWithInitializeTeamTotalStatsById(stateWithTeams);
+
+      const teams = JSON.stringify(stateWithTotalStats.teamsSlice.teamsById);
+      console.log("Test store local redirect: ", teams);
+      localStorage.setItem("test-store", teams);
+
       return stateWithTotalStats;
     });
   },
