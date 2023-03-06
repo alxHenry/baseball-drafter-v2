@@ -10,9 +10,9 @@ const DraftConfigSubmit: FC = () => {
   const finalizeSetupTeams = useStore((state) => state.teamsSlice.finalizeSetupTeams);
   const startDraft = () => {
     const teams = JSON.stringify(useStore.getState().teamsSlice.teamsById);
+    finalizeSetupTeams();
     console.log("Test store local redirect: ", teams);
     localStorage.setItem("test-store", teams);
-    finalizeSetupTeams();
     router.push("/draft/big-board");
   };
 
