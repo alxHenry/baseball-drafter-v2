@@ -21,7 +21,7 @@ export type StoreSet = (
 ) => void;
 export type StoreGet = () => Store;
 
-export const useStore = create<Store>((set: StoreSet, get: StoreGet) => ({
+export const useStore = create<Store>()((set: StoreSet, get: StoreGet) => ({
   draftSlice: getDraftSliceDefinitions(set, get),
   playersSlice: getPlayersSliceDefinitions(set, get),
   rotoRankingsSlice: getRotoRankingsSliceDefinitions(set, get),
