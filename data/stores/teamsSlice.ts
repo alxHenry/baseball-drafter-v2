@@ -1,5 +1,3 @@
-"use client";
-
 import { getStateWithDraftedPlayer } from "../state/getStateWithDraftedPlayer";
 import { getStateWithInitializeTeamTotalStatsById } from "../state/getStateWithInitializeTeamTotalStatsById";
 import { getStateWithTabulatedTotalStats } from "../state/getStateWithTabulatedTotalStats";
