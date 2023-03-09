@@ -6,63 +6,53 @@ import { Cell, Row } from "@table-library/react-table-library";
 import DraftButton from "./DraftButton";
 import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
-import { getStatConfig } from "../../../data/types/statConfig";
-import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "../../../data/types/stats";
-import { isPitcherEligiblePosition } from "../../../data/types/positions";
+import { PitcherStatId, StatConfig, StatId } from "../../../data/types/stats";
+import { isBatterEligiblePosition, isPitcherEligiblePosition, isPitcherFilter } from "../../../data/types/positions";
 
 interface Props {
   item: Player;
 }
 
+const getStatCellElements = (player: Player, stats: Partial<Record<StatId, StatConfig>>) => {
+  return Object.entries(stats).map(([stat, config]) => {
+    if (config.isDisplayed === false) {
+      return null;
+    }
+
+    const statId = stat as PitcherStatId;
+    const statData = player.stats[statId]!;
+    return <StatCell key={statId} stat={statData} />;
+  });
+};
+
 const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
   const batterStats = useStore((state) => state.draftSlice.batterStatConfigsById);
   const pitcherStats = useStore((state) => state.draftSlice.pitcherStatConfigsById);
   const requiredStats = useStore((state) => state.draftSlice.requiredStatConfigsById);
+  const currentTableDisplayMode = useStore((state) => state.draftSlice.currentTableDisplayMode);
 
   const isDrafted = item.draftedByTeamId != null;
 
-  // TODO: Support position array and shohei otani
-  // TODO: Has to be a way to clean up this code duplication for generating stat cells with typescript safety
   const renderedStatCells = useMemo(() => {
-    const requiredStatCells = Object.keys(requiredStats).map((stat) => {
-      const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
-      if (config.isDisplayed === false) {
-        return null;
-      }
-
-      // TODO: Why does typescript not know these are RequiredStatIds not strings? Is it because of Object.keys typings?
-      const statId = stat as RequiredStatId;
-      const statData = item.stats[statId]!;
-      return <StatCell key={statData.id} stat={statData} />;
-    });
+    const requiredStatCells = getStatCellElements(item, requiredStats);
 
     let playerStatCells = [];
-    if (isPitcherEligiblePosition(item.position)) {
-      playerStatCells = Object.keys(pitcherStats).map((stat) => {
-        const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
-        if (config.isDisplayed === false) {
-          return null;
-        }
-
-        const statId = stat as PitcherStatId;
-        const statData = item.stats[statId]!;
-        return <StatCell key={statId} stat={statData} />;
-      });
+    const isPitcherEligible = isPitcherEligiblePosition(item.position);
+    const isBatterEligible = isBatterEligiblePosition(item.position);
+    if (isPitcherEligible && isBatterEligible) {
+      if (isPitcherFilter(currentTableDisplayMode)) {
+        playerStatCells = getStatCellElements(item, pitcherStats);
+      } else {
+        playerStatCells = getStatCellElements(item, batterStats);
+      }
+    } else if (isPitcherEligible) {
+      playerStatCells = getStatCellElements(item, pitcherStats);
     } else {
-      playerStatCells = Object.keys(batterStats).map((stat) => {
-        const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
-        if (config.isDisplayed === false) {
-          return null;
-        }
-
-        const statId = stat as BatterStatId;
-        const statData = item.stats[statId]!;
-        return <StatCell key={statId} stat={statData} />;
-      });
+      playerStatCells = getStatCellElements(item, batterStats);
     }
 
     return [...playerStatCells, ...requiredStatCells];
-  }, [requiredStats, item.position, item.stats, pitcherStats, batterStats]);
+  }, [requiredStats, item, batterStats, pitcherStats, currentTableDisplayMode]);
 
   return (
     <Row key={item.id} item={item} className={isDrafted ? styles.strikethrough : ""}>

@@ -32,7 +32,6 @@ export const usePlayerTableRows = ({
     }
 
     if (positionFilter !== ALL_POSITION_KEY) {
-      // TODO: handle for Shohei
       players = players.filter((player) => {
         switch (positionFilter) {
           case BATTER_POSITION_KEY:
