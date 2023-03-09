@@ -14,6 +14,22 @@ export enum PositionId {
   "P" = "P",
 }
 
+const pitcherPositionLookup: Partial<Record<PositionId, boolean>> = {
+  SP: true,
+  RP: true,
+  P: true,
+};
+
+const batterPositionLookup: Partial<Record<PositionId | "DH", boolean>> = {
+  C: true,
+  "1B": true,
+  "2B": true,
+  SS: true,
+  "3B": true,
+  OF: true,
+  DH: true,
+};
+
 export const ALL_POSITION_KEY = "All";
 export const BATTER_POSITION_KEY = "Batters";
 export const PITCHER_POSITION_KEY = "Pitchers";
@@ -31,10 +47,28 @@ export const isMiddleInfield = (positions: string[]) => {
   return positions.some((position) => position === PositionId["2B"] || position === PositionId.SS);
 };
 
-export const isPlayerPitcher = (positions: string[]) =>
-  positions[0] === "SP" || positions[0] === "RP" || positions[0] === "P";
+export const isPitcherFilter = (displayMode: TableDisplayMode) => {
+  if (displayMode === PITCHER_POSITION_KEY) {
+    return true;
+  }
+  if (displayMode === ALL_POSITION_KEY || displayMode === BATTER_POSITION_KEY) {
+    return false;
+  }
+  return isPitcherEligiblePosition([displayMode]);
+};
+export const isPitcherEligiblePosition = (positions: PositionId[]) => {
+  return positions.some((position) => pitcherPositionLookup[position] === true);
+};
 
-export const isPlayerBatter = (positions: string[]) => !isPlayerPitcher(positions);
-export const isBatterFilter = (filter: TableDisplayMode) => {
-  return filter === BATTER_POSITION_KEY || isPlayerBatter([filter]);
+export const isBatterFilter = (displayMode: TableDisplayMode) => {
+  if (displayMode === BATTER_POSITION_KEY) {
+    return true;
+  }
+  if (displayMode === ALL_POSITION_KEY || displayMode === PITCHER_POSITION_KEY) {
+    return false;
+  }
+  return !isPitcherEligiblePosition([displayMode]);
+};
+export const isBatterEligiblePosition = (positions: PositionId[]) => {
+  return positions.some((position) => batterPositionLookup[position] === true);
 };

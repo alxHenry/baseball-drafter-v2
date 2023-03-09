@@ -1,5 +1,5 @@
 import { getStateWithToggledStat } from "../state/getStateWithToggledStat";
-import { TableDisplayMode } from "../types/positions";
+import { ALL_POSITION_KEY, isBatterFilter, TableDisplayMode } from "../types/positions";
 import {
   BatterStatConfigsById,
   defaultBatterStatConfigsById,
@@ -10,6 +10,7 @@ import {
 } from "../types/statConfig";
 import { StatId } from "../types/stats";
 import type { StoreGet, StoreSet } from "./store";
+import { TableSortKey } from "./tableSlice";
 
 export interface DraftSlice {
   readonly currentPickTeamId: string | null;
@@ -22,7 +23,7 @@ export interface DraftSlice {
   // Methods
   readonly advanceDraft: () => void;
   readonly setStatConfig: (batterStats: BatterStatConfigsById, pitcherStats: PitcherStatConfigsById) => void;
-  readonly setTableDisplayMode: (newMode: TableDisplayMode) => void;
+  readonly setTableDisplayMode: (newFilter: TableDisplayMode) => void;
   readonly toggleRelativeStats: () => void;
   readonly toggleStatSelection: (stat: StatId) => void;
 }
@@ -61,18 +62,31 @@ export const getDraftSliceDefinitions = (set: StoreSet, get: StoreGet): DraftSli
       };
     });
   },
-  setTableDisplayMode: (newMode) => {
+  setTableDisplayMode: (newFilter) => {
     set(({ draftSlice, tableSlice }) => {
+      const prevFilter = draftSlice.currentTableDisplayMode;
+      const prevSortKey = tableSlice.currentSortKey;
+
+      const oldWasBatterFilter = isBatterFilter(prevFilter);
+      const newIsBatterFilter = isBatterFilter(newFilter);
+
+      let newSortKey: TableSortKey = prevSortKey;
+      let newIsSortReversed = tableSlice.isSortReversed;
+      if (newFilter === ALL_POSITION_KEY || oldWasBatterFilter !== newIsBatterFilter) {
+        newSortKey = "aWorth";
+        newIsSortReversed = false;
+      }
+
       return {
         draftSlice: {
           ...draftSlice,
-          currentTableDisplayMode: newMode,
+          currentTableDisplayMode: newFilter,
         },
         tableSlice: {
           ...tableSlice,
           // Reset sort state to prevent error where the table tries to remain sorted when switching between player types
-          currentSortKey: "NONE",
-          isSortReversed: false,
+          currentSortKey: newSortKey,
+          isSortReversed: newIsSortReversed,
         },
       };
     });

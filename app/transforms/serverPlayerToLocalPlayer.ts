@@ -1,9 +1,9 @@
 import type { PlayersById, ServerPlayerById } from "../../data/stores/playersSlice";
-import { isPlayerPitcher } from "../../data/types/positions";
+import { isPitcherEligiblePosition } from "../../data/types/positions";
 
 export const transformServerPlayerToLocalPlayer = (serverPlayerById: ServerPlayerById): PlayersById => {
   return Object.values(serverPlayerById).reduce<PlayersById>((agg, serverPlayer) => {
-    if (isPlayerPitcher(serverPlayer.position)) {
+    if (isPitcherEligiblePosition(serverPlayer.position)) {
       // Rename the H and BB fields to differentiate between ptichers and hitters stats (we combine stats into one object for configs)
       serverPlayer.stats["hAllowed"] = serverPlayer.stats.H;
       delete serverPlayer.stats.H;

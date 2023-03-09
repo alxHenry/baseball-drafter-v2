@@ -8,7 +8,7 @@ import StatCell from "./StatCell";
 import { useStore } from "../../../data/stores/store";
 import { getStatConfig } from "../../../data/types/statConfig";
 import { BatterStatId, PitcherStatId, RequiredStatId, StatId } from "../../../data/types/stats";
-import { isPlayerPitcher } from "../../../data/types/positions";
+import { isPitcherEligiblePosition } from "../../../data/types/positions";
 
 interface Props {
   item: Player;
@@ -37,7 +37,7 @@ const DraftPlayerListTableRow: FC<Props> = ({ item }) => {
     });
 
     let playerStatCells = [];
-    if (isPlayerPitcher(item.position)) {
+    if (isPitcherEligiblePosition(item.position)) {
       playerStatCells = Object.keys(pitcherStats).map((stat) => {
         const config = getStatConfig(stat as StatId, batterStats, pitcherStats, requiredStats);
         if (config.isDisplayed === false) {

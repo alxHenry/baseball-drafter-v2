@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { HeaderCellSort } from "@table-library/react-table-library/sort";
 import { useStore } from "../../../data/stores/store";
 import { StatConfig } from "../../../data/types/stats";
-import { ALL_POSITION_KEY, isBatterFilter, isPlayerPitcher } from "../../../data/types/positions";
+import { ALL_POSITION_KEY, isBatterFilter, isPitcherFilter } from "../../../data/types/positions";
 
 const filterDisplayableStats = (statConfig: StatConfig) => statConfig.isDisplayed === true;
 
@@ -40,7 +40,7 @@ export const useTableHeaders = () => {
         const display = `${batterStat?.display ?? ""}/${pitcherStat?.display ?? ""}`;
 
         statHeaders.push(<HeaderCell key={key}>{display}</HeaderCell>);
-      } else if (isPlayerPitcher([displayMode]) && pitcherStat != null) {
+      } else if (isPitcherFilter(displayMode) && pitcherStat != null) {
         statHeaders.push(
           <HeaderCellSort key={pitcherStat.id} sortKey={pitcherStat.id}>
             {pitcherStat.display.toUpperCase()}

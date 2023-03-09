@@ -6,10 +6,10 @@ import {
   BATTER_POSITION_KEY,
   isCornerInfield,
   isMiddleInfield,
-  isPlayerBatter,
-  isPlayerPitcher,
   PITCHER_POSITION_KEY,
   TableDisplayMode,
+  isBatterEligiblePosition,
+  isPitcherEligiblePosition,
 } from "../../../data/types/positions";
 
 interface UsePlayerTableRowsArgs {
@@ -37,10 +37,10 @@ export const usePlayerTableRows = ({
         switch (positionFilter) {
           case BATTER_POSITION_KEY:
           case "UT":
-            return isPlayerBatter(player.position);
+            return isBatterEligiblePosition(player.position);
           case PITCHER_POSITION_KEY:
           case "P":
-            return isPlayerPitcher(player.position);
+            return isPitcherEligiblePosition(player.position);
           case "CI":
             return isCornerInfield(player.position);
           case "MI":
