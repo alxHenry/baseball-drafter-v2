@@ -38,8 +38,8 @@ Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87
 
 ### P2
 
-- [] Fix table name filter. Notice Gerrit Colr matches until the second r.
 - [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
+- [x] Fix table name filter. Notice Gerrit Colr matches until the second r.
 - [x] Fix default value sort on table
 - [x] Limit cell display to two/three decimal places
 - [x] Fix Roto total caluclation
