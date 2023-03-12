@@ -7,11 +7,10 @@ import TeamPlayersDisplay from "./TeamPlayersDisplay";
 import TeamNeeds from "./TeamNeeds";
 import { FC, memo } from "react";
 
-interface Props {
-  teamId: string;
-}
+interface Props {}
 
-const TeamDisplay: FC<Props> = ({ teamId }) => {
+const TeamDisplay: FC<Props> = () => {
+  const teamId = useStore((store) => store.teamsSlice.teamDisplaySelectedId);
   const teamName = useStore(getTeamNameSelector(teamId));
 
   return (
