@@ -1,5 +1,5 @@
 import { Player } from "../../../../data/stores/playersSlice";
-import { isBatterEligiblePosition, PositionId } from "../../../../data/types/positions";
+import { PositionId } from "../../../../data/types/positions";
 
 export type TeamLineup = Partial<Record<PositionId, Player>>;
 
@@ -29,7 +29,7 @@ export const generateOptimalLineup = ({ players, positionRequirements }: Generat
   // Find all possible permutations of players for each position
   Object.keys(remainingRequirements).forEach((positionId) => {
     const numRequired = remainingRequirements[positionId as PositionId];
-    const availablePlayers = playersByPosition[positionId as PositionId];
+    const availablePlayers = playersByPosition[positionId as PositionId] ?? [];
 
     const positionPermutations = getPermutations(availablePlayers, numRequired);
 
@@ -43,7 +43,7 @@ export const generateOptimalLineup = ({ players, positionRequirements }: Generat
         lineup[positionId as PositionId] = player;
         if (index === permutation.length - 1) {
           // This is the last position in the permutation, so calculate the total value of the lineup
-          const lineupValue = Object.values(lineup).reduce((total, player) => total + (player?.value || 0), 0);
+          const lineupValue = Object.values(lineup).reduce((total, player) => total + (player.stats.worth.abs || 0), 0);
           if (lineupValue > bestValue) {
             bestValue = lineupValue;
             bestLineup = lineup;
