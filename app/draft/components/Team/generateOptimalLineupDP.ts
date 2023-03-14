@@ -1,13 +1,12 @@
-// Chat GPT generated a dynamic programming solution as well that is O(NM2^M), where N is the number of players and M is the number of positions.
-// Compared to the other solution that is O(n^p), where n is the number of available players for each position, and p is the number of positions in the lineup.
 import { Player } from "../../../../data/stores/playersSlice";
 import { PositionId } from "../../../../data/types/positions";
 
-export type TeamLineup = Partial<Record<PositionId, Player>>;
+type PositionRequirements = Record<PositionId, number>;
+export type TeamLineup = Partial<Record<PositionId, Player[]>>;
 
 interface GenerateOptimalLineupArgs {
   readonly players: Player[];
-  readonly positionRequirements: Record<PositionId, number>;
+  readonly positionRequirements: PositionRequirements;
 }
 
 export const generateOptimalLineupDP = ({ players, positionRequirements }: GenerateOptimalLineupArgs): TeamLineup => {
@@ -41,19 +40,24 @@ export const generateOptimalLineupDP = ({ players, positionRequirements }: Gener
   }
 
   // Backtrack through the table to determine the selected lineup
-  let selectedLineup: TeamLineup = {};
-  let i = n;
-  let j = p - 1;
-  while (i > 0 && j >= 0) {
-    const prevJ = selections[i][j];
-    if (prevJ !== -1) {
-      const positionId = Object.keys(positionRequirements)[j] as PositionId;
-      const player = players[i - 1];
-      selectedLineup[positionId] = player;
-      i--;
-      j = prevJ;
-    } else {
-      j--;
+  const selectedLineup: TeamLineup = {};
+  const playerCounts: PositionRequirements = { ...positionRequirements };
+  for (let i = n; i > 0; i--) {
+    let j = p - 1;
+    while (j >= 0) {
+      const prevJ = selections[i][j];
+      if (prevJ !== -1) {
+        const positionId = Object.keys(positionRequirements)[j] as PositionId;
+        const player = players[i - 1];
+        if (!selectedLineup[positionId]) {
+          selectedLineup[positionId] = [];
+        }
+        selectedLineup[positionId]!.push(player);
+        playerCounts[positionId]--;
+        j = prevJ;
+      } else {
+        j--;
+      }
     }
   }
 
