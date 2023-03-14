@@ -1,10 +1,10 @@
 import { Body, Table } from "@table-library/react-table-library";
-import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/chakra-ui/index";
+import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/chakra-ui";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { FC, memo } from "react";
 import TeamDisplayTableHeader from "./TeamDisplayTableHeader";
 import TeamDisplayTableRow from "./TeamDisplayTableRow";
-import { useTeamDisplayTableData } from "./useTeamDisplayTableData";
+import { TeamTableRowData, useTeamDisplayTableData } from "./useTeamDisplayTableData";
 
 interface Props {}
 
@@ -20,8 +20,8 @@ const TeamDisplayTable: FC<Props> = () => {
         <>
           <TeamDisplayTableHeader />
           <Body>
-            {(tableList as TeamRotoRankings[]).map((item) => (
-              <TeamDisplayTableRow key={item.id} />
+            {(tableList as TeamTableRowData[]).map((item) => (
+              <TeamDisplayTableRow key={item.id} item={item} />
             ))}
           </Body>
         </>
