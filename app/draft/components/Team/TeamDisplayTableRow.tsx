@@ -9,12 +9,12 @@ interface Props {
 }
 
 const TeamDisplayTableRow: FC<Props> = ({ item: { player, positionId } }) => {
-  const { id, name } = player;
+  const { id, name = "" } = player;
   const filteredAndSortedStatIds = useRotoRankingsFilteredAndSortedStatIds();
 
   const renderedStatCells = useMemo(() => {
     const elems = Array.from(filteredAndSortedStatIds).map((statId) => (
-      <Cell key={statId}>{player.stats[statId as StatId]?.abs ?? ""}</Cell>
+      <Cell key={statId}>{player?.stats?.[statId as StatId]?.abs ?? ""}</Cell>
     ));
 
     return elems;
