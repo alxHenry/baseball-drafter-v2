@@ -19,23 +19,31 @@ export const generateOptimalLineup = ({
     return agg;
   }, {});
 
-  let maxValue = Number.MIN_SAFE_INTEGER;
+  const memo: Record<string, number> = {};
+  let globalMaxValue = 0;
   let optimalLineup: TeamLineup;
   let calls = 0;
-  const generateLineupPermutations = (
+
+  const pickNextPlayer = (
     players: Player[],
     positionRequirements: Record<PositionId, number>,
     lineupBuilder: TeamLineup
   ) => {
+    const key = JSON.stringify([players, positionRequirements]);
+    if (memo[key] != null) {
+      return;
+    }
+
     calls++;
 
     // Base case
     if (players.length === 0) {
       const value = calculateLineupValue(lineupBuilder);
-      if (value > maxValue) {
-        maxValue = value;
+      if (value > globalMaxValue) {
+        globalMaxValue = value;
         optimalLineup = structuredClone(lineupBuilder);
       }
+      memo[key] = value;
       return;
     }
 
@@ -57,13 +65,13 @@ export const generateOptimalLineup = ({
         positionRequirementsDecremented[position]--;
         chosenLineup[position]?.push(player);
 
-        generateLineupPermutations(playersWithoutPlayer, positionRequirementsDecremented, chosenLineup); // Choose
+        pickNextPlayer(playersWithoutPlayer, positionRequirementsDecremented, chosenLineup);
         chosenLineup[position]?.pop(); // Unchoose to reset our state for the next call
-        generateLineupPermutations(playersWithoutPlayer, { ...positionRequirements }, { ...lineupBuilder }); // Don't choose
+        pickNextPlayer(playersWithoutPlayer, { ...positionRequirements }, { ...lineupBuilder });
       }
     }
   };
-  generateLineupPermutations(players, positionRequirements, emptyLineup);
+  pickNextPlayer(players, positionRequirements, emptyLineup);
 
   console.log("Lineup generation call count: ", calls);
   return optimalLineup!;
@@ -72,7 +80,7 @@ export const generateOptimalLineup = ({
 const calculateLineupValue = (lineup: TeamLineup): number => {
   return Object.values(lineup).reduce((sum, players) => {
     players.forEach((player) => {
-      sum += player.stats.aWorth.abs; // Worth is more likely to be negative, so use adjusted worth 
+      sum += player.stats.aWorth.abs; // Worth is more likely to be negative, so use adjusted worth
     });
     return sum;
   }, 0);
