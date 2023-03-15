@@ -29,7 +29,7 @@ export const generateOptimalLineup = ({
     positionRequirements: Record<PositionId, number>,
     lineupBuilder: TeamLineup
   ) => {
-    const key = JSON.stringify([playersStringify(players), positionRequirements]); // This stringification could be much more efficient, but I don't think that will save us
+    const key = JSON.stringify([playersStringify(players), positionRequirements]);
     if (memo[key] != null) {
       return;
     }
