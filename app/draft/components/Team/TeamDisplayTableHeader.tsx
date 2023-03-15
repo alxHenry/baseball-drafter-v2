@@ -8,11 +8,7 @@ const TeamDisplayTableHeader: FC<Props> = () => {
   const filteredAndSortedStatIds = useRotoRankingsFilteredAndSortedStatIds();
 
   const headers = useMemo(() => {
-    const elems = Array.from(filteredAndSortedStatIds).map((statId) => (
-      <HeaderCell key={statId} sortKey={statId}>
-        {statId}
-      </HeaderCell>
-    ));
+    const elems = Array.from(filteredAndSortedStatIds).map((statId) => <HeaderCell key={statId}>{statId}</HeaderCell>);
     elems.unshift(<HeaderCell key="Position">Position</HeaderCell>, <HeaderCell key="Name">Name</HeaderCell>);
 
     return elems;

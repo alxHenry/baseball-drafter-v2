@@ -34,7 +34,7 @@ export const generateOptimalLineup = ({
       const value = calculateLineupValue(lineupBuilder);
       if (value > maxValue) {
         maxValue = value;
-        optimalLineup = lineupBuilder;
+        optimalLineup = structuredClone(lineupBuilder);
       }
       return;
     }
@@ -58,6 +58,7 @@ export const generateOptimalLineup = ({
         chosenLineup[position]?.push(player);
 
         generateLineupPermutations(playersWithoutPlayer, positionRequirementsDecremented, chosenLineup); // Choose
+        chosenLineup[position]?.pop(); // Unchoose to reset our state for the next call
         generateLineupPermutations(playersWithoutPlayer, { ...positionRequirements }, { ...lineupBuilder }); // Don't choose
       }
     }
@@ -71,7 +72,7 @@ export const generateOptimalLineup = ({
 const calculateLineupValue = (lineup: TeamLineup): number => {
   return Object.values(lineup).reduce((sum, players) => {
     players.forEach((player) => {
-      sum += player.stats.worth.abs;
+      sum += player.stats.aWorth.abs; // Worth is more likely to be negative, so use adjusted worth 
     });
     return sum;
   }, 0);
