@@ -39,6 +39,7 @@ Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87
 ### P2 - Ready for others drafts
 
 - [] Stat configuration end to end
+- [] Undo pick
 - [x] Fix table name filter. Notice Gerrit Colr matches until the second r.
 - [x] Fix default value sort on table
 - [x] Limit cell display to two/three decimal places
@@ -46,6 +47,7 @@ Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87
 
 ### P3 - Nice to haves
 
+- [] Manually manage lineups for teams
 - [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
 
 ### Features
