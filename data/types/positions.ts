@@ -40,11 +40,11 @@ export type TableDisplayMode =
   | PositionId;
 
 export const isCornerInfield = (positions: string[]) => {
-  return positions.some((position) => position === PositionId["1B"] || position === PositionId["3B"]);
+  return positions.some((position) => isCornerInfieldEligiblePosition(position as PositionId));
 };
 
 export const isMiddleInfield = (positions: string[]) => {
-  return positions.some((position) => position === PositionId["2B"] || position === PositionId.SS);
+  return positions.some((position) => isMiddleInfieldEligiblePosition(position as PositionId));
 };
 
 export const isPitcherFilter = (displayMode: TableDisplayMode) => {
@@ -71,4 +71,25 @@ export const isBatterFilter = (displayMode: TableDisplayMode) => {
 };
 export const isBatterEligiblePosition = (positions: PositionId[]) => {
   return positions.some((position) => batterPositionLookup[position] === true);
+};
+
+export const isMiddleInfieldEligiblePosition = (position: PositionId) => {
+  return position === PositionId["2B"] || position === PositionId.SS;
+};
+
+export const isCornerInfieldEligiblePosition = (position: PositionId) => {
+  return position === PositionId["1B"] || position === PositionId["3B"];
+};
+
+export const isUtilEligiblePosition = (position: PositionId) => {
+  return position !== PositionId.SP && position !== PositionId.RP && position !== PositionId.P;
+};
+
+export const isInfieldEligiblePosition = (position: PositionId) => {
+  return (
+    position === PositionId["1B"] ||
+    position === PositionId["2B"] ||
+    position === PositionId["3B"] ||
+    position === PositionId.SS
+  );
 };

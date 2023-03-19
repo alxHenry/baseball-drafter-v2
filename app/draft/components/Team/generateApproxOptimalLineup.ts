@@ -1,5 +1,12 @@
 import { Player } from "../../../../data/stores/playersSlice";
-import { PositionId } from "../../../../data/types/positions";
+import {
+  isCornerInfieldEligiblePosition,
+  isInfieldEligiblePosition,
+  isMiddleInfieldEligiblePosition,
+  isPitcherEligiblePosition,
+  isUtilEligiblePosition,
+  PositionId,
+} from "../../../../data/types/positions";
 
 const positionToPriority: Record<string, number> = {
   C: 1,
@@ -150,6 +157,28 @@ const playersToPositionEligibilityRecordReducer = (agg: Record<string, Player[]>
   player.position.forEach((positionId) => {
     agg[positionId] = agg[positionId] ?? [];
     agg[positionId].push(player);
+
+    if (isCornerInfieldEligiblePosition(positionId)) {
+      agg[PositionId.CI] = agg[PositionId.CI] ?? [];
+      agg[PositionId.CI].push(player);
+    }
+    if (isMiddleInfieldEligiblePosition(positionId)) {
+      agg[PositionId.MI] = agg[PositionId.MI] ?? [];
+      agg[PositionId.MI].push(player);
+    }
+    if (isInfieldEligiblePosition(positionId)) {
+      agg[PositionId.IF] = agg[PositionId.IF] ?? [];
+      agg[PositionId.IF].push(player);
+    }
+    if (isUtilEligiblePosition(positionId)) {
+      agg[PositionId.UT] = agg[PositionId.UT] ?? [];
+      agg[PositionId.UT].push(player);
+    }
+
+    if (isPitcherEligiblePosition([positionId])) {
+      agg[PositionId.P] = agg[PositionId.P] ?? [];
+      agg[PositionId.P].push(player);
+    }
   });
   return agg;
 };
