@@ -49,7 +49,7 @@ export const useStore = create<Store>()((set: StoreSet, get: StoreGet) => ({
 
     // rehydrate the non-function methods into our store
     set((store) => {
-      return merge(storedStore, store);
+      return merge(store, storedStore);
     });
   },
 }));
@@ -60,8 +60,13 @@ const buildStoreWithoutFunctions = (obj: Record<string, any>): Record<string, an
       return agg;
     }
 
-    const recursedObject = buildStoreWithoutFunctions(value);
-    agg[key] = recursedObject;
+    if (typeof value === "object" && value != null) {
+      const recursedObject = buildStoreWithoutFunctions(value);
+      agg[key] = recursedObject;
+      return agg;
+    }
+
+    agg[key] = value;
     return agg;
   }, {});
 };
