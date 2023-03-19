@@ -28,6 +28,7 @@ Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87
 ### P1 - Ready for my draft
 
 - [] Fix bug with averages. Draft Judge then all bad players and observe their average numbers
+- [] Support saving to localStorage at least. DB at best.
 - [x] Team screen with position filling
 - [x] Fix prebuild errors to allow deploying to prod/vercel
 - [x] Support multi position players
