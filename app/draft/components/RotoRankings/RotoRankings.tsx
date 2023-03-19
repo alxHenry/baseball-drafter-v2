@@ -7,7 +7,6 @@ import { FC, memo } from "react";
 import { type RotoRankings } from "../../../../data/state/useDerivedRotoRankings";
 import { useRotoRankingsTableSort } from "./useRotoRankingsTableSort";
 import { TeamRotoRankings, useRotoRankingsTableData } from "./useRotoRankingsTableData";
-import { useRotoRankingsFilteredAndSortedStatIds } from "./useRotoRankingsFilteredAndSortedStatIds";
 import RotoRankingsTeamRow from "./RotoRankingsTeamRow";
 import RotoRankingsHeader from "./RotoRankingsHeader";
 import { useStore } from "../../../../data/stores/store";

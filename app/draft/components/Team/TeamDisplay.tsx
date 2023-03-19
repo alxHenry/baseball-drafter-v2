@@ -3,15 +3,14 @@ import styles from "./TeamDisplay.module.css";
 
 import { getTeamNameSelector } from "../../../../data/selectors/teamsSelectors";
 import { useStore } from "../../../../data/stores/store";
-import TeamPlayersDisplay from "./TeamPlayersDisplay";
 import TeamNeeds from "./TeamNeeds";
 import { FC, memo } from "react";
+import TeamDisplayTable from "./TeamDisplayTable";
 
-interface Props {
-  teamId: string;
-}
+interface Props {}
 
-const TeamDisplay: FC<Props> = ({ teamId }) => {
+const TeamDisplay: FC<Props> = () => {
+  const teamId = useStore((store) => store.teamsSlice.teamDisplaySelectedId);
   const teamName = useStore(getTeamNameSelector(teamId));
 
   return (
@@ -21,7 +20,7 @@ const TeamDisplay: FC<Props> = ({ teamId }) => {
         <TeamNeeds teamId={teamId} />
       </div>
       <div>
-        <TeamPlayersDisplay teamId={teamId} />
+        <TeamDisplayTable />
       </div>
     </div>
   );

@@ -25,26 +25,28 @@ Access the Vercel hobby hosted version here: https://baseball-drafter-v2-rkvd-87
 
 ## Roadmap
 
-### P1
+### P1 - Ready for my draft
 
 - [] Fix bug with averages. Draft Judge then all bad players and observe their average numbers
-- [] Stat configuration end to end
-- [] Team screen with position filling
+- [] Support saving to localStorage at least. DB at best.
+- [x] Team screen with position filling
 - [x] Fix prebuild errors to allow deploying to prod/vercel
 - [x] Support multi position players
 - [x] Big Board position filtering
 - [x] Lower is better rate stat scoring on Roto rankings
 - [x] Support roto stats where lower values are better
 
-### P2
+### P2 - Ready for others drafts
 
-- [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
+- [] Stat configuration end to end
 - [x] Fix table name filter. Notice Gerrit Colr matches until the second r.
 - [x] Fix default value sort on table
 - [x] Limit cell display to two/three decimal places
 - [x] Fix Roto total caluclation
 
-### P3
+### P3 - Nice to haves
+
+- [] Properly calculate Roto ties (not a huge deal outside beginning of draft)
 
 ### Features
 

@@ -5,7 +5,13 @@ import { getStateWithTeams } from "../state/getStateWithTeams";
 import { TeamTotalStatsById } from "../types/stats";
 
 import { StoreGet, StoreSet } from "./store";
-import { DEFAULT_TEAMS_BY_ID, DEFAULT_TEAMS_COUNT, DEFAULT_TEAM_TOTAL_STATS_BY_ID, generateTeams } from "./teamsUtils";
+import {
+  DEFAULT_TEAMS_BY_ID,
+  DEFAULT_TEAMS_COUNT,
+  DEFAULT_TEAM_ID,
+  DEFAULT_TEAM_TOTAL_STATS_BY_ID,
+  generateTeams,
+} from "./teamsUtils";
 
 export interface Team {
   readonly name: string;
@@ -18,6 +24,7 @@ export interface TeamsSlice {
   // Properties
   readonly teamsById: TeamsById;
   readonly setupTeamNames: string[];
+  readonly teamDisplaySelectedId: string;
   readonly teamTotalStatsById: TeamTotalStatsById;
 
   // Methods
@@ -25,11 +32,13 @@ export interface TeamsSlice {
   readonly modifySetupTeam: (index: number, newName: string) => void;
   readonly changeSetupTeamCount: (desiredTeamCount: number) => void;
   readonly finalizeSetupTeams: () => void;
+  readonly setTeamDisplaySelectedTeam: (teamId: string) => void;
 }
 
 export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSlice => ({
   teamsById: DEFAULT_TEAMS_BY_ID,
   setupTeamNames: generateTeams(DEFAULT_TEAMS_COUNT),
+  teamDisplaySelectedId: DEFAULT_TEAM_ID,
   teamTotalStatsById: DEFAULT_TEAM_TOTAL_STATS_BY_ID,
 
   draftPlayer: (playerId: string) => {
@@ -82,6 +91,16 @@ export const getTeamsSliceDefinitions = (set: StoreSet, get: StoreGet): TeamsSli
       const stateWithTeams = getStateWithTeams(state);
       const stateWithTotalStats = getStateWithInitializeTeamTotalStatsById(stateWithTeams);
       return stateWithTotalStats;
+    });
+  },
+  setTeamDisplaySelectedTeam: (teamId) => {
+    set((state) => {
+      return {
+        teamsSlice: {
+          ...state.teamsSlice,
+          teamDisplaySelectedId: teamId,
+        },
+      };
     });
   },
 });
