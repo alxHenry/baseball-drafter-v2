@@ -1,6 +1,7 @@
 import { TOTAL_KEY } from "../types/rotoRankings";
 import { defaultSelectedBatterStats, defaultSelectedPitcherStats } from "../types/statConfig";
 import { TeamTotalStats } from "../types/stats";
+import { Store } from "./store";
 import type { TeamsById } from "./teamsSlice";
 
 export const DEFAULT_TEAMS_COUNT = 10;
@@ -33,4 +34,12 @@ export const transformTeamNamesToFullTeams = (setupTeamNames: string[]) => {
 
     return agg;
   }, {});
+};
+
+export const getStoreWithDefaultStatesRemoved = (store: Store): Store => {
+  // Need to manually clear out the default store states so that when the merge occurs we don't get default states and real states together
+  delete store.teamsSlice.teamsById[DEFAULT_TEAM_ID];
+  delete store.teamsSlice.teamTotalStatsById[DEFAULT_TEAM_ID];
+
+  return store;
 };

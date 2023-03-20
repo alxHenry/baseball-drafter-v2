@@ -6,6 +6,7 @@ import { SetupSlice, getSetupSliceDefinitions } from "./setupSlice";
 import { getTableSliceDefinitions, TableSlice } from "./tableSlice";
 import { getRotoRankingsSliceDefinitions, RotoRankingsSlice } from "./rotoRankingsSlice";
 import merge from "lodash.merge";
+import { getStoreWithDefaultStatesRemoved } from "./teamsUtils";
 
 const LOCAL_STORAGE_KEY = "baseball-drafter-v2-store-storage-key";
 
@@ -17,7 +18,7 @@ export interface Store {
   readonly tableSlice: TableSlice;
   readonly teamsSlice: TeamsSlice;
   readonly persist: () => void;
-  readonly rehydrateStore: () => void;
+  readonly rehydrateStore: () => boolean;
 }
 
 export type StoreSet = (
@@ -41,22 +42,31 @@ export const useStore = create<Store>()((set: StoreSet, get: StoreGet) => ({
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storeWithoutObjects));
   },
-  rehydrateStore: () => {
+  rehydrateStore: (): boolean => {
     const storedStore = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (storedStore == null) {
-      return;
+      return false;
     }
 
-    // rehydrate the non-function methods into our store
+    const parsedStore = JSON.parse(storedStore);
     set((store) => {
-      return merge(store, storedStore);
+      const mergedStores = merge(store, parsedStore) as Store;
+      const defaultlessStore = getStoreWithDefaultStatesRemoved(mergedStores);
+
+      return defaultlessStore;
     });
+    return true;
   },
 }));
 
 const buildStoreWithoutFunctions = (obj: Record<string, any>): Record<string, any> => {
   return Object.entries(obj).reduce<Record<string, any>>((agg, [key, value]) => {
     if (typeof value === "function") {
+      return agg;
+    }
+
+    if (Array.isArray(value)) {
+      agg[key] = value; // This could break in the case of an array of objects with functions. May need to build an array expander if that becomes an issue
       return agg;
     }
 
